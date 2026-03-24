@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenming -->
+<sqlMap>
+
+	    <select id="queryshenjinli" parameterClass="java.util.Map" resultClass="commonj.sdo.DataObject">
+	    
+				    select 1
+						  from (SELECT O.ORGID AS INORGID,
+						               O.ORGNAME AS INORGNAME,
+						               O.ORGLEVEL,
+						               O.ORGSEQ,
+						               E.EMPID,
+						               E.EMPCODE,
+						               E.EMPNAME,
+						               E.GENDER,
+						               E.EMPSTATUS,
+						               E.MOBILENO,
+						               OPR.OPERATORID,
+						               OPR.USERID,
+						               OPR.OPERATORNAME,
+						               OPR.STATUS,
+						               OP.POSITIONSEQ,
+						               OP.POSICODE,
+						               OP.POSINAME,
+						               OP.POSITIONID
+						          FROM OM_EMPPOSITION  PE,
+						               OM_EMPLOYEE     E,
+						               AC_OPERATOR     OPR,
+						               OM_POSITION     OP,
+						               OM_ORGANIZATION O
+						         WHERE PE.EMPID = E.EMPID
+						           AND E.OPERATORID = OPR.OPERATORID
+						           AND PE.POSITIONID = OP.POSITIONID
+						           AND OP.ORGID = O.ORGID) temp,
+						       yd_cm_oprrole aco
+						 where temp.operatorid = aco.operatorid
+						 and aco.ROLEID=#roleid#
+						 and temp.empid=#userid#
+							    
+				    
+	    </select>
+	    
+	    
+	    <select id="querywdlsktrizhi" parameterClass="java.util.Map" resultClass="commonj.sdo.DataObject">
+	    
+	    	    select * from
+	    	    (
+			    select t.processinstid,
+				       t.wdcode,
+				       t.wdname,
+				       t.yfkbalance,
+				       t.xiandifajianedu,
+				       to_char(t.appdate, 'yyyy-MM-dd hh24:mi:ss') as appdate,
+				       to_char(z.enddate, 'yyyy-MM-dd hh24:mi:ss') as enddate,
+				       a.condition,
+				       (case
+				         when a.condition = '4' then
+				          z.sendstats
+				         when a.condition = '6' then
+				          '3'
+				         when a.condition in ('1', '2', '3', '5') then
+				          '4'
+				         else
+				          '3'
+				       end) as sendstatus,
+				       z.remark,
+				       z.koukuancode
+				  from yd_yw_wdlinshiktfj t, yd_yw_wdlinshiktfj_tsrz z, oa_applyinfo a
+				 where t.processinstid = z.processinstid(+)
+				   and t.processinstid = a.processinstid
+				  <isNotNull prepend="AND" property="appdate">
+			      	 t.appdate  between to_date('$appdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss') and  to_date('$appdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')
+			       </isNotNull>   
+				   <isNotNull prepend="AND" property="enddate">
+			       	 z.enddate  between to_date('$enddate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss') and  to_date('$enddate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')
+			       </isNotNull>
+				 ) aa
+				 where 1=1
+				   <isNotNull prepend="AND" property="processinstid">
+			          aa.processinstid =#processinstid#
+			       </isNotNull>    
+	    		   <isNotNull prepend="AND" property="wangdiancode">
+			          aa.wdcode =#wangdiancode#
+			       </isNotNull>   
+			       <isNotNull prepend="AND" property="status">
+			          aa.condition =#status#
+			       </isNotNull>  
+			       <isNotNull prepend="AND" property="sendstatus">
+			          aa.sendstatus=#sendstatus#
+			       </isNotNull> 
+			       order by aa.enddate desc
+	    </select>
+	    <select id="findOrgSeqByUserId" parameterClass="java.util.Map" resultClass="commonj.sdo.DataObject">
+	    	   select om.orgname,om.orgseq,om.orgid from om_emporg oe,om_organization om where om.orgid = oe.orgid and oe.empid = #userid#
+	    </select>
+	    <select id="findAutoCompleteWd" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.yufukuankaitong.yufukuankaitong.querywdinfo">
+	    	   select t.orgid, t.orgcode, t.orgname, e.userid, e.empname, t.orgseq
+					  from om_organization t, om_employee e
+					 where t.orgtype = '4'
+					   and t.orgid = e.orgid(+)
+					   and e.userid like '%001'
+					   and t.orgcode like '%'|| #orgcode# ||'%'
+					   and $orgseq$
+	    </select>
+
+</sqlMap>

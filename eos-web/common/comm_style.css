@@ -1,0 +1,139 @@
+/* 本样式为费控报销、付款页面样式 */
+body{
+	text-align:center;
+}
+.conBody{
+	width:1250px; 
+	overflow:hidden;
+	background:url('bg_w.jpg') repeat-y;
+	background-position: 2px 0px;
+	}
+.contents{
+		width:1220px;
+		overflow-x:hidden;
+		min-height:780px;
+       _height:780px;
+	}
+#footer{
+		margin-left:5px;
+		height:5px;
+		width:1238px;
+		background:url('bg-h.jpg') repeat-x;
+		background-position: -10px 0px;
+	
+	}
+	.form_table2
+	{
+		border-collapse: collapse;
+		border:0px none;
+	}
+	.form_table2 table
+	{
+		border:0 none;
+		border-collapse: collapse;
+	}
+	.form_table2 td
+	{
+		height:25px;
+		border:1px solid #dbd9d9;
+		border-collapse: collapse;
+	}
+	.form_table2 .panelStyle{
+		width:80px;
+		font-weight: bold;
+		color: black;
+		text-align:center;
+		border-right:0 none;
+	}
+	.w150{
+		width:160px;
+	}
+	.w60{ width: 60px}	
+	.w1k{
+		width:1000px;
+	}
+	.aa{
+		text-align:center;
+	
+	}	
+	input{ width:110px;}
+	
+	.radio input{
+		width:30px;
+	}
+	.button{ width:40px;}
+	
+	.scrollDiv{
+		width:100%;
+		overflow-x:hidden;
+		
+	}
+	
+	.pb10{padding-bottom:20px;}
+	.bt{ 
+		border:0 none;
+		border-bottom:1px solid #dbd9d9
+	}
+	.eos-ic-container input,.peoInput{ width:105px;}
+	select { width:110px;}
+	textarea,.longInput{ width:880px;}
+	textarea{ height:60px; border:0 none;}
+	
+	input{ border:0 none;}
+	.eos-calendar-editor-text{border:0 none;}
+	.eos-panel-title{
+		font-weight:bold; color:#000;		
+	}
+.form_table2 .noBorder
+{
+	
+}
+.firstTr td 
+{
+	border-top:0 none;
+}
+.lastTr td 
+{
+	border-bottom:0 none;
+}
+.form_table2 tr .firstTd
+{
+	border-left:0 none;
+}
+.form_table2 tr .lastTd
+{
+	border-right:0 none;
+}
+.form_label2{
+	width:130px;
+	text-align:right;
+	background:#eeeeee;
+	}
+	
+.form_label22{
+	width:150px;
+	text-align:right;	
+	background:#eeeeee;
+	}
+	
+td{
+	white-space: nowrap;
+	overflow: hidden;
+}
+td .inputwidth{
+	width: 100%
+}
+.longTexTd{
+	white-space:nowrap;overflow: hidden;text-overflow:ellipsis
+}
+.money-text{
+	text-align:right;
+}
+.money-td{
+	text-align:right;
+}
+.scrollDiv{
+	width:100%;
+	overflow-x:auto;
+	
+}

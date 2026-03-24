@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+  <catalogID>44ad2831be74448fbe0b9c7fbd9d1e71</catalogID>
+  <bizCommResources>
+    <businessCommRes>
+      <resourceUUID>e5f2c9f4cd3743c4959cabaa70d80ba3</resourceUUID>
+      <resourceName>申请人岗位级别</resourceName>
+      <catalogUUID>44ad2831be74448fbe0b9c7fbd9d1e71</catalogUUID>
+      <resourceImpl>auditComm/securityLevel</resourceImpl>
+      <resourceType></resourceType>
+      <resourceRemark>申请人岗位级别</resourceRemark>
+      <parameters/>
+      <busiResType>03</busiResType>
+    </businessCommRes>
+    <businessCommRes>
+      <resourceUUID>ce96b53216ac4eaea97ae7e77601cd3e</resourceUUID>
+      <resourceName>申请金额</resourceName>
+      <catalogUUID>44ad2831be74448fbe0b9c7fbd9d1e71</catalogUUID>
+      <resourceImpl>auditComm/money</resourceImpl>
+      <resourceType></resourceType>
+      <resourceRemark>人事类流程中涉及到的申请金额</resourceRemark>
+      <parameters/>
+      <busiResType>03</busiResType>
+    </businessCommRes>
+  </bizCommResources>
+  <bizRules/>
+  <bizCalendars/>
+</resource>

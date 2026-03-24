@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:zxw -->
+<sqlMap>
+    
+    <select id="query_emp" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.infopush.infopush.OmEmployeeEsb">
+    SELECT 
+	    empname,
+	    empcode,
+	    empstatus,
+	    push_Time as pushTime,
+	    push_Domainid as pushDomainid,
+	    target_System as targetSystem,
+	    PUSH_STATUS as pushStatus,
+	    PUSH_STATUS_KD as pushStatusKd,
+	    PUSH_STATUS_KY	as pushStatusKy,
+	    PUSH_STATUS_IDP	as pushStatusIdp,
+	    createtime,
+	    lastmodytime
+    FROM OM_EMPLOYEE_ESB
+    where
+    1=1
+    <isNotNull prepend="AND" property="empcode">
+    	empcode ='$empcode$'
+  	</isNotNull>
+ 	<isNotNull prepend="AND" property="empname">
+    	empname like '%$empname$%'
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="empstatus">
+    	empstatus ='$empstatus$'
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="starttime">
+    	<![CDATA[push_Time>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="endtime">
+  		<![CDATA[push_Time < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull>
+  
+  	<isNotNull prepend="AND" property="pushStatus">
+    	PUSH_STATUS = #pushStatus#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusKd">
+    	PUSH_STATUS_KD = #pushStatusKd#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusKy">
+    	PUSH_STATUS_KY = #pushStatusKy#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusIdp">
+    	PUSH_STATUS_IDP = #pushStatusIdp#
+  	</isNotNull>
+  	order by push_Time desc
+    </select>
+    
+    <select id="query_org" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.infopush.infopush.OmOrganizationEsb">
+    SELECT
+    orgname,
+    orgid,
+    status,
+    push_Time as pushTime,
+    push_Domainid as pushDomainid,
+    PUSH_STATUS as pushStatus,
+    target_System as targetSystem,
+    PUSH_STATUS_KD as pushStatusKd,
+    PUSH_STATUS_KY	as pushStatusKy,
+    PUSH_STATUS_IDP	as pushStatusIdp
+    FROM OM_ORGANIZATION_ESB    
+    where 
+    1=1
+    <isNotNull prepend="AND" property="orgid">
+    	orgid ='$orgid$'
+  	</isNotNull>
+ 	<isNotNull prepend="AND" property="orgname">
+    	orgname like '%$orgname$%'
+  	</isNotNull>
+  
+  	<isNotNull prepend="AND" property="starttime">
+    	<![CDATA[push_Time>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="endtime">
+  		<![CDATA[push_Time < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull>
+  
+  	<isNotNull prepend="AND" property="pushStatus">
+    	PUSH_STATUS = #pushStatus#
+  	</isNotNull>
+  		<isNotNull prepend="AND" property="pushStatusKd">
+    	PUSH_STATUS_KD = #pushStatusKd#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusKy">
+    	PUSH_STATUS_KY = #pushStatusKy#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusIdp">
+    	PUSH_STATUS_IDP = #pushStatusIdp#
+  	</isNotNull>
+  	order by push_Time desc
+    </select>
+    
+    <select id="query_post" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.infopush.infopush.OmPositionEsb">
+    SELECT
+    posiname,
+    positionid,
+    status,
+    push_Time as pushTime,
+    push_Domainid as pushDomainid,
+    target_System as targetSystem,
+    PUSH_STATUS as pushStatus,
+    PUSH_STATUS_KD as pushStatusKd,
+    PUSH_STATUS_KY	as pushStatusKy,
+    PUSH_STATUS_IDP	as pushStatusIdp
+    FROM OM_POSITION_ESB   
+    where 
+    1=1
+    <isNotNull prepend="AND" property="positionid">
+    	  positionid ='$positionid$'
+  	</isNotNull>
+ 	<isNotNull prepend="AND" property="posiname">
+    	posiname like '%$posiname$%'
+  	</isNotNull> 
+  	<isNotNull prepend="AND" property="starttime">
+    	<![CDATA[push_Time>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="endtime">
+  		<![CDATA[push_Time < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull> 
+  	<isNotNull prepend="AND" property="pushStatus">
+    	PUSH_STATUS = #pushStatus#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusKd">
+    	PUSH_STATUS_KD = #pushStatusKd#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusKy">
+    	PUSH_STATUS_KY = #pushStatusKy#
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="pushStatusIdp">
+    	PUSH_STATUS_IDP = #pushStatusIdp#
+  	</isNotNull>
+  	order by push_Time desc
+    </select>
+    
+       <select id="query_company" parameterClass="java.util.HashMap" resultClass="com.yd.soa.company.company.YdCompanyBaseinfo">
+    SELECT
+    companyname,
+    companyid,
+    cstaus,
+   updatetime
+    FROM YD_COMPANY_BASEINFO   
+    where 1=1
+    <isNotNull prepend="AND" property="companyid">
+    	   companyid ='$companyid$'
+  	</isNotNull>
+ 	<isNotNull prepend="AND" property="companyname">
+    	companyname like '%$companyname$%'
+  	</isNotNull> 
+  	<isNotNull prepend="AND" property="starttime">
+    	<![CDATA[ updatetime>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull>
+  	<isNotNull prepend="AND" property="endtime">
+  		<![CDATA[ updatetime < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+  	</isNotNull> 
+  	<isNotNull prepend="AND" property="cstaus">
+    	cstaus = #cstaus#
+  	</isNotNull>
+    </select>
+	
+	
+	
+	<select id="query_empcode" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select distinct(empid) empid from om_employee_esb esb	
+		where 1=1
+	    <isNotNull prepend="AND" property="empcode">
+	    	esb.empcode ='$empcode$'
+	  	</isNotNull>
+	 	<isNotNull prepend="AND" property="empname">
+	    	esb.empname like '%$empname$%'
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="empstatus">
+    		esb.empstatus ='$empstatus$'
+  		</isNotNull>
+	  	<isNotNull prepend="AND" property="starttime">
+	    	<![CDATA[esb.push_Time>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="endtime">
+	  		<![CDATA[esb.push_Time < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatus">
+	    	esb.PUSH_STATUS = #pushStatus#
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatusKd">
+	    	esb.PUSH_STATUS_KD = #pushStatusKd#
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatusKy">
+	    	esb.PUSH_STATUS_KY = #pushStatusKy#
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatusIdp">
+	    	esb.PUSH_STATUS_IDP = #pushStatusIdp#
+	  	</isNotNull>
+    </select>
+	
+	<select id="query_empcodes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT E.EMPID,
+	       E.EMPCODE,
+	       E.OPERATORID,
+	       E.USERID,
+	       E.EMPNAME,
+	       E.REALNAME,
+	       E.GENDER,
+	       to_char(E.BIRTHDATE,'yyyy-mm-dd') as BIRTHDATE,
+	       E.POSITION,
+	       E.EMPSTATUS,
+	       E.CARDTYPE,
+	       E.CARDNO,
+	       to_char(E.INDATE,'yyyy-mm-dd') as INDATE,
+	       to_char(E.OUTDATE,'yyyy-mm-dd') as OUTDATE,
+	       E.OTEL,
+	       E.OADDRESS,
+	       E.OZIPCODE,
+	       E.OEMAIL,
+	       E.FAXNO,
+	       E.MOBILENO,
+	       E.MSN,
+	       E.HTEL,
+	       E.HADDRESS,
+	       E.HZIPCODE,
+	       E.PEMAIL,
+	       E.PARTY,
+	       E.DEGREE,
+	       E.MAJOR,
+	       E.SPECIALTY,
+	       E.WORKEXP,
+	       to_char(E.REGDATE,'yyyy-mm-dd') as REGDATE,
+	       to_char(E.CREATETIME, 'yyyy-mm-dd hh24:mi:ss') as CREATETIME,
+	       to_char(E.LASTMODYTIME,'yyyy-mm-dd hh24:mi:ss') as LASTMODYTIME,
+	       E.ORGIDLIST,
+	       E.ORGID,
+	       E.REMARK,
+	       E.SOUNDORDER,
+	       E.OLDEMPCODE,
+	       E.TEMPGANGWEI,
+	       E.MAJORCODE,
+	       E.WDACCOUNT,
+	       E.ISRTX,
+	       E.YD_SECURITYLEVEL,
+	       E.YD_DUTIES,
+	       E.YD_DUTIESTYPE,
+	       E.YD_JOBTITLE,
+	       E.YD_ASSISTANT,
+	       E.YD_OFFICE,
+	       E.YD_OTEL,
+	       E.YS_SYSLANGUAGE,
+	       E.YD_NATIONAL,
+	       E.YD_BIRTHPLACE,
+	       E.YD_ACCOUNT,
+	       E.YD_MARRIAGE,
+	       to_char(E.YD_RTDATE,'yyyy-mm-dd') as YD_RTDATE,
+	       to_char(E.YD_RDDATE,'yyyy-mm-dd') as YD_RDDATE,
+	       E.YD_GHHY,
+	       E.YD_EDUCATION,
+	       E.YD_DEGREE,
+	       E.YD_HEALTHSTATE,
+	       null as YD_XINDENG,
+	       null as YD_XINJI,
+	       E.YD_ADDRESS,
+	       E.YD_ZZZNO,
+	       to_char(E.YD_CONTRACTDATE,'yyyy-mm-dd') as YD_CONTRACTDATE,
+	       to_char(E.YD_CONTRACTDATEEND,'yyyy-mm-dd') as YD_CONTRACTDATEEND,
+	       E.YD_SCHOOLS,
+	       E.YD_PROFESSIONAL,
+	       E.YD_EMERGENCY,
+	       E.YD_EMERGENCYTEL,
+	       E.YD_INTRODUCER,
+	       E.YD_PHOTOPATH,
+	       null as YD_XINZI,
+	       E.YD_MASTER,
+	       E.YD_MASTERCODE,
+	       E.YD_MASTERNAME,
+	       E.ZZHR_NBTJR,
+	       E.ISMSGWARN,
+	       E.ZKOSTL,
+	       E.ZKOSTL_NAME,
+	       E.EMP_GROUP,
+	       E.EMP_GROUP_NAME,
+	       E.BQQ,
+	       E.HASBQQ,
+	       E.HASMOBILE,
+	       AC.PASSWORD AS USERPASS,
+	       AC.STATUS AS OPERATOR_STATUS 
+		FROM OM_EMPLOYEE E,
+		AC_OPERATOR AC
+		WHERE
+		AC.OPERATORID=E.OPERATORID
+		AND E.orgid not in(select orgid from om_organization
+				          start with orgid = '970000001'
+				          connect by prior orgid = parentorgid)
+    <isNotNull prepend="AND" property="empid">
+    	E.empid in ($empid$)
+  	</isNotNull>
+    </select>
+    
+        <select id="query_orgid" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		select distinct(orgid) orgid from OM_ORGANIZATION_esb esb	
+		where 1=1
+		    <isNotNull prepend="AND" property="orgid">
+		    	esb.orgid ='$orgid$'
+		  	</isNotNull>
+		 	<isNotNull prepend="AND" property="orgname">
+		    	esb.orgname like '%$orgname$%'
+		  	</isNotNull>
+		  	<isNotNull prepend="AND" property="starttime">
+		    	<![CDATA[esb.push_Time>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+		  	</isNotNull>
+		  	<isNotNull prepend="AND" property="endtime">
+		  		<![CDATA[esb.push_Time < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+		  	</isNotNull>
+		  	<isNotNull prepend="AND" property="status">
+		    	esb.status = #status#
+		  	</isNotNull>
+		  	<isNotNull prepend="AND" property="pushStatusKd">
+		    	esb.PUSH_STATUS_KD = #pushStatusKd#
+		  	</isNotNull>
+		  	<isNotNull prepend="AND" property="pushStatusKy">
+		    	esb.PUSH_STATUS_KY = #pushStatusKy#
+		  	</isNotNull>
+		  	<isNotNull prepend="AND" property="pushStatusIdp">
+		    	esb.PUSH_STATUS_IDP = #pushStatusIdp#
+		  	</isNotNull>
+	</select>
+    
+    
+    
+    <select id="query_orgids" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT 
+			o.ORGID,
+			o.ORGCODE,
+			o.ORGNAME,
+			o.ORGLEVEL,
+			o.ORGDEGREE,
+			o.PARENTORGID,
+			o.ORGSEQ,
+			o.ORGTYPE,
+			o.ORGADDR,
+			o.ZIPCODE,
+			o.MANAPOSITION,
+			o.MANAGERID,
+			o.ORGMANAGER,
+			o.LINKMAN,
+			o.LINKTEL,
+			o.EMAIL,
+			o.WEBURL,
+			o.STARTDATE,
+			o.ENDDATE,
+			o.STATUS,
+			o.AREA,
+			TO_CHAR(o.CREATETIME, 'yyyy-mm-dd hh24:mi:ss') AS CREATETIME,
+			TO_CHAR(o.LASTUPDATE, 'yyyy-mm-dd hh24:mi:ss') AS LASTUPDATE,
+			o.UPDATOR,
+			o.SORTNO,
+			o.ISLEAF,
+			o.SUBCOUNT,
+			o.REMARK,
+			o.BELONGTRANSCODE,
+			o.BELONGTRANSNAME,
+			o.RTXID,
+			o.PARENTRTXID,
+			o.BELONGTRANSID,
+			o.BCODE,
+			o.ORGNAMEFULL,
+			o.ADID,
+			o.PARENTADID,
+			o.WDSTATUS,
+			o.ZKOSTL,
+			o.ZKOSTL_NAME,
+			o.QYLX,
+			o.DEPART_CHARGE,
+			o.SALARY_RANGE,
+			o.HR_RANGE,
+			o.BRANCHTYPE,
+			o.ORGFULLNAME,
+			o.COMPANYID,
+			o.COMPANYSEQ,
+			o.COMPANYNAME
+			FROM OM_ORGANIZATION o 
+			WHERE 
+				o.orgid not in(select orgid from om_organization
+				          start with orgid = '970000001'
+				          connect by prior orgid = parentorgid)
+		    <isNotNull prepend="AND" property="orgid">
+		    	o.orgid in ($orgid$)
+		  	</isNotNull>
+	</select>
+    
+    <select id="query_postid" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select distinct(positionid) positionid from OM_POSITION_esb esb	
+		where 1=1
+	    <isNotNull prepend="AND" property="positionid">
+	    	  esb.positionid ='$positionid$'
+	  	</isNotNull>
+	 	<isNotNull prepend="AND" property="posiname">
+	    	esb.posiname like '%$posiname$%'
+	  	</isNotNull> 
+	  	<isNotNull prepend="AND" property="starttime">
+	    	<![CDATA[esb.push_Time>= to_date('$starttime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="endtime">
+	  		<![CDATA[esb.push_Time < to_date('$endtime$', 'yyyy-MM-dd hh24:mi:ss')]]>
+	  	</isNotNull> 
+	  	<isNotNull prepend="AND" property="status">
+	    	esb.status = #status#
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatusKd">
+	    	esb.PUSH_STATUS_KD = #pushStatusKd#
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatusKy">
+	    	esb.PUSH_STATUS_KY = #pushStatusKy#
+	  	</isNotNull>
+	  	<isNotNull prepend="AND" property="pushStatusIdp">
+	    	esb.PUSH_STATUS_IDP = #pushStatusIdp#
+	  	</isNotNull>
+    </select>
+    
+    <select id="query_postids" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		 SELECT 
+			 o.POSITIONID,
+			 o.POSICODE,
+			 o.POSINAME,
+			 o.POSILEVEL,
+			 o.MANAPOSI,
+			 o.DUTYID,
+			 o.ORGID,
+			 o.POSITIONSEQ,
+			 o.POSITYPE,
+			 TO_CHAR (
+				o.CREATETIME,
+				'yyyy-mm-dd hh24:mi:ss'
+			) AS CREATETIME,
+			 TO_CHAR (
+				o.LASTUPDATE,
+				'yyyy-mm-dd hh24:mi:ss'
+			) AS LASTUPDATE,
+			 o.UPDATOR,
+			 TO_CHAR (o.STARTDATE, 'yyyy-mm-dd') AS STARTDATE,
+			 TO_CHAR (o.ENDDATE, 'yyyy-mm-dd') AS ENDDATE,
+			 o.STATUS,
+			 o.ISLEAF,
+			 o.SUBCOUNT,
+			 o.ZHINENG,
+			 o.DINGBIAN
+		 FROM OM_POSITION o
+		 WHERE 
+			 o.orgid not in(select orgid from om_organization
+					          start with orgid = '970000001'
+					          connect by prior orgid = parentorgid)
+		    <isNotNull prepend="AND" property="positionid">
+		    	  o.positionid in ($positionid$)
+		  	</isNotNull>
+    </select>	
+</sqlMap>

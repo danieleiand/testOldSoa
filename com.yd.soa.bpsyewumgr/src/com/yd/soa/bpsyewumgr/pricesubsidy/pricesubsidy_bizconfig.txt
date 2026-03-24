@@ -1,0 +1,16 @@
+发起页面流
+|功能名称：			|价格补助申请流程
+|功能编码：			|PRICESUBSIDY_AP
+|功能调用入口：		|com.yd.soa.bpsyewumgr.pricesubsidy.pricesubsidy_apply.flow
+流程统计
+|功能名称：			|价格补助申请流程统计
+|功能编码：			|PRICESUBSIDY_QY
+|功能调用入口：		|com.yd.soa.bpsyewumgr.pricesubsidy.pricesubsidy_fquery.flow
+
+
+
+
+
+
+
+

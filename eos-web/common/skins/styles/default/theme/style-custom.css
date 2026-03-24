@@ -1,0 +1,175 @@
+
+body{
+	 background-color:#ffffff;
+	scrollbar-face-color: #fbec79;
+     scrollbar-highlight-color:  #FFFFFF;
+     scrollbar-shadow-color:  #e7e6de;
+     scrollbar-3dlight-color:  #dcdcd1;
+     scrollbar-arrow-color:    #998200;
+     scrollbar-track-color:  #EFEFEF;
+     scrollbar-darkshadow-color:  #b1af98;
+	 font-size:12px;
+     overflow: auto;
+ }
+
+
+td{
+	font-size:12px;
+	font-family:����;
+}	
+a:link{
+text-decoration:none;
+color:#333333;
+}
+a:hover
+{
+text-decoration:none;
+color:red;
+}
+a:visited
+{
+text-decoration:none;
+color:#333333;
+}
+
+
+.button {
+	height:20px;
+	BORDER-RIGHT: #e3dc70 1px solid; 
+	PADDING-RIGHT: 0px; 
+	BORDER-TOP: #7e3dc70 1px solid; 
+	PADDING-LEFT: 0px; 
+	FONT-SIZE: 12px; 
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#f8f7be); 
+	BORDER-LEFT: #e3df70 1px solid; 
+	CURSOR: hand; COLOR: 827804; 
+	PADDING-TOP: 2px; 
+	BORDER-BOTTOM: #e3df70 1px solid;
+}
+.textbox
+{
+border:1px solid #878201;
+background:#fff;
+}
+hr  /* compart line's style */
+{
+color:#dbde01;
+background:#fff;
+height:2px;
+border-bottom:1px solid #fff;
+width:98%;
+}
+/* work area's style*/
+.workarea
+{
+background:#fafaf3;
+border:1px solid #c2c375;
+}
+.workarea .workarea_title
+{
+background:#f2f1e3;
+height:27px;
+border-bottom:1px solid #c2c375;
+padding-left:18px;
+}
+h3 /*the title's font style of current page*/
+{
+display:inline;
+font-weight:bold;
+color:#FE6C00;
+}
+.EOS_panel_head  /* the block title */
+{
+background:#cdcdbf;
+height:22px;
+font-weight:bold;
+border:none;
+color:#000;
+padding-left:20px;
+}
+
+/*the different table's style*/
+.EOS_panel_body       /* Query table and Result table share this table style */
+{
+background:#ffffff;
+}
+.EOS_table		/*color: #1d73cb!important */
+{
+background:#ffffff!important;
+border-collapse: collapse;
+border:1px solid #cccccc!important;
+font-size: 12px;
+color: #333333!important;
+margin-top:4px;
+}
+.EOS_table tr td,.EOS_table tr th    /*  the common style of Result table's td and th */
+{
+border:1px solid #dddddd!important;
+height:20px;
+padding:0px 3px;
+}
+.EOS_table tr th
+{
+height:25px;
+vertical-align:middle;
+padding-top:3px;
+background:#ffffff!important;
+filter:progid:DXImageTransform.Microsoft.gradient(enabled='enabled',startColorstr=#ffffff, endColorstr=#dddccc)!important;
+text-align:center;
+}
+.EOS_table_row  /* the different background color between rows in result table */
+{
+background:#eeeeee!important;
+}
+.EOS_table_selectRow /* the selected row's background color in result table */
+{
+background:#fcf0a4!important;
+}
+
+.command_sort_area /* the bottom of result table */
+{
+padding:2px 0 5px 8px;
+background:#fffef0!important;
+}
+.command_sort_area h4 /*the pagination's style*/
+{
+float:right;
+padding-right:8px;
+margin-top:-18px;
+font-size: 12px;
+font-weight:normal;
+}
+.form_table
+{
+border-collapse: collapse;
+border:1px solid #dddddd;
+background:#ffffff; 
+padding-left:5px;
+color: #333333;
+font-size: 12px;
+}
+.form_table td
+{
+height:25px;
+border:1px solid #dddddd;
+}
+.form_bottom /* the bottom of form table */
+{
+padding:10px 0 5px 8px;
+background:#fefef6;
+text-align:center;
+}
+.form_label
+{
+background:#eeeeee;
+text-align:right;
+padding-right: 10px;
+}
+.eos-hd-inner  , .eos-inner {
+	display: block;
+	padding: 6px 2px 2px 3px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}

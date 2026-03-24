@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:cmx -->
+<sqlMap>
+<resultMap class="commonj.sdo.DataObject" id="queryToexcle">
+         <result column="PROCESSINSTID" javaType="Long" property="processinstid"/> 
+         <result column="TOPICPRODEFCHNAME" javaType="String" property="topicprodefchname"/> 
+         <result column="ACTIVITYNAME" javaType="String" property="activityinstname"/> 
+         <result column="CONDITION" javaType="String" property="condition"/>
+         <result column="APPCATE" javaType="String" property="appcate"/>  
+         <result column="APPDATE" javaType="java.sql.Timestamp" property="appdate"/>         
+         <result column="APPLER" javaType="String" property="appler"/> 
+         <result column="APPLERID" javaType="String" property="applerid"/> 
+         <result column="DEPARTMENT" javaType="String" property="department"/> 
+         <result column="APPLYUNIT" javaType="String" property="applyunit"/> 
+         <result column="FILLMANID" javaType="String" property="fillmanid"/>  
+         <result column="FILLMAN" javaType="String" property="fillman"/> 
+         <result column="APPLYNO" javaType="String" property="applyno"/> 
+         <result column="WD_NAME" javaType="String" property="wdname"/>
+         <result column="KOSTLCODE" javaType="String" property="kostlcode"/> 
+         <result column="KOSTL_NAME" javaType="String" property="kostlName"/> 
+         <result column="WD_ORGID" javaType="String" property="wdOrgid"/> 
+         <result column="PRODUCT_TYPE" javaType="String" property="productType"/> 
+         <result column="PRODUCT_NAME" javaType="String" property="productName"/> 
+         <result column="PRODUCT_MODEL" javaType="String" property="productModel"/> 
+         <result column="MANUFACTURERS" javaType="String" property="manufacturers"/>   
+ </resultMap>  
+   <select id="query_toexcle" parameterClass="java.util.Map" resultMap="queryToexcle">
+		SELECT
+			AI.APPLYNO,
+			AI.PROCESSINSTID,
+			AI.APPLER,
+			AI.APPLERID,
+			AI.FILLMAN,
+			AI.FILLMANID,
+			AI.DEPARTMENT,
+			AI.DEPARTMENTID,
+			AI.APPDATE,
+			AI.APPCATE,
+			AI.CONDITION,
+			AI.APPLYUNIT,
+			AI.PROCESSDEFNAME,
+			HB.TOPICPRODEFCHNAME,
+			YD_BPS_WFACTIVITY (AI.PROCESSINSTID) AS ACTIVITYNAME,
+			SE.KOSTLCODE,
+			SE.KOSTL_NAME,
+			SE.WD_NAME,
+			SE.WD_ORGID,
+			SE.PRODUCT_TYPE,
+			SE.PRODUCT_NAME,
+			SE.PRODUCT_MODEL,
+			SE.MANUFACTURERS
+		FROM
+			OA_APPLYINFO AI,
+			YD_BPS_HLEPTOPIC HB,
+			YD_RESTRICT_SEND SE
+		WHERE
+			1 = 1
+		AND AI.PROCESSDEFNAME = HB.TOPICPRODEFNAME
+		AND SE.PROCESSINSTID=AI.PROCESSINSTID
+		AND AI.PROCESSDEFNAME ='com.yd.soa.bpsyewumgr.restrictSend.restrictSend'
+				 <isNotNull prepend="AND" property="processinstid">		          
+			          AI.PROCESSINSTID=#processinstid#
+			     </isNotNull>
+			     
+			     <isNotNull prepend="AND" property="condition">		          
+			          AI.CONDITION=#condition# 
+			     </isNotNull>
+			     		     
+			     <isNotNull prepend="AND" property="activityinstname">
+			       YD_BPS_WFACTIVITY(AI.PROCESSINSTID) like '%$activityinstname$%'
+			     </isNotNull>
+			     
+			      <isNotNull prepend="AND" property="fillman">
+			        AI.FILLMAN like '%$fillman$%'
+			     </isNotNull>	
+			     	      
+			 	  <isNotNull prepend="AND" property="sqrcompanyname">
+			   		AI.APPLYUNIT LIKE '%$sqrcompanyname$%'		         
+			      </isNotNull>	
+			      	      
+			       <isNotNull prepend="AND" property="sqrorgname">
+		       		AI.DEPARTMENT LIKE '%$sqrorgname$%'
+			      </isNotNull>	
+			      	      		  
+			       <isNotNull prepend="AND" property="appcate">
+			         AI.APPCATE = #appcate#
+			      </isNotNull> 
+			            
+			       <isNotNull prepend="AND" property="appler">
+			         AI.APPLER like '%$appler$%'
+			      </isNotNull>
+			      
+			      <isNotNull prepend="AND" property="startappdate">
+			          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+			      </isNotNull>
+			      
+			      <isNotNull prepend="AND" property="endappdate">
+			      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+			      </isNotNull>			      		      		      			    
+</select> 
+</sqlMap>

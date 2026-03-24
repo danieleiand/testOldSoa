@@ -1,0 +1,224 @@
+<ui provider="primeton" displayName="Window" createTime="0" lastModified="0">
+  <dataContext>
+    <dataSource id="store1" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">widgetName</property>
+          <property name="type">string</property>
+          <property name="mapping">widgetName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">可选widget</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">catalog</property>
+          <property name="type">int</property>
+          <property name="mapping">catalog</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">分类</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">string</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">id</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <event name="onLoadSuccess">
+        <script><![CDATA[var viewPort = Ext.getCmp("portalTab").getActiveTab();
+		var theme=viewPort.getId();
+	var submitStr = "";
+	var cols = viewPort.items.length;
+		for (var i = 0; i < cols; i++) {
+			var col = viewPort.items.itemAt(i);
+			if (i != 0)
+				submitStr = submitStr + ";";
+			for (var j = 0; j < col.items.length; j++) {
+				if (j != 0)
+					submitStr = submitStr + ",";
+				submitStr = submitStr + col.items.itemAt(j).portalid;
+			}
+		}
+
+for(var i=0;i<records.length;i++)
+
+{
+var record=records[i];
+if(submitStr.indexOf(record.get("id"))!=-1)
+{
+records.remove(record);
+i--;
+}
+
+}]]></script>
+      </event>
+      <event name="beforeload">
+        <script><![CDATA[	if(Ext.getCmp("portalTab").getActiveTab().isSys===undefined)
+	    {
+	    return false;
+		} ]]></script>
+      </event>
+      <property name="entityType">com.primeton.portal.purview.entity.Widget</property>
+      <property name="root">dataList</property>
+      <property name="url">com.primeton.widget.auth.AuthManager.getAccessableWidgetByUser(com.primeton.widget.auth.User s:portal_user).java</property>
+      <property name="saveUrl"></property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+      <property name="dataProvider">JavaBean</property>
+      <property name="autoLoad">true</property>
+    </dataSource>
+  </dataContext>
+  <widget id="window2" widgetType="window">
+    <group name="items">
+      <widget id="commongrid1" widgetType="commongrid">
+        <group name="columns">
+          <widget id="commongrid1_widgetName" widgetType="column">
+            <property name="width">234</property>
+            <property name="header">可选widget</property>
+            <property name="sortable">false</property>
+            <property name="align">left</property>
+            <property name="dataIndex">widgetName</property>
+            <property name="hidden">false</property>
+          </widget>
+        </group>
+        <event name="beforeshow">
+          <script><![CDATA[]]></script>
+        </event>
+        <event name="beforestaterestore">
+          <script><![CDATA[]]></script>
+        </event>
+        <property name="anchor">100% 100%</property>
+        <property name="store">store1</property>
+        <property name="title"></property>
+        <property name="footer">true</property>
+        <property name="buttonAlign">center</property>
+        <property name="selModel" value="Ext.grid.CheckboxSelectionModel">
+          <widget id="checkboxSelectionModel1" widgetType="checkboxSelectionModel"/>
+        </property>
+      </widget>
+    </group>
+    <group name="buttons">
+      <widget id="button2" widgetType="button">
+        <event name="click">
+          <script><![CDATA[	var viewPort = Ext.getCmp("portalTab").getActiveTab();
+	var theme=viewPort.getId();
+var submitStr = "";
+var cols = viewPort.items.length;
+	for (var i = 0; i < cols; i++) {
+		var col = viewPort.items.itemAt(i);
+		if (i != 0)
+			submitStr = submitStr + ";";
+		for (var j = 0; j < col.items.length; j++) {
+			if (j != 0)
+				submitStr = submitStr + ",";
+			submitStr = submitStr + col.items.itemAt(j).portalid;
+		}
+	}
+var userportal = submitStr;
+
+var selectionModel = commongrid1.getSelectionModel();
+if(!selectionModel.hasSelection()){
+	window2.close();
+	return;
+}
+var selected = selectionModel.getSelections();
+var portalArr = userportal.split(";");
+var oneArr = [];
+if((portalArr[0]) && portalArr[0]!=""){
+	oneArr = oneArr = portalArr[0].split(",");
+}
+if((oneArr.length+selected.length)>20){
+	Ext.Msg.alert("提示信息","主题页内widget个数将大于20，请减少widget数量！");
+	return;
+}
+if (selected.length == 0) {
+	window2.close();
+	return;
+} else {
+	for (var i = 0; i < selected.length; i++) {
+		var item = selected[i];
+		if(userportal.indexOf(item.get("id"))!=-1) continue;
+		oneArr.push(item.get("id"));
+	}
+	
+	portalArr[0] = oneArr.join(",");
+    //var theme=Ext.getCmp("portalTab").getActiveTab().getId();
+	var url = "<%=request.getContextPath()%>/portal/action/saveWidgets.jsp?widgets=" + portalArr.join(";")+"&theme="+theme;
+	ajaxCall(url, {}, function() {
+	            var theme=Ext.getCmp("portalTab").getActiveTab();
+				theme.items.each(function(el)
+				{
+				theme.remove(el,true)
+				}
+				)
+			    theme.add.apply(theme, createPortInfo(theme));
+             	theme.doLayout();
+			}, function() {
+				Ext.Msg.alert("提示信息","添加widget失败!"); 
+			});
+	window2.close();
+}
+]]></script>
+        </event>
+        <property name="text">添加</property>
+      </widget>
+      <widget id="button3" widgetType="button">
+        <event name="click">
+          <script><![CDATA[window2.close();]]></script>
+        </event>
+        <property name="text">取消</property>
+      </widget>
+    </group>
+    <event name="beforeshow">
+      <script><![CDATA[try{
+if(Ext.getCmp("portalTab").getActiveTab().isSys===undefined)
+    {
+	Ext.MessageBox.alert("提示信息","非主题页上不能添加widget.");
+    return false;
+	} 
+	}
+catch(e)
+{
+}	
+
+
+]]></script>
+    </event>
+    <property name="layout">anchor</property>
+    <property name="width">338</property>
+    <property name="height">306</property>
+    <property name="title">选择widgets</property>
+    <property name="footer">true</property>
+    <property name="modal">true</property>
+    <property name="iconCls">widget-config</property>
+  </widget>
+  <hiddenWidgets name="hiddenWidgets"/>
+  <event name="afterRender">
+    <script><![CDATA[/*var testData = [
+		{'name': '我要处理的Bug', 'catalog': 'Bug系统'},
+		{'name': 'Bug查询', 'catalog': 'Bug系统'},
+		{'name': '提交新Bug', 'catalog': 'Bug系统'},
+		{'name': '我的任务列表', 'catalog': '公共'},
+		{'name': '天气预报', 'catalog': '公共'},
+		{'name': 'Google地图', 'catalog': '公共'}
+];
+store1.loadData(testData);
+*/
+
+]]></script>
+  </event>
+  <description>这是一个描述信息</description>
+</ui>

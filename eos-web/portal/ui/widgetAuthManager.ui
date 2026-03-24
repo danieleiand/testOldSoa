@@ -1,0 +1,755 @@
+<ui provider="primeton" displayName="BlankPage" createTime="0" lastModified="0">
+  <dataContext>
+    <dataSource id="role" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">roleId</property>
+          <property name="type">string</property>
+          <property name="mapping">roleId</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">roleId</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">roleName</property>
+          <property name="type">string</property>
+          <property name="mapping">roleName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">roleName</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <property name="entityType">com.primeton.widget.auth.role.Role</property>
+      <property name="root">dataList</property>
+      <property name="dataProvider">JavaBean</property>
+      <property name="url">com.primeton.widget.auth.AuthManager.getAllRoles().java</property>
+      <property name="saveUrl"></property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+    </dataSource>
+    <dataSource id="unAccessableWidget" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">string</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">id</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">widgetName</property>
+          <property name="type">string</property>
+          <property name="mapping">widgetName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">widgetName</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">catalog</property>
+          <property name="type">int</property>
+          <property name="mapping">catalog</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">catalog</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">widgetType</property>
+          <property name="type">int</property>
+          <property name="mapping">widgetType</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">widgetType</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">application</property>
+          <property name="type">Object</property>
+          <property name="mapping">application</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">application</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <event name="beforeload">
+        <script><![CDATA[	options.params = options.params||{};
+	options.params.roleId=roleGrid.getSelectionModel().getSelected().get("roleId");]]></script>
+      </event>
+      <property name="entityType">com.primeton.portal.purview.entity.Widget</property>
+      <property name="root">dataList</property>
+      <property name="dataProvider">JavaBean</property>
+      <property name="url">com.primeton.widget.auth.AuthManager.getUnaccessableWidgetByRole(java.lang.String roleId).java</property>
+      <property name="saveUrl"></property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+    </dataSource>
+    <dataSource id="accessableWidget" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">string</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">id</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">widgetName</property>
+          <property name="type">string</property>
+          <property name="mapping">widgetName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">widgetName</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">catalog</property>
+          <property name="type">int</property>
+          <property name="mapping">catalog</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">catalog</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">application.appName</property>
+          <property name="type">string</property>
+          <property name="mapping">application.appName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">appName</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <event name="beforeload">
+        <script><![CDATA[options.params = options.params||{};
+options.params.roleId=roleGrid.getSelectionModel().getSelected().get("roleId");
+]]></script>
+      </event>
+      <event name="beforeSave">
+        <script><![CDATA[params.roleId=roleGrid.getSelectionModel().getSelected().get("roleId");
+        	var ins =[];
+        	for(var i=0;i<params.insertedRecords.length;i++){
+        		var record= params.insertedRecords[i];
+       			for(var j=0;j<params.deletedRecords.length;j++){
+        			var n = params.deletedRecords[j];
+        			if(n.id==record.id){
+        				params.deletedRecords.splice(j,1);
+        				record=null; 
+        				break;
+        			}
+        		}
+        		if(record!=null)
+        			ins[ins.length]=record; 
+        	}
+			params.insertedRecords=ins;
+]]></script>
+      </event>
+      <event name="onSaveSuccess">
+        <script><![CDATA[Ext.Msg.alert("提示信息", "授权信息保存成功！"); 
+unAccessableWidget.reload();]]></script>
+      </event>
+      <property name="entityType">com.primeton.portal.purview.entity.Widget</property>
+      <property name="root">dataList</property>
+      <property name="dataProvider">JavaBean</property>
+      <property name="url">com.primeton.widget.auth.AuthManager.getAccessableWidgetByRole(java.lang.String roleId).java</property>
+      <property name="saveUrl">com.primeton.widget.auth.AuthManager.saveWidgetRole(com.primeton.portal.purview.entity.Widget[] insertedRecords, com.primeton.portal.purview.entity.Widget[] deletedRecords, java.lang.String roleId).java</property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+    </dataSource>
+    <dataSource id="allWidget" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">string</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">id</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">widgetName</property>
+          <property name="type">string</property>
+          <property name="mapping">widgetName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">widgetName</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">catalog</property>
+          <property name="type">int</property>
+          <property name="mapping">catalog</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">catalog</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">widgetType</property>
+          <property name="type">int</property>
+          <property name="mapping">widgetType</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">widgetType</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">path</property>
+          <property name="type">string</property>
+          <property name="mapping">path</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">path</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">widgetId</property>
+          <property name="type">string</property>
+          <property name="mapping">widgetId</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">widgetId</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">status</property>
+          <property name="type">int</property>
+          <property name="mapping">status</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">status</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">application</property>
+          <property name="type">Object</property>
+          <property name="mapping">application</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">application</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">version</property>
+          <property name="type">int</property>
+          <property name="mapping">version</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">version</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <event name="beforeSave">
+        <script><![CDATA[
+        	var ins =[];
+        	for(var i=0;i<params.updatedRecords.length;i++){
+        		var status= params.updatedRecords[i].status.trim();
+				if(status==""){
+					Ext.Msg.alert("提示信息","widget状态不可为空");
+					return false;
+				}	
+        	}
+
+]]></script>
+      </event>
+      <property name="entityType">com.primeton.portal.purview.entity.Widget</property>
+      <property name="root">dataList</property>
+      <property name="dataProvider">JavaBean</property>
+      <property name="url">com.primeton.widget.auth.AuthManager.getAllWidgets().java</property>
+      <property name="saveUrl">com.primeton.widget.auth.AuthManager.saveWidgetStatus(com.primeton.portal.purview.entity.Widget[] updatedRecords).java</property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+    </dataSource>
+  </dataContext>
+  <widget id="mainpage" widgetType="viewport">
+    <group name="items">
+      <widget id="panel1" widgetType="panel">
+        <group name="items">
+          <widget id="tabpanel1" widgetType="tabpanel">
+            <group name="items">
+              <widget id="panel2" widgetType="panel">
+                <group name="items">
+                  <widget id="panel4" widgetType="panel">
+                    <group name="items">
+                      <widget id="left_panel" widgetType="panel">
+                        <group name="items">
+                          <widget id="roleGrid" widgetType="commongrid">
+                            <group name="columns">
+                              <widget id="commongrid1_roleId" widgetType="column">
+                                <property name="width">100</property>
+                                <property name="header">角色编号</property>
+                                <property name="sortable">true</property>
+                                <property name="align">left</property>
+                                <property name="dataIndex">roleId</property>
+                                <property name="hidden">false</property>
+                              </widget>
+                              <widget id="commongrid1_roleName" widgetType="column">
+                                <property name="width">100</property>
+                                <property name="header">角色名称</property>
+                                <property name="sortable">true</property>
+                                <property name="align">left</property>
+                                <property name="dataIndex">roleName</property>
+                                <property name="hidden">false</property>
+                              </widget>
+                            </group>
+                            <property name="anchor">100% 100%</property>
+                            <property name="store">role</property>
+                            <property name="title">角色列表</property>
+                            <property name="selModel" value="Ext.grid.RowSelectionModel">
+                              <widget id="rowSelectionModel1" widgetType="rowSelectionModel">
+                                <event name="rowselect">
+                                  <script><![CDATA[accessableWidget.load();
+unAccessableWidget.load();]]></script>
+                                </event>
+                              </widget>
+                            </property>
+                            <property name="footer">true</property>
+                            <property name="buttonAlign">center</property>
+                            <property name="autoLoadData">true</property>
+                            <property name="width">231</property>
+                            <property name="border">true</property>
+                            <property name="autoExpandColumn">commongrid1_roleName</property>
+                            <property name="iconCls">widget-role</property>
+                            <property name="icon">/images/control.png</property>
+                          </widget>
+                        </group>
+                        <event name="beforeCreate">
+                          <script><![CDATA[config.collapseMode="mini";
+config.split = true;]]></script>
+                        </event>
+                        <property name="border">false</property>
+                        <property name="frame">false</property>
+                        <property name="layout">anchor</property>
+                        <property name="region">west</property>
+                        <property name="width">238</property>
+                        <property name="footer">true</property>
+                        <property name="buttonAlign">center</property>
+                        <property name="title"></property>
+                        <property name="bodyBorder">false</property>
+                      </widget>
+                      <widget id="main_panel" widgetType="panel">
+                        <group name="items">
+                          <widget id="panel3" widgetType="panel">
+                            <group name="items">
+                              <widget id="accessablegrid" widgetType="commongrid">
+                                <group name="columns">
+                                  <widget id="commongrid3_widgetName" widgetType="column">
+                                    <property name="width">95</property>
+                                    <property name="header">widget名称</property>
+                                    <property name="sortable">true</property>
+                                    <property name="align">left</property>
+                                    <property name="dataIndex">widgetName</property>
+                                    <property name="hidden">false</property>
+                                  </widget>
+                                  <widget id="commongrid3_application_appName" widgetType="column">
+                                    <property name="width">113</property>
+                                    <property name="header">所属应用</property>
+                                    <property name="sortable">true</property>
+                                    <property name="align">left</property>
+                                    <property name="dataIndex">application.appName</property>
+                                    <property name="hidden">false</property>
+                                  </widget>
+                                </group>
+                                <property name="region">center</property>
+                                <property name="width"></property>
+                                <property name="anchor">-36 100%</property>
+                                <property name="store">accessableWidget</property>
+                                <property name="title">可访问widget列表</property>
+                                <property name="selModel" value="Ext.grid.CheckboxSelectionModel">
+                                  <widget id="checkboxSelectionModel1" widgetType="checkboxSelectionModel"/>
+                                </property>
+                                <property name="footer">false</property>
+                                <property name="buttonAlign">center</property>
+                                <property name="iconCls">widget-access</property>
+                                <property name="border">true</property>
+                                <property name="autoExpandColumn">commongrid3_application_appName</property>
+                                <property name="frame">false</property>
+                              </widget>
+                              <widget id="panel5" widgetType="panel">
+                                <group name="items">
+                                  <widget id="button2" widgetType="button">
+                                    <event name="click">
+                                      <script><![CDATA[	
+	accessablegrid.getSelectionModel().selectAll();
+	var records=accessablegrid.getSelectionModel().getSelections();
+	
+	for(var i=0;i<records.length;i++)
+	{
+	var record=records[i];
+	var newRecord=unAccessableWidget.createDefaultRecord();
+	newRecord.set("id",record.get("id"));
+	newRecord.set("widgetName",record.get("widgetName"));
+	newRecord.set("catalog",record.get("catalog"));
+	newRecord.set("application.appName",record.get("application.appName"));
+	unaccessgrid.addRecord(newRecord);
+	accessablegrid.getStore().remove(record);
+	}]]></script>
+                                    </event>
+                                    <property name="text"></property>
+                                    <property name="region">west</property>
+                                    <property name="width">100</property>
+                                    <property name="style">margin-top:80px</property>
+                                    <property name="icon">/portal/images/rightAll.gif</property>
+                                    <property name="iconCls">rightAll</property>
+                                  </widget>
+                                  <widget id="button3" widgetType="button">
+                                    <event name="click">
+                                      <script><![CDATA[	var records=accessablegrid.getSelectionModel().getSelections();
+	
+	for(var i=0;i<records.length;i++)
+	{
+	var record=records[i];
+	var newRecord=unAccessableWidget.createDefaultRecord();
+	newRecord.set("id",record.get("id"));
+	newRecord.set("widgetName",record.get("widgetName"));
+	newRecord.set("catalog",record.get("catalog"));
+	newRecord.set("application.appName",record.get("application.appName"));
+	unaccessgrid.addRecord(newRecord);
+	accessablegrid.getStore().remove(record);
+	}]]></script>
+                                    </event>
+                                    <property name="text"></property>
+                                    <property name="region">west</property>
+                                    <property name="width">100</property>
+                                    <property name="style">margin-top:10px</property>
+                                    <property name="icon">/portal/images/right.gif</property>
+                                    <property name="iconCls">right</property>
+                                  </widget>
+                                  <widget id="button4" widgetType="button">
+                                    <event name="click">
+                                      <script><![CDATA[var records=unaccessgrid.getSelectionModel().getSelections();
+
+for(var i=0;i<records.length;i++)
+{
+var record=records[i];
+var newRecord=accessableWidget.createDefaultRecord();
+newRecord.set("id",record.get("id"));
+newRecord.set("widgetName",record.get("widgetName"));
+
+
+newRecord.set("catalog",record.get("catalog"));
+newRecord.set("application.appName",record.get("application.appName"));
+
+accessablegrid.addRecord(newRecord);
+unaccessgrid.getStore().remove(record);
+}
+]]></script>
+                                    </event>
+                                    <property name="text"></property>
+                                    <property name="region">west</property>
+                                    <property name="width">100</property>
+                                    <property name="style">margin-top:10px</property>
+                                    <property name="icon">/portal/images/left.gif</property>
+                                    <property name="iconCls">left</property>
+                                  </widget>
+                                  <widget id="button5" widgetType="button">
+                                    <event name="click">
+                                      <script><![CDATA[unaccessgrid.getSelectionModel().selectAll();
+var records=unaccessgrid.getSelectionModel().getSelections();
+
+for(var i=0;i<records.length;i++)
+{
+var record=records[i];
+var newRecord=accessableWidget.createDefaultRecord();
+newRecord.set("id",record.get("id"));
+newRecord.set("widgetName",record.get("widgetName"));
+
+
+newRecord.set("catalog",record.get("catalog"));
+newRecord.set("application.appName",record.get("application.appName"));
+
+accessablegrid.addRecord(newRecord);
+unaccessgrid.getStore().remove(record);
+}
+]]></script>
+                                    </event>
+                                    <property name="text"></property>
+                                    <property name="region">west</property>
+                                    <property name="width">100</property>
+                                    <property name="style">margin-top:10px</property>
+                                    <property name="icon">/portal/images/leftAll.gif</property>
+                                    <property name="iconCls">leftAll</property>
+                                  </widget>
+                                  <widget id="reload" widgetType="button">
+                                    <event name="click">
+                                      <script><![CDATA[accessableWidget.reload();
+unAccessableWidget.reload();]]></script>
+                                    </event>
+                                    <property name="text"></property>
+                                    <property name="region">west</property>
+                                    <property name="width">100</property>
+                                    <property name="style">margin-top:20px</property>
+                                    <property name="icon">/portal/images/refresh.gif</property>
+                                    <property name="iconCls">refresh</property>
+                                    <property name="tooltip">刷新</property>
+                                  </widget>
+                                  <widget id="saveRole" widgetType="button">
+                                    <event name="click">
+                                      <script><![CDATA[if(accessableWidget.inserted!=""||accessableWidget.deleted!="")
+accessableWidget.save();
+else
+	unAccessableWidget.reload();
+]]></script>
+                                    </event>
+                                    <property name="text"></property>
+                                    <property name="region">west</property>
+                                    <property name="width">100</property>
+                                    <property name="style">margin-top:10px</property>
+                                    <property name="icon">/portal/images/save.gif</property>
+                                    <property name="iconCls">save</property>
+                                    <property name="tooltip">保存</property>
+                                  </widget>
+                                </group>
+                                <property name="border">true</property>
+                                <property name="frame">true</property>
+                                <property name="layout">anchor</property>
+                                <property name="footer">false</property>
+                                <property name="title"></property>
+                                <property name="height">200</property>
+                                <property name="region">east</property>
+                                <property name="width">36</property>
+                                <property name="buttonAlign">center</property>
+                                <property name="bodyBorder">false</property>
+                                <property name="anchor">36 100%</property>
+                              </widget>
+                            </group>
+                            <property name="border">false</property>
+                            <property name="frame">false</property>
+                            <property name="layout">border</property>
+                            <property name="footer">false</property>
+                            <property name="title"></property>
+                            <property name="height">100%</property>
+                            <property name="region">west</property>
+                            <property name="width">53%</property>
+                            <property name="buttonAlign">center</property>
+                            <property name="bodyBorder">false</property>
+                            <property name="anchor"></property>
+                          </widget>
+                          <widget id="unaccessgrid" widgetType="commongrid">
+                            <group name="columns">
+                              <widget id="commongrid1_widgetName" widgetType="column">
+                                <property name="width">95</property>
+                                <property name="header">widget名称</property>
+                                <property name="sortable">true</property>
+                                <property name="align">left</property>
+                                <property name="dataIndex">widgetName</property>
+                                <property name="hidden">false</property>
+                              </widget>
+                              <widget id="commongrid1_application" widgetType="column">
+                                <property name="width">102</property>
+                                <property name="header">所属应用</property>
+                                <property name="sortable">true</property>
+                                <property name="align">left</property>
+                                <property name="dataIndex">application.appName</property>
+                                <property name="hidden">false</property>
+                              </widget>
+                            </group>
+                            <property name="region">center</property>
+                            <property name="width">47%</property>
+                            <property name="anchor"></property>
+                            <property name="store">unAccessableWidget</property>
+                            <property name="title">不可访问widget列表</property>
+                            <property name="selModel" value="Ext.grid.CheckboxSelectionModel">
+                              <widget id="checkboxSelectionModel3" widgetType="checkboxSelectionModel"/>
+                            </property>
+                            <property name="footer">false</property>
+                            <property name="buttonAlign">center</property>
+                            <property name="iconCls">widget-unaccess</property>
+                            <property name="border">true</property>
+                            <property name="autoExpandColumn">commongrid1_application</property>
+                            <property name="height">100%</property>
+                            <property name="frame">false</property>
+                          </widget>
+                        </group>
+                        <property name="border">false</property>
+                        <property name="frame">false</property>
+                        <property name="layout">border</property>
+                        <property name="region">center</property>
+                        <property name="footer">true</property>
+                        <property name="width">632</property>
+                        <property name="title"></property>
+                        <property name="buttonAlign">center</property>
+                        <property name="bodyBorder">false</property>
+                      </widget>
+                    </group>
+                    <property name="border">false</property>
+                    <property name="frame">false</property>
+                    <property name="anchor">100% 100%</property>
+                    <property name="layout">border</property>
+                    <property name="footer">true</property>
+                    <property name="buttonAlign">center</property>
+                    <property name="bodyBorder">false</property>
+                  </widget>
+                </group>
+                <property name="border">false</property>
+                <property name="frame">false</property>
+                <property name="layout">anchor</property>
+                <property name="footer">true</property>
+                <property name="title">受控widget管理</property>
+                <property name="buttonAlign">center</property>
+                <property name="iconCls">widget-lock</property>
+                <property name="bodyBorder">false</property>
+                <property name="anchor">100% 100%</property>
+              </widget>
+              <widget id="commongrid2" widgetType="commongrid">
+                <group name="columns">
+                  <widget id="commongrid2_status" widgetType="column">
+                    <property name="width">100</property>
+                    <property name="header">状态</property>
+                    <property name="sortable">true</property>
+                    <property name="align">left</property>
+                    <property name="dataIndex">status</property>
+                    <property name="hidden">false</property>
+                    <property name="editor" value="Ext.form.ComboBox">
+                      <widget id="numberfield3" widgetType="combo">
+                        <property name="fieldLabel"></property>
+                        <property name="displayField"></property>
+                        <property name="valueField"></property>
+                        <property name="emptyText">请选择...</property>
+                        <property name="width">135</property>
+                        <property name="forceSelection">true</property>
+                        <property name="hideLabel">false</property>
+                        <property name="name">status</property>
+                        <property name="dataList">1:共享;0:受控</property>
+                        <property name="allowBlank">false</property>
+                        <property name="editable">false</property>
+                      </widget>
+                    </property>
+                  </widget>
+                  <widget id="commongrid2_widgetName" widgetType="column">
+                    <property name="width">199</property>
+                    <property name="header">widget名称</property>
+                    <property name="sortable">true</property>
+                    <property name="align">left</property>
+                    <property name="dataIndex">widgetName</property>
+                    <property name="hidden">false</property>
+                  </widget>
+                  <widget id="commongrid2_application" widgetType="column">
+                    <property name="width">161</property>
+                    <property name="header">所属应用</property>
+                    <property name="sortable">true</property>
+                    <property name="align">left</property>
+                    <property name="dataIndex">application.appName</property>
+                    <property name="hidden">false</property>
+                  </widget>
+                </group>
+                <property name="anchor">100% 100%</property>
+                <property name="store">allWidget</property>
+                <property name="title">共享widget管理</property>
+                <property name="selModel" value="Ext.grid.RowSelectionModel">
+                  <widget id="checkboxSelectionModel2" widgetType="rowSelectionModel"/>
+                </property>
+                <property name="footer">true</property>
+                <property name="buttonAlign">center</property>
+                <property name="iconCls">widget-shared</property>
+                <property name="autoLoadData">true</property>
+                <property name="bbar" value="Ext.Toolbar">
+                  <widget id="toolbar2" widgetType="toolbar">
+                    <group name="items">
+                      <widget id="button6" widgetType="button">
+                        <event name="click">
+                          <script><![CDATA[allWidget.save();]]></script>
+                        </event>
+                        <property name="text">保存</property>
+                        <property name="region">north</property>
+                        <property name="width">100</property>
+                        <property name="icon">/portal/images/save.gif</property>
+                        <property name="iconCls">save</property>
+                        <property name="disabled">false</property>
+                      </widget>
+                      <widget id="tbitem1" widgetType="tbitem">
+                        <property name="xtype">tbseparator</property>
+                      </widget>
+                      <widget id="button1" widgetType="button">
+                        <event name="click">
+                          <script><![CDATA[allWidget.reload();]]></script>
+                        </event>
+                        <property name="text">刷新</property>
+                        <property name="icon">/portal/images/refresh.gif</property>
+                        <property name="iconCls">refresh</property>
+                      </widget>
+                    </group>
+                    <property name="height">30</property>
+                  </widget>
+                </property>
+              </widget>
+            </group>
+            <property name="border">false</property>
+            <property name="frame">false</property>
+            <property name="activeTab">0</property>
+            <property name="height"></property>
+            <property name="title">widget授权管理</property>
+            <property name="footer">false</property>
+            <property name="buttonAlign">center</property>
+            <property name="anchor">100% 100%</property>
+            <property name="bodyBorder">false</property>
+          </widget>
+        </group>
+        <property name="border">false</property>
+        <property name="frame">false</property>
+        <property name="layout">anchor</property>
+        <property name="footer">true</property>
+        <property name="title">widget发布授权管理</property>
+        <property name="height"></property>
+        <property name="buttonAlign">center</property>
+        <property name="anchor">100% 100%</property>
+      </widget>
+    </group>
+    <property name="layout">anchor</property>
+  </widget>
+  <hiddenWidgets name="hiddenWidgets"/>
+  <description>这是一个描述信息</description>
+</ui>

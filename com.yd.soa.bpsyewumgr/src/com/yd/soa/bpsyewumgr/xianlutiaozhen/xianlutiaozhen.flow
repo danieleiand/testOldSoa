@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="xianlutiaozhen.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.1" state="stateless">
+  <nodes xsi:type="model:Note" id="node0" name="注释" collapsed="false" nodeType="note" type="note" title="Administrator&#x9;12-10-23 上午10:25"/>
+  <nodes xsi:type="process:tView" id="view0" name="申请单页面" collapsed="false" type="view" contextPath="" contributionName="com.yd.soa.bpspersonel" method="forward" uri="/bpsyewu/xianlutiaozhen/input.jsp" variableUri="false">
+    <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="save" dataConvertClass="">
+      <sourceNode>view0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:validateRules errorPage="" onError="default"/>
+      <process:inputParameters>
+        <process:parameter description="线路运行时效调整实体" historyStateLocation="client" isArray="false" modelType="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexiantz" name="YdYwChexiantz"/>
+        <process:parameter description="工作项ID" historyStateLocation="client" isArray="false" name="workItemID" primitiveType="String"/>
+        <process:parameter description="流程实例ID" historyStateLocation="client" isArray="false" name="processInstID" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" modelType="com.yd.soa.bpsclient.comm.comm.OA_APPLYINFO" name="oaapplyinfo"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="clock" primitiveType="Long"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="temp" primitiveType="Long"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="message" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" modelType="com.yd.soa.bpsclient.comm.auditcomm.ProcessComm" name="processcomm"/>
+        <process:parameter description="" historyStateLocation="client" isArray="true" name="xpath" primitiveType="String"/>
+        <process:parameter anyType="java.lang.Object" description="" historyStateLocation="client" isArray="true" name="reladate"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="saveflag" primitiveType="String"/>
+        <process:parameter description="子表" historyStateLocation="client" isArray="true" modelType="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexian2" name="YdYwChexian2"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" modelType="com.eos.workflow.data.WFParticipant" name="part1"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" modelType="com.eos.workflow.data.WFParticipant" name="part2"/>
+      </process:inputParameters>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <targetConnections>link19</targetConnections>
+    <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
+    <figSize height="17" width="61"/>
+    <node>view0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" isDefault="false" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">f:version</process:leftOperand>
+          <process:rightOperand type="query">clock</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/processinstid</process:from>
+      <process:to type="query">processInstID</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">f:version</process:from>
+      <process:to type="query">temp</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new java.util.Date().getTime()</process:from>
+      <process:to type="query">f:version</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>end3</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">&quot;流程已经提交不可重复提交&quot;</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" collapsed="false" nodeType="common" type="end" contextPath="" method="forward" uri="/comm/common/jsp/commToWorkList.jsp">
+    <targetConnections>link6</targetConnections>
+    <nodeLabel>end1label</nodeLabel>
+    <process:inputVariables/>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值3" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>end3</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">“主干线网络班车时效调整流程”</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess1" name="调用公用逻辑得到业务申请信息" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>subprocess3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">processInstID</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="0" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsclient.comm.beforeapply.beforeapply</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="applyobject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">YdYwChexiantz</process:inputVariable>
+        <process:inputVariable id="1" name="topicPfname" type="literal" value="String" valueType="Primitive" pattern="reference">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen</process:inputVariable>
+        <process:inputVariable id="2" name="processInstID" type="query" value="String" valueType="Primitive" pattern="reference">processInstID</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="helptopic" type="query" value="com.yd.soa.bpsclient.comm.comm.YdBpsHleptopic" valueType="DataObject">helptopic</process:outputVariable>
+        <process:outputVariable id="1" name="relationId" type="query" value="String" valueType="Primitive">relationId</process:outputVariable>
+        <process:outputVariable id="2" name="fileList" type="query" value="com.yd.soa.bpsclient.comm.comm.AT_FILEUPLOAD[]" valueType="DataObject">fileList</process:outputVariable>
+        <process:outputVariable id="3" name="applyobject" type="query" value="commonj.sdo.DataObject" valueType="Java">YdYwChexiantz</process:outputVariable>
+        <process:outputVariable id="4" name="emp" type="query" value="com.yd.soa.comm.org.org.OmOrgPosiEmpDetail" valueType="DataObject">emp</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <figSize height="17" width="169"/>
+    <node>subprocess1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess8" name="公用启动流程" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" isDefault="false" type="transition">
+      <sourceNode>subprocess8</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">saveflag</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" isDefault="false" type="transition">
+      <sourceNode>subprocess8</sourceNode>
+      <targetNode>end1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">saveflag</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" isDefault="true" type="transition">
+      <sourceNode>subprocess8</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <nodeLabel>subprocess8label</nodeLabel>
+    <process:flow index="0" synchronization="true" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.start</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="oaapplyinfo" type="query" value="com.yd.soa.bpsclient.comm.comm.OA_APPLYINFO" valueType="DataObject" pattern="reference">oaapplyinfo</process:inputVariable>
+        <process:inputVariable id="1" name="YdYwChexiantz" type="query" value="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexiantz" valueType="DataObject" pattern="reference">YdYwChexiantz</process:inputVariable>
+        <process:inputVariable id="2" name="workItemID" type="query" value="String" valueType="Primitive" pattern="reference">workItemID</process:inputVariable>
+        <process:inputVariable id="3" name="processInstID" type="query" value="String" valueType="Primitive" pattern="reference">processInstID</process:inputVariable>
+        <process:inputVariable id="4" name="xpath" type="query" value="String[]" valueType="Primitive" pattern="reference">xpath</process:inputVariable>
+        <process:inputVariable id="5" name="reladate" type="query" value="java.lang.Object[]" valueType="Java" pattern="reference">reladate</process:inputVariable>
+        <process:inputVariable id="6" name="YdYwChexian2" type="query" value="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexian2[]" valueType="DataObject" pattern="reference">YdYwChexian2</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="success" type="query" value="String" valueType="Primitive">saveflag</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
+    <figSize height="17" width="73"/>
+    <node>subprocess8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign7" name="设置公用值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>subprocess8</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">temp+1</process:from>
+      <process:to type="query">f:version</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.yd.soa.bpsyewumgr.xianlutiaozhen.approve.flow</process:from>
+      <process:to type="query">processcomm/approvesubmitUrl</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexiantz</process:from>
+      <process:to type="query">processcomm/entitypath</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">/bpsyewu/xianlutiaozhen/view4.jsp</process:from>
+      <process:to type="query">processcomm/viewurl</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">auditComm/notautocommitdefids</process:from>
+      <process:to type="query">xpath[1]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">end,APPLYUSER,YD_ZB_WLGHCZYSBFZR,end1,</process:from>
+      <process:to type="query">reladate[1]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">processcomm</process:from>
+      <process:to type="query">xpath[2]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processcomm</process:from>
+      <process:to type="query">reladate[2]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/applyusername</process:from>
+      <process:to type="query">reladate[3]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">auditComm/applyRole</process:from>
+      <process:to type="query">xpath[3]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/applyuserid</process:from>
+      <process:to type="query">reladate[4]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">auditComm/userID</process:from>
+      <process:to type="query">xpath[4]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/leadingid</process:from>
+      <process:to type="query">reladate[5]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">mudidi</process:from>
+      <process:to type="query">xpath[5]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">9</process:from>
+      <process:to type="query">oaapplyinfo/APPCATE</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/tujindsl</process:from>
+      <process:to type="query">reladate[6]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">tujindsl</process:from>
+      <process:to type="query">xpath[6]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/tujinleader1id</process:from>
+      <process:to type="query">reladate[7]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">tujingdi1</process:from>
+      <process:to type="query">xpath[7]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/tujinleader2id</process:from>
+      <process:to type="query">reladate[8]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">tujingdi2</process:from>
+      <process:to type="query">xpath[8]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/tujinleader3id</process:from>
+      <process:to type="query">reladate[9]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">tujingdi3</process:from>
+      <process:to type="query">xpath[9]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/tujinleader4id</process:from>
+      <process:to type="query">reladate[10]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">tujingdi4</process:from>
+      <process:to type="query">xpath[10]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/handlerid</process:from>
+      <process:to type="query">part1/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/handlername</process:from>
+      <process:to type="query">part1/name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">person</process:from>
+      <process:to type="query">part1/typeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">part1</process:from>
+      <process:to type="query">xpath[11]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part1</process:from>
+      <process:to type="query">reladate[11]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/applyuserid</process:from>
+      <process:to type="query">part2/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/applyusername</process:from>
+      <process:to type="query">part2/name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">person</process:from>
+      <process:to type="query">part2/typeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">part2</process:from>
+      <process:to type="query">xpath[12]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part2</process:from>
+      <process:to type="query">reladate[12]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">shifadi</process:from>
+      <process:to type="query">xpath[13]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/staleadingid</process:from>
+      <process:to type="query">reladate[13]</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <figSize height="17" width="61"/>
+    <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end3" name="error" collapsed="false" type="end" contextPath="" method="forward" uri="/ydsoacomm/error.jsp">
+    <targetConnections>link8</targetConnections>
+    <targetConnections>link3</targetConnections>
+    <targetConnections>link9</targetConnections>
+    <nodeLabel>end3label</nodeLabel>
+    <process:inputVariables/>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end3label" name="label" nodeType="label">
+    <figSize height="17" width="31"/>
+    <node>end3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>end3</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">主干线网络班车时效调整流程，请与体系管理组联系！</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess0" name="是否可发起流程" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">processInstID</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">issubmitflow</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link21</targetConnections>
+    <targetConnections>link15</targetConnections>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.isSubmitWorkflow</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="empcode" type="query" value="String" valueType="Primitive" pattern="reference">s:userObject/userId</process:inputVariable>
+        <process:inputVariable id="1" name="roleid" type="literal" value="String" valueType="Primitive" pattern="reference">YD_ZZ_ZFZR,YD_DQ_ZFZR,YD_ZB_WLBCFQR</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="flag" type="query" value="String" valueType="Primitive">issubmitflow</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <figSize height="17" width="85"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign5" name="赋值5" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>view0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">issubmitflow</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess3" name="getbiao" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.Copy_of_Getlist</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="processInstId" type="query" value="String" valueType="Primitive" pattern="reference">processInstID</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="YdYwChexiantz" type="query" value="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexiantz" valueType="DataObject">YdYwChexiantz</process:outputVariable>
+        <process:outputVariable id="1" name="YdYwChexian2" type="query" value="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexian2[]" valueType="DataObject">YdYwChexian2</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <figSize height="17" width="46"/>
+    <node>subprocess3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess11" name="获取附件以及relationId" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" isDefault="true" type="transition">
+      <sourceNode>subprocess11</sourceNode>
+      <targetNode>subprocess4</targetNode>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <nodeLabel>subprocess11label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsclient.comm.FlashUpload.getFileList</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="processInstID" type="query" value="String" valueType="Primitive" pattern="reference">processInstID</process:inputVariable>
+        <process:inputVariable id="1" name="filetype" type="literal" value="String" valueType="Primitive" pattern="reference">workflow</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="relationId" type="query" value="String" valueType="Primitive">relationId</process:outputVariable>
+        <process:outputVariable id="1" name="fileList" type="query" value="com.yd.soa.bpsclient.comm.comm.AT_FILEUPLOAD[]" valueType="DataObject">fileList</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess11label" name="label" nodeType="label">
+    <figSize height="17" width="129"/>
+    <node>subprocess11</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束2" collapsed="false" type="end" contextPath="" method="forward" uri="/bpsyewu/xianlutiaozhen/view4.jsp">
+    <targetConnections>link14</targetConnections>
+    <nodeLabel>end0label</nodeLabel>
+    <process:inputVariables/>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess2" name="getPandianInfo" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>subprocess11</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link23</targetConnections>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.getPandianInfo</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="processInstId" type="query" value="String" valueType="Primitive" pattern="reference">processInstID</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="YdYwChexiantz" type="query" value="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexiantz" valueType="DataObject">YdYwChexiantz</process:outputVariable>
+        <process:outputVariable id="1" name="YdYwChexian2" type="query" value="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexian2[]" valueType="DataObject">YdYwChexian2</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <figSize height="17" width="89"/>
+    <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" collapsed="false" nodeType="common" type="start">
+    <sourceConnections xsi:type="process:tActionLink" id="link13" name="link13" lineType="reference" isDefault="true" type="action" actionName="action0" dataConvertClass="">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:validateRules errorPage="" onError="default"/>
+      <process:inputParameters>
+        <process:parameter description="" historyStateLocation="client" isArray="false" modelType="com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.YdYwChexiantz" name="YdYwChexiantz"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" modelType="com.yd.soa.comm.org.org.OmOrgPosiEmpDetail" name="emp"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="clock" primitiveType="Long"/>
+      </process:inputParameters>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tActionLink" id="link23" name="link23" lineType="reference" type="action" actionName="detail" dataConvertClass="">
+      <sourceNode>start0</sourceNode>
+      <targetNode>subprocess2</targetNode>
+      <process:validateRules errorPage="" onError="default"/>
+      <process:inputParameters>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="type" primitiveType="String"/>
+        <process:parameter description="活动定义ID" historyStateLocation="client" isArray="false" name="activityDefID" primitiveType="String"/>
+      </process:inputParameters>
+    </sourceConnections>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign3" name="赋值2" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>view0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">YdYwChexiantz/applyunit</process:from>
+      <process:to type="query">a</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess4" name="查询路由规划组分析人员" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="0" varArgs="false">
+      <process:partner type="literal">com.yd.soa.bpsyewumgr.xianlutiaozhen.xianlutiaozhen.querylyfxrys</process:partner>
+      <process:inputVariables/>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="omEmps" type="query" value="com.yd.soa.comm.org.org.OmEmployee[]" valueType="DataObject">omEmps</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <figSize height="17" width="133"/>
+    <node>subprocess4</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info version="6.1"/>
+  <process:variables>
+    <process:variable historyStateLocation="client" isArray="false" name="success" primitiveType="String"/>
+    <process:variable historyStateLocation="client" isArray="false" name="workitemid" primitiveType="String"/>
+    <process:variable historyStateLocation="client" isArray="false" name="version" primitiveType="Long"/>
+  </process:variables>
+  <process:inputParameters>
+    <process:parameter historyStateLocation="client" isArray="false" name="type" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="processInstID" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="workItemID" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="activityInstID" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="actionUrl" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="activityDefID" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="applyNo" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="activityDefName" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="ifselect" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" name="processDefName" primitiveType="String"/>
+    <process:parameter historyStateLocation="client" isArray="false" modelType="com.yd.soa.bpsclient.comm.auditcomm.ProcessComm" name="processcomm"/>
+  </process:inputParameters>
+</process:tPageFlow>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:xulei -->
+<sqlMap>
+     <resultMap class="com.yd.soa.bpsyewumgr.wdSubsidyApp.wdSubsidyApp.wdSubsidyApp_Query" id="query_subsidy">
+        <result column="APPLYNO" javaType="long" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="long" property="processinstid"/>
+        <result column="APPLER" javaType="string" property="appler"/>
+        <result column="APPLERID" javaType="string" property="applerid"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="APPPOST" javaType="string" property="apppost"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="DEPARTMENTID" javaType="string" property="departmentid"/>
+        <result column="FILLMAN" javaType="string" property="fillman"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+        <result column="PROCESSDEFNAME" javaType="string" property="processdefname"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        <result column="APPCATE" javaType="string" property="appcate"/>
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+        
+        <result column="APPLYDEGREE1" javaType="string" property="applydegree1"/>
+        <result column="APPLYDEGREE1FZR" javaType="string" property="applydegree1fzr"/>
+        <result column="APPLYDEGREE2" javaType="string" property="applydegree2"/>
+        <result column="APPLYDEGREE2FZR" javaType="string" property="applydegree2fzr"/>
+        <result column="APPLYDEGREE3" javaType="string" property="applydegree3"/>
+        <result column="APPLYDEGREE3FZR" javaType="string" property="applydegree3fzr"/>
+        <result column="WDNAME" javaType="string" property="wdname"/>
+        
+        <result column="WDCODE" javaType="string" property="wdcode"/>
+        <result column="GUISHUFBZX" javaType="string" property="guishufbzx"/>
+        <result column="TO_CENTER_DISTANCE" javaType="string" property="to_center_distance"/>
+        <result column="MOUNT_LAN_DAY" javaType="string" property="mount_lan_day"/>
+        <result column="MOUNT_SEND_DAY" javaType="string" property="mount_send_day"/>
+        <result column="ISRUN_BUS" javaType="string" property="isrun_bus"/>
+        <result column="LINE_LIST" javaType="string" property="line_list"/>
+        <result column="TRUCK_MODEL" javaType="string" property="truck_model"/>
+        <result column="OIL_COSTS" javaType="string" property="oil_costs"/>
+        <result column="VOLUME" javaType="string" property="volume"/>
+        <result column="TOLL_FEE" javaType="string" property="toll_fee"/>
+        <result column="SUBSIDY_TYPE" javaType="string" property="subsidy_type"/>
+        <result column="APP_TYPE" javaType="string" property="app_type"/>
+        <result column="EFFECTIVE_DATE" javaType="string" property="effective_date"/>
+        <result column="END_DATE" javaType="string" property="end_date"/>
+        <result column="REASON_DESC" javaType="string" property="reason_desc"/>
+        <result column="DISTRIBUTION_CENTER_DEAR" javaType="string" property="distribution_center_dear"/>
+        <result column="GENERAL_COMMENT" javaType="string" property="general_comment"/>
+        <result column="PRICE_DEPT_COMMENT" javaType="string" property="price_dept_comment"/>
+        <result column="FINAL_RESULT" javaType="string" property="final_result"/>
+        <result column="SPECIAL_PERSON" javaType="string" property="special_person"/>
+        
+        <result column="MOBILEPHONE" javaType="string" property="mobilephone"/>
+        <result column="SZDQ" javaType="string" property="szdq"/>
+        <result column="TELEPHONE" javaType="string" property="telephone"/>
+        <result column="SZJD" javaType="string" property="szjd"/>
+    </resultMap>
+    <select id="query_subsidy_filter" parameterClass="java.util.Map" resultMap="query_subsidy">
+		SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+       to_char(AI.APPDATE, 'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       H.APPCATE,
+       to_char(AI.CREATETIME, 'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       NULL AS APPCATENAME,
+       NULL AS CONDITIONNAME,
+       
+       Y.APPLYDEGREE1,
+       Y.APPLYDEGREE1FZR,
+       Y.APPLYDEGREE2,
+       Y.APPLYDEGREE2FZR,
+       Y.APPLYDEGREE3,
+       Y.APPLYDEGREE3FZR,
+       
+       Y.WDNAME,
+       Y.WDCODE,
+       Y.GUISHUFBZX,
+       Y.TO_CENTER_DISTANCE,
+       Y.MOUNT_LAN_DAY,
+       Y.MOUNT_SEND_DAY,
+       Y.ISRUN_BUS,
+       Y.LINE_LIST,
+       Y.TRUCK_MODEL,
+       Y.OIL_COSTS,
+       Y.SPECIAL_PERSON,
+       Y.VOLUME,
+       Y.TOLL_FEE,
+       Y.SUBSIDY_TYPE,
+       Y.APP_TYPE,
+       Y.EFFECTIVE_DATE,
+       Y.END_DATE,
+       Y.REASON_DESC,
+       Y.DISTRIBUTION_CENTER_DEAR,
+       Y.GENERAL_COMMENT,
+       Y.PRICE_DEPT_COMMENT,
+       Y.FINAL_RESULT,
+       Y.MOBILEPHONE,
+       Y.SZDQ,
+       Y.TELEPHONE,
+       Y.SZJD
+  FROM OA_APPLYINFO     AI,
+       YD_WD_SUBSIDYAPP Y,
+       YD_BPS_HLEPTOPIC H,
+       OM_ORGANIZATION  O
+
+	 WHERE AI.PROCESSDEFNAME = 'com.yd.soa.bpsyewumgr.wdSubsidyApp.wdSubsidyApp'
+	   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+	   AND AI.APPLYNO = Y.APPNO
+	   AND AI.IFDELETED = 0
+   	 AND TO_NUMBER(AI.DEPARTMENTID) = O.ORGID
+ 	  <isNotNull prepend="AND" property="filterid">
+      	<![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="applyunit">
+          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="department">
+          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="appler">
+          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="fillman">
+          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="applerid">
+          AI.APPLERID ='$applerid$'
+      </isNotNull>
+ 	  <isNotNull prepend="AND" property="processinstid">
+          AI.PROCESSINSTID = #processinstid#
+      </isNotNull>
+      
+      <isNotNull prepend="AND" property="startappdate">
+          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="endappdate">
+      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+      </isNotNull>
+      
+      <isNotNull prepend="AND" property="condition">
+          AI.CONDITION = #condition#
+      </isNotNull>
+		     ORDER BY AI.CREATETIME DESC
+     </select>
+     <select id="queryshenjinli" parameterClass="java.util.Map" resultClass="commonj.sdo.DataObject">
+	    
+				    select 1
+						  from (SELECT O.ORGID AS INORGID,
+						               O.ORGNAME AS INORGNAME,
+						               O.ORGLEVEL,
+						               O.ORGSEQ,
+						               E.EMPID,
+						               E.EMPCODE,
+						               E.EMPNAME,
+						               E.GENDER,
+						               E.EMPSTATUS,
+						               E.MOBILENO,
+						               OPR.OPERATORID,
+						               OPR.USERID,
+						               OPR.OPERATORNAME,
+						               OPR.STATUS,
+						               OP.POSITIONSEQ,
+						               OP.POSICODE,
+						               OP.POSINAME,
+						               OP.POSITIONID
+						          FROM OM_EMPPOSITION  PE,
+						               OM_EMPLOYEE     E,
+						               AC_OPERATOR     OPR,
+						               OM_POSITION     OP,
+						               OM_ORGANIZATION O
+						         WHERE PE.EMPID = E.EMPID
+						           AND E.OPERATORID = OPR.OPERATORID
+						           AND PE.POSITIONID = OP.POSITIONID
+						           AND OP.ORGID = O.ORGID) temp,
+						       yd_cm_oprrole aco
+						 where temp.operatorid = aco.operatorid
+						 and aco.ROLEID=#roleid#
+						 and temp.empid=#userid#
+							    
+				    
+	    </select>
+</sqlMap>

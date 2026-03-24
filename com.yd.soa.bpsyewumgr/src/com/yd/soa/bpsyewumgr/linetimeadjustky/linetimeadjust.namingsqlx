@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap>
+	<resultMap class="com.yd.soa.bpsyewumgr.linetimeadjust.linetimeadjust.QueryLineInfos" id="queryLineInfo">
+        <result column="APPLYNO" javaType="string" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="string" property="processinstid"/>
+        <result column="APPLER" javaType="string" property="appler"/>
+        <result column="APPLERID" javaType="string" property="applerid"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="APPPOST" javaType="string" property="apppost"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="DEPARTMENTID" javaType="string" property="departmentid"/>
+        <result column="FILLMAN" javaType="string" property="fillman"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+        <result column="CONDITIONNAME" javaType="string" property="conditionname"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="PROCESSDEFNAME" javaType="string" property="processdefname"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        <result column="APPCATE" javaType="string" property="appcate"/>
+        <result column="APPCATENAME" javaType="string" property="appcatename"/>
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+		<result column="LINE_NAME" javaType="string" property="lineName"/>
+		<result column="SUPPLIER_NM" javaType="string" property="supplierNm"/>
+		<result column="OLD_DIST" javaType="string" property="oldDist"/>
+		
+		<result column="old_st_tm" javaType="string" property="oldStTm"/>
+		<result column="OLD_ARRIVE_TM" javaType="string" property="oldArriveTm"/>
+		<result column="OLD_CHECK_TM" javaType="string" property="oldCheckTm"/>
+		<result column="OLD_SPEED" javaType="string" property="oldSpeed"/>
+		
+		<result column="now_start_tm" javaType="string" property="nowStartTm"/>
+		<result column="Now_Arrive_Tm" javaType="string" property="nowArriveTm"/>
+		<result column="NOW_CHECK_TM" javaType="string" property="nowCheckTm"/>
+		<result column="now_speed" javaType="string" property="nowSpeed"/>
+		<result column="APPNO" javaType="string" property="appno"/>
+		
+		<result column="APPLYDEGREE1" javaType="string" property="applydegree1"/>        
+        <result column="APPLYDEGREE1FZR" javaType="string" property="applydegree1fzr"/>
+        <result column="APPLYDEGREE2" javaType="string" property="applydegree2"/>        
+        <result column="APPLYDEGREE2FZR" javaType="string" property="applydegree2fzr"/>
+        <result column="APPLYDEGREE3" javaType="string" property="applydegree3"/>        
+        <result column="APPLYDEGREE3FZR" javaType="string" property="applydegree3fzr"/>     
+        <result column="COSTCENTER" javaType="string" property="costcenter"/>  
+        <result column="APPLYUSERID" javaType="string" property="applyuserid"/>      
+        <result column="ST_WD_PIC" javaType="string" property="stWdPic"/>
+		<result column="DEST_WD_PIC" javaType="string" property="destWdPic"/>
+		<result column="OLD_ST_WD" javaType="string" property="oldStWd"/>
+		<result column="OLD_DEST_WD" javaType="string" property="oldDestWd"/>
+		<result column="NOW_START_WD" javaType="string" property="nowStartWd"/>
+		<result column="NOW_DEST_WD" javaType="string" property="nowDestWd"/>
+		<result column="TOTAL_DAY" javaType="string" property="totalDay"/>
+		<result column="NOW_DIST" javaType="string" property="nowDist"/>
+		<result column="APPLY_REASON" javaType="string" property="applyReason"/>
+		<result column="DAY" javaType="string" property="day"/>
+		 
+	</resultMap>
+	<select id="query_LineInfo_filter" parameterClass="java.util.HashMap" resultMap="queryLineInfo">
+SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+       to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       NULL AS CONDITIONNAME,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       AI.APPCATE,
+       NULL AS APPCATENAME,
+       to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       
+       D.APPNO,
+       D.LINE_NAME,
+       D.SUPPLIER_NM,
+       D.ST_WD_PIC,
+       D.OLD_DIST,
+       D.DEST_WD_PIC,
+       D.old_st_tm,
+       D.OLD_ARRIVE_TM ,
+       D.OLD_CHECK_TM,
+       D.OLD_SPEED,
+       D.now_start_tm,
+       D.Now_Arrive_Tm,   
+       D.NOW_CHECK_TM,
+       D.now_speed,
+       D.applydegree1,       
+       D.applydegree1fzr, 
+       D.applydegree2, 
+       D.applydegree2fzr,     
+       D.applydegree3,    
+       D.applydegree3fzr,   
+       D.costcenter,
+       D.applyuserid,
+       D.OLD_ST_WD,
+	   D.OLD_DEST_WD,
+	   D.NOW_START_WD,
+	   D.NOW_DEST_WD,
+	   D.TOTAL_DAY,
+	   D.NOW_DIST,
+	   D.APPLY_REASON,
+	   '0' as DAY
+       
+       FROM OA_APPLYINFO AI, YD_YW_LINE_TIME_ADJUST_KY D, YD_BPS_HLEPTOPIC H,OM_ORGANIZATION O
+       
+       WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.linetimeadjustky.linetimeadjustky'
+         AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+         AND AI.APPLYNO=D.APPNO
+         AND AI.IFDELETED = 0
+         AND TO_NUMBER(AI.DEPARTMENTID)=O.ORGID
+		 	  <isNotNull prepend="AND" property="filterid">
+		          <![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		      	  <isNotEqual  property="condition" compareValue="100">
+		      	  	AI.CONDITION = #condition#
+		      	  </isNotEqual>
+		      </isNotNull>
+		     ORDER BY AI.CREATETIME DESC
+	</select>
+	
+</sqlMap>

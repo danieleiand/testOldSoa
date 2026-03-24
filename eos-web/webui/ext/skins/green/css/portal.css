@@ -1,0 +1,179 @@
+/*** topbar的背景图 ***/
+.portal-bar {
+	background: transparent url(../images/bar.jpg)
+}
+
+/*** topbar按钮和文字风格 ***/
+.topbar {
+	font-size: 12px;
+	color: #fff;
+}
+
+.topbar a {
+	text-decoration: none;
+	color: #fff
+}
+
+.topbar a:hover {
+	color: yellow;
+	text-decoration: none;
+}
+
+/*** portal主控区的风格 ***/
+.mainFrame {
+	background-image: url('../images/mainbg.jpg');
+}
+
+.mainFrame .x-tab-panel-bwrap .x-tab-panel-body {
+	background: transparent;
+}
+
+.mainFrame .x-tab-panel-bwrap .x-tab-panel-body  .x-panel-body {
+	background: transparent;
+}
+
+.mainFrame .x-tab-panel-header {
+	background: transparent;
+}
+
+.mainFrame  .x-tab-strip {
+	background: transparent;
+}
+
+.mainFrame  .x-panel-body {
+	background: transparent;
+}
+
+/*** portal主页tab的风格，包括active,mouseover和unactive三种状态 ***/
+.mainFrame ul.x-tab-strip-top .x-tab-right {
+	background: transparent url(../images/tabs-sprite.gif) no-repeat 0 -51px
+		;
+}
+
+.mainFrame ul.x-tab-strip-top .x-tab-left {
+	background: transparent url(../images/tabs-sprite.gif) no-repeat right
+		-351px;
+}
+
+.mainFrame ul.x-tab-strip-top .x-tab-strip-inner {
+	background: transparent url(../images/tabs-sprite.gif) repeat-x 0 -201px
+		;
+}
+
+.tab_iframe {
+	margin-top: 6px;
+	padding-bottom: 10px;
+	margin-left: 4px;
+	margin-right: 4px;
+	background: transparents;
+}
+
+/*** ext panel 标题字体颜色 ***/
+.x-panel-header span.x-panel-header-text {
+	color: #3B6109;
+	/*color:#FFFFFF*/;
+}
+
+/*** ext tab 标题字体颜色 ***/
+.x-tab-strip span.x-tab-strip-text {
+	color: #3B6109;
+}
+
+.x-tab-strip-over span.x-tab-strip-text {
+	color: #3B6109;
+}
+
+.x-tab-strip-active span.x-tab-strip-text {
+	color: #3B6109;
+}
+
+.menu .x-panel-header {
+	border: 1px solid #13bf00;
+	opacity: 70;
+	-moz-opacity: 70;
+	filter: alpha(opacity = 70);
+	height: 25px;
+}
+
+.menu {
+	padding-left: 3px;
+}
+
+.menu .x-panel-body {
+	border-color: #13bf00;
+	background: url('../images/mainbg.jpg') 0 -26px;
+}
+
+.main {
+	padding-right: 3px;
+}
+
+.main .x-panel-body {
+	border-color: #13bf00;
+}
+
+.bottom-bar {
+}
+
+.bottom-bar .x-panel-body {
+	background: transparents;
+	padding-top: 11px;
+    text-align : center;
+    background: transparent url(../images/bottom-bar.jpg);
+}
+
+.bottom-bar .version {
+	font: 13px;
+	font-weight: 800;
+	color: white;
+	text-align:center;
+}
+
+/*** quick menu 标题字体颜色 ***/
+.quickmenu a {
+	font-size: 12px !important;
+	color: #818927;
+}
+
+/*** 分隔符的背景色 ***/
+.x-layout-split {
+	background: url('../images/mainbg.jpg') 0 -25px;
+}
+
+.wait_mask {
+	background: url('../images/mainbg.jpg') 0 -26px;
+}
+
+.wait {
+	background: url('../images/loading.gif');
+	width:279px;
+	height:53px;
+}
+
+.wait-100{
+	background: url('../images/loading100.gif');
+	}
+
+.widget-content {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	border-bottom: dotted 1px #13bf00;
+}
+
+/*** scrollbar的风格 ***/
+body {
+	scrollbar-3dlight-color: #bbdcad;
+	scrollbar-arrow-color: #447e26;
+	scrollbar-face-color: #cde6c6;
+	scrollbar-darkshadow-color: #4f9636;
+	scrollbar-highlight-color: #fff;
+	scrollbar-shadow-color: #fff;
+	scrollbar-track-color: #eef6e9;
+}
+
+/*** widget的风格(url类型sycnHTML和asycHTML mode下）***/
+.portal_widget_html {
+	background: #F5FAFF;
+	height: 100%
+}

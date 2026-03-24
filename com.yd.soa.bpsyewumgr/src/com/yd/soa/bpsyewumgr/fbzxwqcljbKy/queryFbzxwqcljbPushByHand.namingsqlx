@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:ll -->
+<sqlMap>
+   <resultMap class="com.yd.soa.bpsyewumgr.fbzxwqcljb.cheliangjiaban.query" id="query_fbzxwqcljb">
+        
+        <result column="PROCESSINSTID" javaType="long" property="processinstid"/>
+        <result column="CERTNUM" javaType="string" property="certnum"/>
+        <result column="APPLYUSERNAME" javaType="string" property="applyusername"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="APPLYONAME" javaType="string" property="applyoname"/>
+        <result column="SHENQINGLEIXING" javaType="string" property="shenqingleixing"/>
+        <result column="XIANLUNAME" javaType="string" property="xianluname"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        <result column="APPCATE" javaType="string" property="appcate"/>	
+        <result column="APPLYNO" javaType="long" property="applyno"/>
+        <result column="PROCESSDEFNAME" javaType="string" property="processdefname"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+		<result column="DRESULT" javaType="string" property="dresult"/>
+		
+    </resultMap>
+    <select id="query_fbzxwqcl_pushbyhand" parameterClass="java.util.Map" resultMap="query_fbzxwqcljb">
+		SELECT 
+				z.Processinstid,
+				z.certnum,
+				z.applyusername,
+				to_char(z.APPDATE,'yyyy-MM-dd') as APPDATE,
+				z.applyunit,
+				z.applyoname,
+				z.SHENQINGLEIXING,
+		    z.xianluname,
+		    h.TOPICPRODEFCHNAME,
+				h.APPCATE,
+				AI.APPLYNO,
+				AI.PROCESSDEFNAME,
+				AI.DEPARTMENT,
+				AI.CONDITION,
+				N.dresult
+		FROM yd_it_fbzxwqcljb Z 
+		LEFT JOIN OA_APPLYINFO AI ON z.Processinstid=ai.Processinstid
+		LEFT JOIN YD_BPS_HLEPTOPIC H ON AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+		LEFT JOIN (SELECT M.* FROM (SELECT PROCESSINSTID,MAX(BTIME) AS BTIME FROM YD_IT_FBZXWQCLJBKY_LOGINFO GROUP BY PROCESSINSTID) L  
+					LEFT JOIN YD_IT_FBZXWQCLJBKY_LOGINFO M ON M.BTIME = L.BTIME AND M.PROCESSINSTID = L.PROCESSINSTID) N ON Z.PROCESSINSTID = N.PROCESSINSTID
+		WHERE AI.IFDELETED=0 AND AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.fbzxwqcljbKy.fbzxwqcljbKy'
+			<isNotNull prepend="AND" property="certnum">
+		           Z.CERTNUM = #certnum#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="xianluname">
+		          <![CDATA[INSTR(Z.XIANLUNAME,#xianluname#)>0]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="processinstid">
+		          Z.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="applyusername">
+		          <![CDATA[INSTR(Z.APPLYUSERNAME,#applyusername#)>0]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(Z.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		ORDER BY z.Processinstid DESC
+			 
+     </select>
+</sqlMap>

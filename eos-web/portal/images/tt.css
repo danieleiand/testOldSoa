@@ -1,0 +1,49 @@
+
+.x-window-tl,.x-window-tr,.x-window-tc {
+	background:transparent none no-repeat scroll 0 0;
+}
+.x-window-ml,.x-window-mr,.x-window-mc {
+	background:transparent none no-repeat scroll 0 0;
+}
+
+.x-window-bl,.x-window-br,.x-window-bc {
+	background: transparent none no-repeat scroll 0 0;
+}
+
+
+
+
+
+.x-panel-tl,.x-panel-tr,.x-panel-tc {
+	background:transparent none no-repeat scroll 0 0;
+	border : 0px none !important;
+}
+.x-panel-ml,.x-panel-mr,.x-panel-mc {
+	background:transparent none no-repeat scroll 0 0;
+}
+
+.x-panel-bl,.x-panel-br,.x-panel-bc {
+	background: transparent none no-repeat scroll 0 0;
+}
+
+#form1 {
+margin-top:279px;
+margin-left:100px;
+
+}
+.x-form-element {
+margin-top:4px;	
+	}
+.x-form-item-label {
+margin-top:3px;
+margin-right:16px;
+	}
+	
+.x-window-body {
+	background: transparent url(login.png) no-repeat 0px 0px !important ;
+}
+
+.main-body {
+	background: transparent url(Bg.jpg) repeat scroll 0px -113px;
+
+}

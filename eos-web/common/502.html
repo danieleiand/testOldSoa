@@ -1,0 +1,99 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录-韵达SOA统一平台_系统维护</title>
+
+<!-- <link href="http://soa.yundasys.com:30098/cas/nginx/base.css" type="text/css" rel="stylesheet" >
+<link href="http://soa.yundasys.com:30098/cas/nginx/global.css" type="text/css" rel="stylesheet" > -->
+<style>
+/*** topbar按钮和文字风格 ***/
+.m_topbar {
+	font-size: 12px;
+	color: #333333;
+	background-color: #ffcc00;
+	background-image: url(http://soa.yundasys.com:30098/cas/nginx/yunda_logo.png);
+	background-repeat:no-repeat;
+	background-position: 15px 4px;
+	height: 50px;
+}
+.m_content {
+	font-size: 14px;	
+	background-image: url(http://soa.yundasys.com:30098/cas/nginx/soa_normal.png);
+	height: 700px;
+	line-height:130%;
+}
+.message{
+width:100%; 
+}
+p{
+	margin:30px 0
+}
+hr{border:none;
+border-top:1px dotted;width:1900px;}
+</style>
+<script type="text/javascript">
+	//***********跳转首页函数********************
+function loginsoa(){
+	
+	window.location.href="http://soa.yundasys.com:30088/ydsoa/cas.login?CASLOGOUT=true";
+}
+	setInterval("loginsoa()","30000");	 
+	
+	
+function showDate()
+{
+	var now=new Date();
+	var year=now.getFullYear();
+	var month=now.getMonth()+1;
+	var date=now.getDate();
+	var day=now.getDay();
+	var hours=now.getHours();
+	var minutes=now.getMinutes();
+	document.all.show.innerHTML=year+"-"+month+"-"+date;
+	if((day==4)&&(hours==19)&&(hours<20)||((hours==20)&&(minutes<=30))){
+		document.getElementById("text1").style.display='none';
+		document.getElementById("text2").style.display='block';
+	}else{
+		document.getElementById("text1").style.display='block';
+		document.getElementById("text2").style.display='none';
+	} 
+	
+}
+</script>
+</head>
+<body style="margin:0px;overflow:hidden" onload="showDate()" >
+<div id="m_all">
+	<div id="m_topbar"  class="m_topbar"></div><!-- end m_topbar -->
+	<div id="m_content" class="m_content">
+		<br/>
+		<div class="password_management">
+			<div class="title_r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="cursor: pointer;" onclick="loginsoa()"><a>首页</a></span>
+				<em> &gt; </em>系统维护			
+			</div>
+			
+			 <div id="step1" class="token_process">
+			 <hr size="1" />
+			 <div class="message" align="left">
+				<div align="left">
+					
+						<br/><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总部、各分拨中心、各网点：</div>
+						<p align="left"><div id="text1" style="font-size: 15px" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    					 SOA系统正在进行紧急升级维护中,请您耐心等待稍后访问,给您带来的不便敬请谅解,感谢您的配合!</div></p>
+						<p align="left"><div id="text2" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  SOA系统每周四7:00-8:30例行升级维护，请稍后访问！给您带来的不便敬请谅解,感谢您的配合!</div></p>
+						<br/>
+						<div align="right">总部/管理工程中心&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+						<div align="right"><label id="show"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						</div>
+			</div><!-- end step1-->
+        </div><!-- end  password_management-->
+	</div><!-- end m_content -->
+</div><!-- end m_all -->
+</div>
+</body>
+</html>

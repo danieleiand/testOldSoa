@@ -1,0 +1,16 @@
+发起页面流
+|功能名称：			|电子发票申请流程
+|功能编码：			|YDYWELECTRONICINVOICE_AP
+|功能调用入口：		|com.yd.soa.bpsyewumgr.halt.ydywelectronicinvoice_apply.flow
+流程统计
+|功能名称：			|电子发票申请流程统计
+|功能编码：			|YDYWELECTRONICINVOICE_QY
+|功能调用入口：		|com.yd.soa.bpsyewumgr.halt.ydywelectronicinvoice_fquery.flow
+
+
+
+
+
+
+
+

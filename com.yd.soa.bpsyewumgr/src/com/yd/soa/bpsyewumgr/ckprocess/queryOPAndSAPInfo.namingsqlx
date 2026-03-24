@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:zhaoliang -->
+<sqlMap>
+    <resultMap class="commonj.sdo.DataObject" id="queryInfo">
+    	<result column="olid" javaType="string" property="olid"/>
+        <result column="processinstid" javaType="string" property="processinstid"/>
+        <result column="logtype" javaType="string" property="logtype"/>
+        <result column="approvedate" javaType="string" property="approvedate"/>
+        <result column="sendtime" javaType="string" property="sendtime"/>
+        <result column="ostatus" javaType="string" property="ostatus"/>
+        <result column="sendac" javaType="string" property="sendac"/>
+        <result column="ischuli" javaType="string" property="ischuli"/>
+        <result column="chulidate" javaType="string" property="chulidate"/>
+        <result column="errorinfo" javaType="string" property="errorinfo"/>
+        <result column="saperror" javaType="string" property="saperror"/>
+        <result column="sapmsage" javaType="string" property="sapmsage"/>
+        <result column="ishuitui" javaType="string" property="ishuitui"/>
+        <result column="chuangkoucode" javaType="string" property="chuangkoucode"/>
+        <result column="sid" javaType="string" property="sid"/>
+    </resultMap>
+    <select id="queryInfo" parameterClass="java.util.HashMap" resultMap="queryInfo">
+    			select kk.olid,
+       kk.processinstid,
+       kk.sid,
+       kk.ischuli,
+       kk.chulidate,
+       kk.logtype,
+       kk.approvedate,
+       kk.sendtime,
+       kk.ostatus,
+       kk.sendac,
+       kk.errorinfo,
+       kk.saperror,
+       kk.sapmsage,
+       kk.ishuitui,
+       kk.chuangkoucode
+
+  from (select q.olid,
+               q.processinstid,
+               s.id sid,
+               s.ischuli,
+               s.chulidate,
+               q.logtype,
+               q.approvedate,
+               q.sendtime,
+               q.ostatus,
+               q.sendac,
+               q.errorinfo,
+               q.saperror,
+               q.sapmsage,
+               q.ishuitui,
+               q.chuangkoucode
+          from (select l.olid,
+                       c.processinstid,
+                       'cangchu' as logtype,
+                       (select min(t.approvedate)
+                          from OA_APPROVALINFO t
+                         where t.processinstid = c.processinstid
+                           and t.activitydefid = 'YD_ZB_XXZXQXGLY') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       c.saperror as saperror,
+                       c.sapmsage as sapmsage,
+                       c.ishuitui,
+                       c.chuangkoudaima as chuangkoucode
+                  from yd_intf_op_log l, yd_yw_cangchu c
+                 where (l.logtype = 'cangchu' or l.logtype is null)
+                   and to_char(c.processinstid) = l.rid(+)
+                union all
+                select l.olid,
+                       w.processinstid,
+                       'wangdian' as logtype,
+                       (select min(t.approvedate)
+                          from OA_APPROVALINFO t
+                         where t.processinstid = w.processinstid
+                           and t.activitydefid = 'YD_ZB_XXZXQXGLY') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       w.saperror as saperror,
+                       w.sapmsage as sapmsage,
+                       w.ishuitui,
+                       w.chuangkoudaima as chuangkoucode
+                  from yd_intf_op_log l, yd_yw_wangdian w
+                 where to_char(w.processinstid) = l.rid(+)
+                   and w.wftype is null
+                   and (l.logtype = 'wangdian' or l.logtype is null)
+                union all
+                select l.olid,
+                       h.processinstid,
+                       'hk' as logtype,
+                       (select min(t.approvedate)
+                          from OA_APPROVALINFO t
+                         where t.processinstid = h.processinstid
+                           and t.activitydefid = 'YD_ZB_XXZXQXGLY') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       null as saperror,
+                       null as sapmsage,
+                       h.ishuitui,
+                       h.windowcode as chuangkoucode
+                  from yd_intf_op_log l, yd_yw_hangkong h
+                 where to_char(h.processinstid) = l.rid(+)
+                 union all
+                 select l.olid,
+                       cp.processinstid,
+                       'fenbocode' as logtype,
+                       (select min(t.approvedate)
+                          from OA_APPROVALINFO t
+                         where t.processinstid = cp.processinstid
+                           and t.activitydefid = 'YD_ZB_TXGLZFZR') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       null as saperror,
+                       null as sapmsage,
+                       cp.ishuitui,
+                       cp.bianmacode as chuangkoucode
+                  from yd_intf_op_log l, yd_dd_companycode cp
+                 where to_char(cp.processinstid) = l.rid(+)
+                   and (l.logtype = 'fenbocode' or l.logtype is null)
+                union all
+                select l.olid,
+                       d.processinstid,
+                       'hd' as logtype,
+                       (select min(t.approvedate)
+                          from OA_APPROVALINFO t
+                         where t.processinstid = d.processinstid
+                           and t.activitydefid = 'YD_ZB_XXZXQXGLY') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       null as saperror,
+                       null as sapmsage,
+                       d.ishuitui,
+                       d.hdcode as chuangkoucode
+                  from yd_intf_op_log l, yd_yw_hdck d
+                 where to_char(d.processinstid) = l.rid(+)
+                
+                union all
+                select l.olid,
+                       w1.processinstid,
+                       'wdstatus' as logtype,
+                       (select min(t.approvedate)
+                          from OA_APPROVALINFO t
+                         where t.processinstid = w1.processinstid
+                           and t.activitydefid = 'YD_ZB_XXZXQXGLY') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       w1.saperror as saperror,
+                       w1.sapmsage as sapmsage,
+                       w1.ishuitui,
+                       w1.chuangkoudaima as chuangkoucode
+                  from yd_intf_op_log l, yd_yw_wangdian w1
+                 where to_char(w1.processinstid) = l.rid(+)
+                   and w1.wftype = 'wangdianreplace'
+                   and (l.logtype = 'wangdian' or l.logtype is null)
+                union all
+                select l.olid,
+                       w2.processinstid,
+                       'halt' as logtype,
+                       (select min(g.gzcreatetime) approvedate
+                          from OA_WORKFLOW_GAOZHI g
+                         where g.gzprocessinstid = w2.processinstid
+                           and g.gzactivitydefid = 'XINXI') as approvedate,
+                       l.sendtime,
+                       l.ostatus,
+                       l.errorinfo,
+                       l.sendac,
+                       w2.saperror as saperror,
+                       w2.sapmsage as sapmsage,
+                       w2.ishuitui,
+                       w2.chuangkoudaima as chuangkoucode
+                  from yd_intf_op_log l, yd_yw_wangdian w2
+                 where to_char(w2.processinstid) = l.rid(+)
+                   and w2.wftype = 'halt'
+                   and (l.logtype = 'wangdian' or l.logtype is null)) q
+          left join yd_intf_op_sap_stats s
+            on (q.processinstid = s.processinstid and q.olid = s.olid)) kk
+ where 1 = 1 
+       <isNotNull prepend="and" property="processinstid">
+	       kk.processinstid = #processinstid#
+	   </isNotNull>
+	    <isNotNull prepend="and" property="logtype">
+	       kk.logtype = #logtype#
+	   </isNotNull>
+	   <isNotNull prepend="AND" property="mindate">
+		  <![CDATA[kk.approvedate >= to_date('$mindate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+      </isNotNull>
+      <isNotNull prepend="AND" property="maxdate">
+      	  <![CDATA[kk.approvedate <= to_date('$maxdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+      </isNotNull>
+       <isNotNull prepend="and" property="ishuitui">
+	       kk.ishuitui = #ishuitui#
+	   </isNotNull>
+	   <isNotNull prepend="and" property="noht">
+	       kk.ishuitui != '2'
+	   </isNotNull>
+	   <isNotNull prepend="and" property="ostatussuccess">
+	       kk.ostatus  =#ostatussuccess#
+	   </isNotNull>
+	   <isNotNull prepend="and" property="noostatus">
+	       kk.ostatus  is null
+	   </isNotNull>
+	   <isNotNull prepend="and" property="ostatuserror">
+	       kk.ostatus  != '0'
+	   </isNotNull>
+	    <isNotNull prepend="and" property="nosap">
+	       kk.saperror is null
+	   </isNotNull>
+	    <isNotNull prepend="and" property="saperror">
+	       kk.saperror ='E'
+	   </isNotNull>
+	    <isNotNull prepend="and" property="sapsuccess">
+	       kk.saperror = 'S'
+	   </isNotNull>
+	   <isNotNull prepend="and" property="chuli">
+	       kk.ischuli = '已处理'
+	   </isNotNull>
+	   <isNotNull prepend="and" property="nochuli">
+	       kk.ischuli = '未处理'
+	   </isNotNull>
+	   <isNotNull prepend="and" property="chuangkoucode">
+	       kk.chuangkoucode = #chuangkoucode#
+	   </isNotNull>
+	   
+	    and  kk.approvedate >= to_date('2013-10-15 23:59:59','yyyy-MM-dd hh24:mi:ss')
+	   order by kk.approvedate desc 
+    </select>
+    
+    
+    
+     <update id="updateWangdianBM"  parameterClass="java.util.HashMap">
+
+     	update yd_yw_wangdian t set t.bianma = #bianma#,t.ishuitui=#ishuitui# where t.processinstid = #processinstid#
+     	
+     </update>
+     
+      <update id="updateWangdianAA"  parameterClass="java.util.HashMap">
+
+     	update yd_yw_wangdian t set t.aaaa = #aaaa#,t.ishuitui=#ishuitui#  where t.processinstid = #processinstid#
+     	
+     </update>
+     
+      <update id="updateWangdian"  parameterClass="java.util.HashMap">
+
+     	update yd_yw_wangdian t set t.chuangkoudaima = #chuangkoudaima#,t.ishuitui=#ishuitui# where t.processinstid = #processinstid#
+     	
+     </update>
+</sqlMap>

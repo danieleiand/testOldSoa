@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:xujie -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="ydywelectronicinvoiceresultMap">
+        <result column="APPLYNO" javaType="string" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="string" property="processinstid"/>
+        <result column="APPLYUSERID" javaType="string" property="applyuserid"/>
+        <result column="APPLYUSERNAME" javaType="string" property="applyusername"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="APPLYONAME" javaType="string" property="applyoname"/>
+        <result column="COMP_CODE" javaType="string" property="compcode"/>
+        <result column="HANDLERID" javaType="string" property="handlerid"/>
+        <result column="HANDLERNAME" javaType="string" property="handlername"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+    </resultMap>
+    <select id="ydywelectronicinvoicequery"  parameterClass="java.util.HashMap"  resultMap="ydywelectronicinvoiceresultMap">
+	  SELECT 
+		<!--需修改地方1：begin-->
+		   AI.APPLYNO,
+           T1.PROCESSINSTID,
+           T1.APPLYUSERID,
+           T1.APPLYUSERNAME,
+           to_char( T1.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+           to_char( T1.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+           T1.APPLYUNIT,
+           T1.APPLYONAME,
+           T1.COMP_CODE,
+           T1.HANDLERID,
+           T1.HANDLERNAME,
+           AI.CONDITION   
+        <!--需修改地方1：end-->       
+	  FROM 
+	  
+	  <!--需修改地方2：begin（业务表）-->
+	  YD_YW_ELECTRONIC_INVOICE T1,EOS_DICT_ENTRY DICT,
+	  <!--需修改地方2：end-->
+	  
+	  OA_APPLYINFO AI,YD_BPS_HLEPTOPIC H,OM_ORGANIZATION O
+	  
+	  <!--需修改地方3：begin-->
+	  WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.electronicinvoice.ydywelectronicinvoice'
+	  <!--需修改地方3：end-->
+	  
+	   <!--需修改地方4：begin（业务表）-->
+	   AND AI.PROCESSINSTID=T1.PROCESSINSTID
+	   AND DICT.Dictid=T1.Invoice_Type
+       AND DICT.Dicttypeid='YD_YW_INVOICE_TYPE'
+	   <!--需修改地方4：end-->
+	   
+	   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+	   AND AI.IFDELETED = 0
+	   AND TO_NUMBER(AI.DEPARTMENTID)=O.ORGID
+			<isNotNull prepend="AND" property="filterid">
+				<![CDATA[EXISTS(SELECT 1
+		          FROM YD_CF_FILTER F
+		         WHERE F.FILTERTYPE = 1
+		           AND F.IFDELETED = 0
+		           AND F.OPID = #filterid#
+		           AND F.SCOPETYPE = 0
+		           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+		           AND F.SCOPETYPEID = AI.APPLERID
+		        UNION
+		        SELECT 1
+		          FROM YD_CF_FILTER F
+		         WHERE F.FILTERTYPE = 1
+		           AND F.IFDELETED = 0
+		           AND F.OPID = #filterid#
+		           AND F.SCOPETYPE = 3
+		           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+		           AND F.SCOPETYPEID=3
+		        UNION
+		        SELECT 1
+		          FROM YD_CF_FILTER F
+		         WHERE F.FILTERTYPE = 1
+		           AND F.IFDELETED = 0
+		           AND F.OPID = #filterid#
+		           AND F.SCOPETYPE = 2
+		           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+		           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+		       )]]>
+			</isNotNull>
+		   <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+			  <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull>
+	     ORDER BY AI.CREATETIME DESC
+	</select>
+</sqlMap>
+
+
+
+
+

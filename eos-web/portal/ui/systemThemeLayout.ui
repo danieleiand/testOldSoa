@@ -1,0 +1,259 @@
+<ui provider="primeton" displayName="Window" createTime="0" lastModified="0">
+  <dataContext>
+    <dataSource id="store1" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">int</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">列号</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">width</property>
+          <property name="type">int</property>
+          <property name="mapping">width</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">列宽(%)</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <property name="entityType"></property>
+      <property name="root"></property>
+      <property name="url"></property>
+      <property name="saveUrl"></property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+    </dataSource>
+  </dataContext>
+  <widget id="window1" widgetType="window">
+    <group name="items">
+      <widget id="form1" widgetType="form">
+        <group name="items">
+          <widget id="cnum" widgetType="combo">
+            <event name="change">
+              <script><![CDATA[/*if (newValue){
+	var num = newValue;
+}
+else{
+	var num = oldValue || 3;
+}
+store1.removeAll();
+var testData = [];
+for(var i=1; i<=num; i++){
+	testData.push({'id': i, 'width': 100/num});
+};
+store1.loadData(testData);*/]]></script>
+            </event>
+            <event name="select">
+              <script><![CDATA[
+
+	var num = combo.getValue();
+
+store1.removeAll();
+var testData = [];
+for(var i=1; i<=num; i++){
+	testData.push({'id': i, 'width': (100/num).toPrecision(4)});
+};
+store1.loadData(testData);]]></script>
+            </event>
+            <property name="displayField"></property>
+            <property name="valueField"></property>
+            <property name="emptyText">请选择...</property>
+            <property name="width">89</property>
+            <property name="forceSelection">true</property>
+            <property name="value">3</property>
+            <property name="fieldLabel">列数</property>
+            <property name="colspan">1</property>
+            <property name="name">cnum</property>
+            <property name="hidden">false</property>
+            <property name="hideLabel">false</property>
+            <property name="dataList">1:1;2:2;3:3;4:4;5:5</property>
+          </widget>
+        </group>
+        <property name="columns">1</property>
+        <property name="footer">true</property>
+        <property name="buttonAlign">center</property>
+        <property name="height">50</property>
+        <property name="ds"></property>
+        <property name="title"></property>
+      </widget>
+      <widget id="commongrid1" widgetType="commongrid">
+        <group name="columns">
+          <widget id="commongrid1_id" widgetType="column">
+            <property name="width">100</property>
+            <property name="header">列号</property>
+            <property name="sortable">false</property>
+            <property name="align">left</property>
+            <property name="dataIndex">id</property>
+            <property name="hidden">false</property>
+          </widget>
+          <widget id="commongrid1_width" widgetType="column">
+            <property name="width">100</property>
+            <property name="header">列宽(%)</property>
+            <property name="sortable">false</property>
+            <property name="align">left</property>
+            <property name="dataIndex">width</property>
+            <property name="editor" value="Ext.form.NumberField">
+              <widget id="numberfield2" widgetType="numberfield">
+                <property name="fieldLabel"></property>
+                <property name="value"></property>
+                <property name="emptyText">0</property>
+                <property name="hideLabel">false</property>
+                <property name="width">135</property>
+                <property name="name">width</property>
+                <property name="allowDecimals">false</property>
+                <property name="allowNegative">false</property>
+                <property name="decimalPrecision">0</property>
+                <property name="maxValue">100</property>
+                <property name="minValue">0</property>
+              </widget>
+            </property>
+            <property name="hidden">false</property>
+          </widget>
+        </group>
+        <property name="anchor">100% -50</property>
+        <property name="store">store1</property>
+        <property name="title"></property>
+        <property name="selModel"></property>
+        <property name="footer">true</property>
+        <property name="buttonAlign">center</property>
+        <property name="height">170</property>
+        <property name="hidden">false</property>
+        <property name="clicksToEdit">1</property>
+      </widget>
+    </group>
+    <group name="buttons">
+      <widget id="button1" widgetType="button">
+        <event name="click">
+          <script><![CDATA[var activeTheme=Ext.getCmp("portalTab").getActiveTab();
+var colNum = activeTheme.columNum;
+var columWidth = activeTheme.columWidth;
+var newNum = cnum.getValue();
+var newWidthArr = [];
+var total=0;
+for (var i = 0; i < store1.getCount(); i++) {
+	var width = store1.getAt(i).get("width") / 100;
+	if(width==0){
+		Ext.Msg.alert("提示信息","布局中列的宽度不能为0");
+		return;
+	}
+	total+=width;
+	if(total>1){
+		Ext.Msg.alert("提示信息","新布局的总宽度大于100%，请重新输入");
+		return;
+	}
+	newWidthArr.push(width);
+}
+if(total<0.99){
+	Ext.Msg.alert("提示信息","新布局的总宽度小于100%，请重新输入");
+	return;
+}
+var newWidth = newWidthArr.join(",");
+if (colNum == newNum && columWidth == newWidth) {
+	// do nothing
+	window1.close();
+} else {
+	function updateLayout() {
+		var url = getWebRoot()+"/portal/action/saveSystemThemeLayout.jsp?colMum=" + newNum
+				+ "&colWidth=" + newWidth+"&theme="+activeTheme.id;
+
+		ajaxCall(url, {}, function() {
+		
+		
+		            var theme=Ext.getCmp("portalTab").getActiveTab();
+					theme.items.each(function(el)
+					{
+					theme.remove(el,true)
+					}
+					)
+				    theme.add.apply(theme, createSysPortInfo(theme));
+	             	theme.doLayout();
+					//var mainFrame = top.document.getElementById("portalMainFrame");
+					//mainFrame.src = mainFrame.src;
+					/*
+					var home_panel = Ext.getCmp("homePanel");
+					
+					var oldMainPortal = Ext.getCmp("mainPortal");
+					home_panel.remove(oldMainPortal, true);
+					
+					var mainPortal = Ext.ComponentMgr.create({
+						xtype : 'portal',
+						id : "mainPortal",
+						items : createPortInfo(),
+						listeners : {
+							'drop' : function(e) {
+								updateMainLayout();
+							}
+						},
+						anchor : '100% 100%'
+					});
+					home_panel.insert(0, mainPortal);
+					home_panel.doLayout();
+					
+*/
+
+
+				}, function() {
+					alert("Failed to change layout!");
+				});
+	}
+	if (newNum < colNum) {
+		Ext.MessageBox.confirm("确认布局更新", "新布局中的列小于原布局，某些列上的内容会被删除，确定要更新布局吗？",
+				function(btn) {
+					if(btn == "yes"){
+						updateLayout();
+					}
+				}, this);
+	} else {
+		updateLayout();
+	}
+	window1.close();
+}
+]]></script>
+        </event>
+        <property name="text">保存</property>
+      </widget>
+      <widget id="button2" widgetType="button">
+        <event name="click">
+          <script><![CDATA[window1.close();]]></script>
+        </event>
+        <property name="text">取消</property>
+      </widget>
+    </group>
+    <property name="layout">anchor</property>
+    <property name="width">300</property>
+    <property name="height">275</property>
+    <property name="title">布局配置</property>
+    <property name="footer">true</property>
+    <property name="modal">true</property>
+  </widget>
+  <hiddenWidgets name="hiddenWidgets"/>
+  <event name="afterRender">
+    <script><![CDATA[var activeTheme=Ext.getCmp("portalTab").getActiveTab();
+var colNum =activeTheme.columNum;
+colNum=colNum||1
+cnum.setValue(colNum);
+var columWidth = activeTheme.columWidth;
+columWidth=columWidth||"1";
+var columArr = columWidth.split(",");
+var columData = [];
+for (var i = 0; i < colNum; i++) {
+	var item = {id:i+1};
+	item.width = columArr[i] * 100;
+	columData.push(item);
+}
+
+store1.loadData(columData);
+]]></script>
+  </event>
+  <description>这是一个描述信息</description>
+</ui>

@@ -1,0 +1,49 @@
+<ui provider="primeton" displayName="Window" createTime="0" lastModified="0">
+  <dataContext>
+    <dataSource id="store1" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">int</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">列号</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">width</property>
+          <property name="type">int</property>
+          <property name="mapping">width</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">列宽(%)</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <property name="entityType"></property>
+      <property name="root"></property>
+      <property name="url"></property>
+      <property name="saveUrl"></property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+    </dataSource>
+  </dataContext>
+  <widget id="window1" widgetType="window">
+    <property name="layout">anchor</property>
+    <property name="width">400</property>
+    <property name="height">350</property>
+    <property name="title">风格设置</property>
+    <property name="footer">true</property>
+    <property name="modal">true</property>
+    <property name="iconCls">widget-skin</property>
+    <property name="html">&lt;iframe width=&apos;100%&apos; height=&apos;100%&apos; frameborder=&apos;0&apos;  src=&apos;selectSkin.jsp&apos; ALLOWTRANSPARENCY=true&gt;&lt;/iframe&gt;</property>
+  </widget>
+  <hiddenWidgets name="hiddenWidgets"/>
+  <description>这是一个描述信息</description>
+</ui>

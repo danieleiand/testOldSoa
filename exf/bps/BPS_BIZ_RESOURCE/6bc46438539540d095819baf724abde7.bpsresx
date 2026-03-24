@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+  <catalogID>6bc46438539540d095819baf724abde7</catalogID>
+  <bizCommResources>
+    <businessCommRes>
+      <resourceUUID>d7616311390a43889dbbb4f3661d647f</resourceUUID>
+      <resourceName>Test</resourceName>
+      <catalogUUID>6bc46438539540d095819baf724abde7</catalogUUID>
+      <resourceImpl>com.test.Demo.test</resourceImpl>
+      <resourceType>logic-flow</resourceType>
+      <resourceScope>00010000</resourceScope>
+      <resourceRemark>Test</resourceRemark>
+      <parameters>
+        <parameter>
+          <name>roleid</name>
+          <dataType>
+            <typeClass>primitive</typeClass>
+            <typeValue>java.lang.String</typeValue>
+          </dataType>
+          <description>角色Id</description>
+          <mode>parameter</mode>
+        </parameter>
+        <parameter>
+          <name>result</name>
+          <dataType>
+            <typeClass>primitive</typeClass>
+            <typeValue>java.lang.String</typeValue>
+          </dataType>
+          <description>返回值</description>
+          <mode>result</mode>
+        </parameter>
+      </parameters>
+      <busiResType>02</busiResType>
+    </businessCommRes>
+  </bizCommResources>
+  <bizRules/>
+  <bizCalendars/>
+</resource>

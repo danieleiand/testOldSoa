@@ -1,0 +1,274 @@
+<ui provider="primeton" displayName="Window" createTime="0" lastModified="0">
+  <dataContext>
+    <dataSource id="quickMenu" type="servicestore">
+      <group name="fields">
+        <field widgetType="datafield">
+          <property name="name">id</property>
+          <property name="type">string</property>
+          <property name="mapping">id</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">id</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">userId</property>
+          <property name="type">string</property>
+          <property name="mapping">userId</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">userId</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">action</property>
+          <property name="type">string</property>
+          <property name="mapping">action</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">action</property>
+          <property name="canbenull">false</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">menuName</property>
+          <property name="type">string</property>
+          <property name="mapping">menuName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">menuName</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">sort</property>
+          <property name="type">int</property>
+          <property name="mapping">sort</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">sort</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">icon</property>
+          <property name="type">string</property>
+          <property name="mapping">icon</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">icon</property>
+          <property name="canbenull">false</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">version</property>
+          <property name="type">int</property>
+          <property name="mapping">version</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">version</property>
+          <property name="canbenull">false</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">openMode</property>
+          <property name="type">int</property>
+          <property name="mapping">openMode</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">openMode</property>
+          <property name="canbenull">true</property>
+        </field>
+        <field widgetType="datafield">
+          <property name="name">systemName</property>
+          <property name="type">string</property>
+          <property name="mapping">systemName</property>
+          <property name="sortType"></property>
+          <property name="sortDir"></property>
+          <property name="dateFormat"></property>
+          <property name="defaultValue"></property>
+          <property name="displayName">systemName</property>
+          <property name="canbenull">true</property>
+        </field>
+      </group>
+      <event name="beforeload">
+        <script><![CDATA[
+	
+]]></script>
+      </event>
+      <event name="beforeSave">
+        <script><![CDATA[
+			for(var i=0;i<params.deletedRecords.length;i++){
+				var delRecord=params.deletedRecords[i];
+				for(var j=0;j<params.updatedRecords.length;j++){
+					var up=params.updatedRecords[j];
+					if(up.id==delRecord.id){
+						params.updatedRecords.splice(j,1);
+						break; 
+					}
+				}				
+			}
+			for(var i=0;i<params.updatedRecords.length;i++){
+				var upRecord=params.updatedRecords[i];
+				params.updatedRecords[i].menuName = upRecord.menuName.trim(); 
+				if(upRecord.menuName==""){
+					Ext.Msg.alert("提示信息","菜单名称不能为空，请输入！");
+					return false;
+				}	
+			}
+]]></script>
+      </event>
+      <event name="onSaveSuccess">
+        <script><![CDATA[
+ 		var quickMenuWidget 
+ 		quickMenuWidget=Ext.getCmp("PORTALQUICKMENU");
+ 		if(quickMenuWidget==null)
+ 		quickMenuWidget=portalUtil.getWidget("quickMenu");
+ 		if(quickMenuWidget==null) return;
+ 		else
+ 		{
+ 		if(quickMenuWidget.refresh) quickMenuWidget.refresh();
+ 		else
+ 		quickMenuWidget.body.dom.innerHTML = "<div><iframe width='100%' height='100%' frameborder='0'  src='../widget/quickMenu.jsp?portalSkin="+portalSkin+ "'></iframe></div>"
+ 		}
+		    		 		 
+		    		 		
+quickMenuWindow.close();]]></script>
+      </event>
+      <property name="entityType">com.primeton.portal.purview.entity.QuickMenu</property>
+      <property name="root">dataList</property>
+      <property name="url">com.primeton.portal.purview.service.QuickMenuManagerService.searchQuickMenuWithPage(com.primeton.widget.auth.User s:portal_user,com.primeton.portal.purview.service.PageCond pageCond).java</property>
+      <property name="saveUrl">com.primeton.portal.purview.service.QuickMenuManagerService.save(com.primeton.portal.purview.entity.QuickMenu[] insertedRecords, com.primeton.portal.purview.entity.QuickMenu[] updatedRecords, com.primeton.portal.purview.entity.QuickMenu[] deletedRecords).java</property>
+      <property name="addUrl"></property>
+      <property name="updateUrl"></property>
+      <property name="deleteUrl"></property>
+      <property name="dataProvider">JavaBean</property>
+    </dataSource>
+  </dataContext>
+  <widget id="quickMenuWindow" widgetType="window">
+    <group name="items">
+      <widget id="commongrid1" widgetType="commongrid">
+        <group name="columns">
+          <widget id="commongrid1_menuName" widgetType="column">
+            <property name="width">138</property>
+            <property name="header">菜单名称</property>
+            <property name="sortable">true</property>
+            <property name="align">left</property>
+            <property name="dataIndex">menuName</property>
+            <property name="editor" value="Ext.form.TextField">
+              <widget id="textfield4" widgetType="textfield">
+                <property name="fieldLabel"></property>
+                <property name="hideLabel">false</property>
+                <property name="allowBlank">false</property>
+                <property name="blankText">菜单名称不能为空</property>
+                <property name="width">135</property>
+                <property name="name">menuName</property>
+              </widget>
+            </property>
+            <property name="hidden">false</property>
+          </widget>
+          <widget id="commongrid1_systemName" widgetType="column">
+            <property name="width">153</property>
+            <property name="header">所属应用</property>
+            <property name="sortable">true</property>
+            <property name="align">left</property>
+            <property name="dataIndex">systemName</property>
+            <property name="editor" value="Ext.form.TextField">
+              <widget id="textfield1" widgetType="textfield">
+                <property name="fieldLabel"></property>
+                <property name="hideLabel">false</property>
+                <property name="width">135</property>
+                <property name="name">systemName</property>
+              </widget>
+            </property>
+            <property name="hidden">false</property>
+          </widget>
+          <widget id="commongrid1_sort" widgetType="column">
+            <property name="width">67</property>
+            <property name="header">显示顺序</property>
+            <property name="sortable">true</property>
+            <property name="align">left</property>
+            <property name="dataIndex">sort</property>
+            <property name="editor" value="Ext.form.NumberField">
+              <widget id="numberfield1" widgetType="numberfield">
+                <property name="fieldLabel"></property>
+                <property name="value"></property>
+                <property name="emptyText">请输入数字...</property>
+                <property name="hideLabel">false</property>
+                <property name="width">135</property>
+                <property name="name">sort</property>
+              </widget>
+            </property>
+            <property name="hidden">false</property>
+          </widget>
+          <widget id="commongrid1_openMode" widgetType="column">
+            <property name="width">142</property>
+            <property name="header">打开方式</property>
+            <property name="sortable">true</property>
+            <property name="align">left</property>
+            <property name="dataIndex">openMode</property>
+            <property name="editor" value="Ext.form.ComboBox">
+              <widget id="combo1" widgetType="combo">
+                <property name="fieldLabel"></property>
+                <property name="displayField"></property>
+                <property name="valueField"></property>
+                <property name="emptyText">请选择...</property>
+                <property name="width">135</property>
+                <property name="forceSelection">true</property>
+                <property name="hideLabel">false</property>
+                <property name="dataList">0:在新窗口中打开;1:在新tab页中打开;2:在同一tab页中打开;3:在新的或已有tab页中打开</property>
+              </widget>
+            </property>
+            <property name="hidden">false</property>
+          </widget>
+        </group>
+        <event name="beforeadd">
+          <script><![CDATA[ Ext.Msg.alert("提示信息","请在功能树上使用右键菜单添加快捷菜单。");
+
+return false;]]></script>
+        </event>
+        <property name="anchor">100% 100%</property>
+        <property name="store">quickMenu</property>
+        <property name="title"></property>
+        <property name="selModel" value="Ext.grid.CheckboxSelectionModel">
+          <widget id="checkboxSelectionModel1" widgetType="checkboxSelectionModel"/>
+        </property>
+        <property name="bbar" value="Ext.PagingToolbar">
+          <widget id="paging1" widgetType="paging">
+            <property name="pageSize">10</property>
+            <property name="displayMsg">显示 {0} - {1} 共 {2} 条</property>
+            <property name="emptyMsg">没有数据</property>
+            <property name="displayAddButton">true</property>
+            <property name="displayDelButton">true</property>
+            <property name="displaySaveButton">true</property>
+          </widget>
+        </property>
+        <property name="footer">true</property>
+        <property name="buttonAlign">center</property>
+        <property name="height">211</property>
+        <property name="autoLoadData">true</property>
+        <property name="width">480</property>
+      </widget>
+    </group>
+    <property name="layout">anchor</property>
+    <property name="width">582</property>
+    <property name="height">339</property>
+    <property name="title">快捷菜单维护</property>
+    <property name="footer">true</property>
+    <property name="modal">true</property>
+    <property name="iconCls">widget-config</property>
+  </widget>
+  <hiddenWidgets name="hiddenWidgets"/>
+  <description>这是一个描述信息</description>
+</ui>
