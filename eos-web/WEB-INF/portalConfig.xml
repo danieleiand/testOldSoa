@@ -1,9 +1,0 @@
-<portal>
-	<roleAdapter-class>com.primeton.widget.auth.role.AbframeRoleAdapter</roleAdapter-class>
-	
-	<clusterCache>
-	   <cacheName>portal</cacheName>
-	   <cacheImpl>com.primeton.widget.cache.ClusterCacheEosImpl</cacheImpl>
-	   <useCache>false</useCache>
-	</clusterCache>
-</portal>
