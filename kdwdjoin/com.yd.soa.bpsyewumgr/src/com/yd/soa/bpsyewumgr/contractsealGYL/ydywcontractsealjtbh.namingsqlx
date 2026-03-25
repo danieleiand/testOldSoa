@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:ll -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_info"  parameterClass="java.util.HashMap"  resultClass="com.yd.soa.bpsyewumgr.contractsealGYL.ydywcontractsealjtbh.YdYwCsealJtbh">
+      select row_number() over(order by z.lastoperatetime desc) xuhao,z.*
+            from  YD_YW_CSEAL_JTBH_GYL  z where 1=1
+            <isNotNull prepend="AND" property="companycode">
+		          z.companycode LIKE '%'||#companycode#||'%'
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="companyname">
+		          z.companyname LIKE '%'||#companyname#||'%'
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="tyshxycode">
+		          z.tyshxycode LIKE '%'||#tyshxycode#||'%'
+		      </isNotNull>
+    </select>
+    <select id="select_name"  parameterClass="java.util.HashMap"  resultClass="com.yd.soa.bpsyewumgr.contractsealGYL.ydywcontractsealjtbh.YdYwCsealJtbh">
+      select *  from (select T.*, COMPANYNAME as aa from YD_YW_CSEAL_JTBH_GYL T) N 
+      where 1=1
+      <isNotNull prepend="AND" property="serchValue">
+          N.COMPANYCODE like '%'||#serchValue#||'%' 
+      		OR N.COMPANYNAME like '%'||#serchValue#||'%' 
+      		OR n.AA like '%'||#serchValue#||'%'
+      </isNotNull>
+      
+    </select>
+</sqlMap>

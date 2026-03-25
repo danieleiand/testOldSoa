@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:王宏岗 -->
+<sqlMap>
+    <!--查询mysql的省份信息-->
+    <select id="queryAllProvince" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.Province">  
+   	select t.provinceid,t.provincename from province t
+    </select>
+     <!--根据省份ID查询所对应的市信息-->
+    <select id="queryAllCity" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.City">
+    select t.cityid,t.cityname from city t
+    <dynamic prepend="WHERE">
+	    <isNotNull property="provinceid">
+				t.provinceid = #provinceid#
+		</isNotNull>
+    </dynamic>
+    </select>
+    <!--根据市ID查询所对应的区县信息-->
+    <select id="queryAllCounty" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.County">
+    select t.countyid,t.countyname from county t
+    <dynamic prepend="WHERE">
+	    <isNotNull  property="cityid">
+				t.cityid = #cityid#
+		</isNotNull>
+    </dynamic>
+    </select>
+    <!--根据区ID查询所对应的乡镇信息-->
+    <select id="queryAllTownships" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.Townships">
+    select t.townshipsid,t.townshipsname from townships t
+    <dynamic prepend="WHERE">
+	    <isNotNull  property="countyid">
+				t.countyid = #countyid#
+		</isNotNull>
+    </dynamic>
+    </select>
+    
+    <!--查询mysql的全部省信息-->
+    <select id="queryMySqlAllProvince" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.Province">  
+   		select * from province 
+    </select>
+    <!--查询mysql的全部市信息-->
+    <select id="queryMySqlAllCity" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.City">  
+   		select * from city 
+    </select>
+    <!--查询mysql的全部县信息-->
+    <select id="queryMySqlAllCounty" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.County">  
+   		select * from county 
+    </select>
+     <!--查询mysql的全部乡镇信息-->
+    <select id="queryMySqlAllTownships" parameterClass="java.util.HashMap" resultClass="com.yd.soa.bpsyewumgr.wangdian.wangdian.Townships">  
+   		select * from townships 
+    </select>
+</sqlMap>

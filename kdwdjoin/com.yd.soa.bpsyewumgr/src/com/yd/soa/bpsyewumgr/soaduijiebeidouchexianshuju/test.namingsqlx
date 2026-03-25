@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:shaw -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="sql" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.xianlutiaozhenky.xianlutiaozhenKy.YdDdXiancheChexianKy1">
+    select carlncd,carlnnm,ycarlncd,ycarlnnm,delflg,createtime,updatetime,statplc,endplc,totm,levtm,mlgcnt,statplcbm,endplcbm,total_Tm as totalTm,total_day as totalDay
+    from YD_DD_XIANCHE_CHEXIAN_TMP
+	</select>
+</sqlMap>

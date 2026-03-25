@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Require-Bundle: com.yd.soa.wd,com.eos.workflow,com.yd.soa.bpsclient,co
+ m.primeton.workflow.core,com.yd.soa.budget,com.yd.soa.intf,com.eos.fo
+ undation,com.yd.soa.comm
+Bundle-Vendor: Administrator
+eos-webCtxPath: bpsyewu
+Bundle-Version: 1.0.0
+Bundle-Name: 业务管理类
+Bundle-Description: 
+Bundle-SymbolicName: com.yd.soa.bpsyewumgr
+

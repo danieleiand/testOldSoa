@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:王伦 -->
+<sqlMap>
+    
+    <select id="query_ReminDanjiaPZInfo" parameterClass="java.util.Map"  resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.YdYwRmdydjpz"> 
+    	select rownum xuhao,t.xinghao,t.price,t.danwei,t.rid,t.store,t.code_rule codeRule,t.repairidentifier from YD_YW_RMDYDJPZ t where 1=1 
+    	    <isNotNull prepend="AND" property="xinghao">
+		          t.xinghao = #xinghao#
+		      </isNotNull>
+    	   
+		    order by xuhao asc  
+    </select> 
+    <select id="query_ReminDanjiaInfo" parameterClass="java.util.Map"  resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.YdYwRmdydjpz"> 
+    	select rownum xuhao,t.xinghao,t.price,t.danwei,t.rid,t.store,t.code_rule codeRule,t.repairidentifier from YD_YW_RMDYDJPZ t where 1=1 and t.repairidentifier='0'
+    	    <isNotNull prepend="AND" property="xinghao">
+		          t.xinghao = #xinghao#
+		      </isNotNull>
+    	   
+		    order by xuhao asc  
+    </select> 
+    
+    <select id="query_ReminNbryInfo" parameterClass="java.util.Map"  resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.YdYwRmnbrypz"> 
+    	select rownum xuhao,t.nbryid,t.empcode,t.empname,t.emporgid,t.emporgname  from yd_yw_rmnbrypz t where 1=1
+          <isNotNull prepend="AND" property="empname">
+              t.empname = #empname#
+          </isNotNull>
+        order by xuhao asc  
+    </select> 
+    
+     <select id="findAutoCompleteWd" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.querywdinfo">
+	    	  select t.wcode,t.wname,t.wfzr,t.wfzrmobile from OM_ORGNIZATION_APPEND t where t.wcode like '%'|| #wcode# ||'%'
+	    </select>
+	    
+    <select id="isnbry" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.querywdinfo">
+    	 select t.empcode from YD_YW_RMNBRYPZ t where t.empcode = #empcode# 
+    </select>
+    
+     <select id="lysm" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.YdYwRemindayinShuoming">
+    	 select t.rmdyshuoming from YD_YW_REMINDAYIN_SHUOMING t
+    </select>
+    
+    <select id="query_remindayin_filter" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.ReminQueryList">
+    SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+        to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       H.APPCATE,
+       to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       to_char(AI.UPDATETIME,'yyyy-MM-dd hh24:mi:ss') as UPDATETIME,
+       NULL AS APPCATENAME,
+       NULL AS CONDITIONNAME,  
+       
+       y.handlerid,
+       y.handlername,
+       y.applyuserid,
+       y.applyusername,
+       y.applyoid,
+       y.applyoname,
+       y.applydate,
+       y.applypid,
+       y.applypname,
+       y.applydegree1,
+       y.applydegree1fzr,
+       y.applydegree2,
+       y.applydegree2fzr,
+       y.applydegree3,
+       y.applydegree3fzr,
+       y.genuscostcenter,
+       y.costcenter,
+       y.post,
+       y.wdcode,
+       y.wdname,
+       y.wdfzrcode,
+       y.wdfzrname,
+       y.wdfzrphone,
+       y.shouhuodizhi,
+       y.shouhuorenphone,
+       y.bankacountname,
+       y.banknumber,
+       y.gongshiname,
+       y.totalmoney
+  FROM  OM_ORGANIZATION O,yd_yw_remindayin Y,YD_BPS_HLEPTOPIC H,OA_APPLYINFO AI
+ WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.remindayin.remindayin'
+   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+   AND AI.APPLYNO=Y.APPNO
+   AND AI.IFDELETED = 0
+   AND AI.DEPARTMENTID = to_char(O.ORGID)
+   
+    <isNotNull prepend="AND" property="filterid">
+		          <![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		       <isNotNull prepend="AND" property="startupdatetime">
+		          <![CDATA[AI.UPDATETIME >= to_date('$startupdatetime$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endupdatetime">
+		      	  <![CDATA[AI.UPDATETIME < to_date('$endupdatetime$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull> 
+		     ORDER BY AI.CREATETIME DESC
+     </select>
+    
+    <select id="query_rmdyexcle_filter" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.remindayin.remindayindataset.ReminQueryExcle">
+     SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+        to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       H.APPCATE,
+       to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       to_char(AI.UPDATETIME,'yyyy-MM-dd hh24:mi:ss') as UPDATETIME,
+       NULL AS APPCATENAME,
+       NULL AS CONDITIONNAME,  
+       
+       y.handlerid,
+       y.handlername,
+       y.applyuserid,
+       y.applyusername,
+       y.applyoid,
+       y.applyoname,
+       y.applydate,
+       y.applypid,
+       y.applypname,
+       y.applydegree1,
+       y.applydegree1fzr,
+       y.applydegree2,
+       y.applydegree2fzr,
+       y.applydegree3,
+       y.applydegree3fzr,
+       y.genuscostcenter,
+       y.costcenter,
+       y.post,
+       y.wdcode,
+       y.wdname,
+       y.wdfzrcode,
+       y.wdfzrname,
+       y.wdfzrphone,
+       y.shouhuodizhi,
+       y.shouhuorenphone,
+       y.bankacountname,
+       y.banknumber,
+       y.gongshiname,
+       y.totalmoney,
+       l.xinghao,
+       l.price,
+       l.danwei,
+       l.goumainum   
+  FROM  yd_yw_remindayin_list l, OM_ORGANIZATION O,yd_yw_remindayin Y,YD_BPS_HLEPTOPIC H,OA_APPLYINFO AI
+ WHERE 
+   
+   AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.remindayin.remindayin'
+   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+   AND AI.APPLYNO=Y.APPNO
+   AND AI.IFDELETED = 0
+   AND AI.DEPARTMENTID = to_char(O.ORGID)
+  and  l.bid = y.id 
+  
+    <isNotNull prepend="AND" property="filterid">
+		          <![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		       <isNotNull prepend="AND" property="startupdatetime">
+		          <![CDATA[AI.UPDATETIME >= to_date('$startupdatetime$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endupdatetime">
+		      	  <![CDATA[AI.UPDATETIME < to_date('$endupdatetime$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull> 
+		      ORDER BY AI.CREATETIME DESC
+     </select>
+
+	<!-- 根据外键查询没有推送成功的detail -->
+    <select id="queryNoSucessDetailByBid" resultClass="commonj.sdo.DataObject" parameterClass="java.util.HashMap">
+			 <![CDATA[
+			SELECT * FROM yd_yw_remindayin_detail t WHERE t.bid = #bid# 
+			AND (t.send_status <> '0' OR t.send_status IS NULL)
+			]]>
+    </select>
+    
+    <!-- 提交流程时减少yd_yw_rmdydjpz表库存 -->
+    <update id="updateRmdydjpzReduce" parameterClass="java.util.HashMap">
+		UPDATE yd_yw_rmdydjpz t SET t.store = t.store - #goumainum# WHERE t.xinghao = #xinghao#
+	</update>
+	
+	<!-- 流程收回时增加yd_yw_rmdydjpz表库存 -->
+    <update id="updateRmdydjpzAdd" parameterClass="java.util.HashMap">
+		UPDATE yd_yw_rmdydjpz t SET t.store = t.store + #goumainum# WHERE t.xinghao = #xinghao#
+	</update>
+	
+    <!-- 查询热敏打印订单信息 -->
+    <select id="queryReminOrder" resultClass="commonj.sdo.DataObject" parameterClass="java.util.HashMap">
+		SELECT b.processinstid,b.applyunit,b.applydegree3,to_char(b.appdate, 'yyyy-MM-dd') AS appdate,
+		to_char(b.send_time, 'yyyy-MM-dd') AS send_time,b.wdcode,to_char(b.shouhuorenphone) as shouhuorenphone,a.equip_no,a.xinghao,
+		a.price,a.danwei,(a.price*a.goumainum) AS sumcount,'已发放' as send_status,a.mail_no
+		FROM yd_yw_remindayin_detail a
+		LEFT JOIN yd_yw_remindayin b ON a.bid = b.id
+		LEFT JOIN wfprocessinst c ON b.processinstid = c.processinstid
+		WHERE c.currentstate = '7'
+		<isNotNull prepend="and" property="applyunit">
+		  b.applyunit LIKE '%'||#applyunit#||'%'
+		</isNotNull>
+		<isNotNull prepend="and" property="processinstid">
+		  b.processinstid = #processinstid#
+		</isNotNull>
+		<isNotNull prepend="and" property="appdateMin">
+			<![CDATA[
+				b.appdate >= to_date(#appdateMin#,'yyyy-MM-dd')
+			]]>
+		</isNotNull>
+		<isNotNull prepend="and" property="appdateMax">
+			<![CDATA[
+				b.appdate <= to_date(#appdateMax#,'yyyy-MM-dd')
+			]]>
+		</isNotNull>
+		<!---  
+				<isNotNull prepend="and" property="appdateMin">
+		  <isNotNull prepend="and" property="appdateMax">
+		    to_date(b.appdate,'yyyy-MM-dd') between to_date(#appdateMin#,'yyyy-MM-dd') and to_date(#appdateMax#,'yyyy-MM-dd')
+		  </isNotNull>
+		</isNotNull>
+		 -->
+		
+		<!---   
+				 
+		<isNotNull prepend="and" property="sendTimeMin">
+		  <isNotNull prepend="and" property="sendTimeMax">
+		    to_date(b.send_time,'yyyy-MM-dd') between to_date(#sendTimeMin#,'yyyy-MM-dd') and to_date(#sendTimeMax#,'yyyy-MM-dd')
+		  </isNotNull>
+		</isNotNull>
+		-->
+				<isNotNull prepend="and" property="sendTimeMin">
+			<![CDATA[
+				b.send_time >= to_date(#sendTimeMin#,'yyyy-MM-dd HH24:mi:ss')
+			]]>
+		</isNotNull>
+		<isNotNull prepend="and" property="sendTimeMax">
+			<![CDATA[
+				b.send_time <= to_date(#sendTimeMax#,'yyyy-MM-dd HH24:mi:ss')
+			]]>
+		</isNotNull>
+		
+	<isNotNull prepend="and" property="xinghao">
+		   a.xinghao = #xinghao#
+		</isNotNull>
+		
+		<isNotNull prepend="and" property="mailNo">
+		   a.mail_no = #mailNo#
+		</isNotNull>
+    </select>
+
+</sqlMap>

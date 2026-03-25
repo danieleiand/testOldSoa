@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:shaw -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="timeMap">
+        <result column="startDate" javaType="date" property="startDate"/>
+        <result column="endDate" javaType="date" property="endDate"/>
+    </resultMap>
+    <select id="selectLimitDate"  resultMap="timeMap">
+	    select 
+	       last_day(add_months(trunc(sysdate), -1))-5 as startDate,
+	       last_day(add_months(trunc(sysdate), -1)) as endDate
+		from dual
+    </select>
+    
+    <select id="selectYfkFqNum" parameterClass="java.util.Map" resultClass="commonj.sdo.DataObject">
+		select
+		  1
+		from
+		  YD_YW_WDLINSHIKTFJ yw,
+		  OA_APPLYINFO oa
+		where
+		  yw.processinstid = oa.processinstid
+		  and oa.condition = '4'
+		  and yw.wdcode = #wcode#
+		  and oa.appdate  between to_date('$startDate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss') and  to_date('$endDate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')
+	</select>
+</sqlMap>

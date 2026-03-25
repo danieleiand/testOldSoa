@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:shaw -->
+<sqlMap>
+     <!--更改网点归属分拨状态为无效0-->
+	<update id="updateWangDianBelong" parameterClass="java.util.HashMap"> 
+		<![CDATA[
+		UPDATE 
+			YD_YW_WANGDIAN_BELONG
+		SET 
+			UPDATETIME = #updatetime#,
+		  	OPERATOR = #operator#,
+		  	STATUS = #status#
+		WHERE WDCODE = #wdcode#
+		]]>
+	</update>
+</sqlMap>

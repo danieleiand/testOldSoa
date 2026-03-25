@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenyan -->
+<sqlMap>
+	<resultMap class="com.yd.soa.bpsyewumgr.gongchengshenqing.gcsq.query" id="query_gcsq">
+		<result column="APPLYNO" javaType="long" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="long" property="processinstid"/>
+        <result column="APPLER" javaType="string" property="appler"/>
+        <result column="APPLERID" javaType="string" property="applerid"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="APPPOST" javaType="string" property="apppost"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="DEPARTMENTID" javaType="string" property="departmentid"/>
+        <result column="FILLMAN" javaType="string" property="fillman"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+        <result column="PROCESSDEFNAME" javaType="string" property="processdefname"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        <result column="APPCATE" javaType="string" property="appcate"/>
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+        
+        <result column="handlerid" javaType="string" property="handlerid"/>
+        <result column="handlername" javaType="string" property="handlername"/>
+        <result column="applyuserid" javaType="string" property="applyuserid"/>
+        <result column="applyusername" javaType="string" property="applyusername"/>
+        <result column="applypost" javaType="string" property="applypost"/>
+        <result column="applypid" javaType="string" property="applypid"/>
+        <result column="applypname" javaType="string" property="applypname"/>
+        <result column="applyorgid" javaType="string" property="applyorgid"/>
+        <result column="applyorgname" javaType="string" property="applyorgname"/>
+        <result column="applydegree1" javaType="string" property="applydegree1"/>
+        <result column="applydegree1fzr" javaType="string" property="applydegree1fzr"/>
+        <result column="applydegree2" javaType="string" property="applydegree2"/>
+        <result column="applydegree2fzr" javaType="string" property="applydegree2fzr"/>
+        <result column="applydegree3" javaType="string" property="applydegree3"/>
+        <result column="applydegree3fzr" javaType="string" property="applydegree3fzr"/>
+        <result column="feegenuscostcenterid" javaType="string" property="feegenuscostcenterid"/>
+        <result column="feegenuscostcentername" javaType="string" property="feegenuscostcentername"/>
+        <result column="contactinformation" javaType="string" property="contactinformation"/>
+        <result column="bqq" javaType="string" property="bqq"/>
+        <result column="projectbudget" javaType="string" property="projectbudget"/>
+        <result column="starttype" javaType="string" property="starttype"/>
+        <result column="transformgenuscostcenterid" javaType="string" property="transformgenuscostcenterid"/>
+        <result column="transformgenuscostcentername" javaType="string" property="transformgenuscostcentername"/>
+        <result column="projecttype" javaType="string" property="projecttype"/>
+        <result column="expectstarttime" javaType="string" property="expectstarttime"/>
+        <result column="expectdeliverytime" javaType="string" property="expectdeliverytime"/>
+        <result column="lossmoney" javaType="double" property="lossmoney"/>
+        <result column="applyreason" javaType="string" property="applyreason"/>
+        <result column="designrequirements" javaType="string" property="designrequirements"/>
+        <result column="projectapplynumber" javaType="string" property="projectapplynumber"/>
+        <result column="projectcost" javaType="double" property="projectcost"/>
+        <result column="suppliername" javaType="string" property="suppliername"/>
+        <result column="suppliertell" javaType="string" property="suppliertell"/>
+        <result column="clearprojectcost" javaType="double" property="clearprojectcost"/>
+        <result column="finemoney" javaType="double" property="finemoney"/>
+        <result column="warrantymoney" javaType="double" property="warrantymoney"/>
+        <result column="paritydesc" javaType="string" property="paritydesc"/>
+        <result column="checkdesc" javaType="string" property="checkdesc"/>
+        <result column="budgetmoney" javaType="string" property="budgetmoney"/>
+        <result column="contractcost" javaType="double" property="contractcost"/>
+        <result column="actualstarttime" javaType="string" property="actualstarttime"/>
+        <result column="actualendtime" javaType="string" property="actualendtime"/>
+        <result column="checkapplytime" javaType="string" property="checkapplytime"/>
+        <result column="checkpasstime" javaType="string" property="checkpasstime"/>
+        <result column="clearamount" javaType="double" property="clearamount"/>
+        <result column="addfinemoney" javaType="double" property="addfinemoney"/>
+        <result column="checkclearamount" javaType="double" property="checkclearamount"/>
+        <result column="appno" javaType="string" property="appno"/>
+	</resultMap>
+	<select id="query_gcsq_filter" parameterClass="java.util.Map" resultMap="query_gcsq">
+	SELECT * FROM (
+	SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+       to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       H.APPCATE,
+       to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       to_char(AI.UPDATETIME,'yyyy-MM-dd hh24:mi:ss') as UPDATETIME,
+       NULL AS APPCATENAME,
+       NULL AS CONDITIONNAME,  
+       
+		y.handlerid,
+		y.handlername,
+		y.applyuserid,
+		y.applyusername,
+		y.applypost,
+		y.applypid,
+		y.applypname,
+		y.applyorgid,
+		y.applyorgname,
+		y.applydegree1,
+		y.applydegree1fzr,
+		y.applydegree2,
+		y.applydegree2fzr,
+		y.applydegree3,
+		y.applydegree3fzr,
+		y.feegenuscostcenterid,
+		y.feegenuscostcentername,
+		y.contactinformation,
+		y.bqq,
+		y.projectbudget,
+		y.starttype,
+		y.transformgenuscostcenterid,
+		y.transformgenuscostcentername,
+		y.projecttype,
+		y.expectstarttime,
+		y.expectdeliverytime,
+		y.lossmoney,
+		y.applyreason,
+		y.designrequirements,
+		y.projectapplynumber,
+		y.projectcost,
+		y.suppliername,
+		y.suppliertell,
+		y.clearprojectcost,
+		y.finemoney,
+		y.warrantymoney,
+		y.paritydesc,
+		y.checkdesc,
+		y.budgetmoney,
+		y.contractcost,
+		y.actualstarttime,
+		y.actualendtime,
+		y.checkapplytime,
+		y.checkpasstime,
+		y.clearamount,
+		y.addfinemoney,
+		y.checkclearamount,
+		y.appno
+       
+      
+  FROM OA_APPLYINFO AI,YD_YW_GCSQ Y,YD_BPS_HLEPTOPIC H,OM_ORGANIZATION O
+ WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.gongchengshenqing.gcsq'
+   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+   AND AI.APPLYNO=Y.APPNO
+   AND AI.IFDELETED = 0
+   AND AI.DEPARTMENTID = to_char(O.ORGID)
+   
+		 	  <isNotNull prepend="AND" property="filterid">
+		          <![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		       <isNotNull prepend="AND" property="startupdatetime">
+		          <![CDATA[AI.UPDATETIME >= to_date('$startupdatetime$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endupdatetime">
+		      	  <![CDATA[AI.UPDATETIME < to_date('$endupdatetime$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull> ) S
+		     order by S.CREATETIME desc
+     </select>
+     <resultMap class="com.yd.soa.bpsyewumgr.gongchengshenqing.gcsq.queryexcel" id="query_gcsqexcel">
+		<result column="APPLYNO" javaType="long" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="long" property="processinstid"/>
+        <result column="APPLER" javaType="string" property="appler"/>
+        <result column="APPLERID" javaType="string" property="applerid"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="APPPOST" javaType="string" property="apppost"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="DEPARTMENTID" javaType="string" property="departmentid"/>
+        <result column="FILLMAN" javaType="string" property="fillman"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+        <result column="PROCESSDEFNAME" javaType="string" property="processdefname"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        <result column="APPCATE" javaType="string" property="appcate"/>
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+        
+        <result column="handlerid" javaType="string" property="handlerid"/>
+        <result column="handlername" javaType="string" property="handlername"/>
+        <result column="applyuserid" javaType="string" property="applyuserid"/>
+        <result column="applyusername" javaType="string" property="applyusername"/>
+        <result column="applypost" javaType="string" property="applypost"/>
+        <result column="applypid" javaType="string" property="applypid"/>
+        <result column="applypname" javaType="string" property="applypname"/>
+        <result column="applyorgid" javaType="string" property="applyorgid"/>
+        <result column="applyorgname" javaType="string" property="applyorgname"/>
+        <result column="applydegree1" javaType="string" property="applydegree1"/>
+        <result column="applydegree1fzr" javaType="string" property="applydegree1fzr"/>
+        <result column="applydegree2" javaType="string" property="applydegree2"/>
+        <result column="applydegree2fzr" javaType="string" property="applydegree2fzr"/>
+        <result column="applydegree3" javaType="string" property="applydegree3"/>
+        <result column="applydegree3fzr" javaType="string" property="applydegree3fzr"/>
+        <result column="feegenuscostcenterid" javaType="string" property="feegenuscostcenterid"/>
+        <result column="feegenuscostcentername" javaType="string" property="feegenuscostcentername"/>
+        <result column="contactinformation" javaType="string" property="contactinformation"/>
+        <result column="bqq" javaType="string" property="bqq"/>
+        <result column="projectbudget" javaType="string" property="projectbudget"/>
+        <result column="starttype" javaType="string" property="starttype"/>
+        <result column="transformgenuscostcenterid" javaType="string" property="transformgenuscostcenterid"/>
+        <result column="transformgenuscostcentername" javaType="string" property="transformgenuscostcentername"/>
+        <result column="projecttype" javaType="string" property="projecttype"/>
+        <result column="expectstarttime" javaType="string" property="expectstarttime"/>
+        <result column="expectdeliverytime" javaType="string" property="expectdeliverytime"/>
+        <result column="lossmoney" javaType="double" property="lossmoney"/>
+        <result column="applyreason" javaType="string" property="applyreason"/>
+        <result column="designrequirements" javaType="string" property="designrequirements"/>
+        <result column="projectapplynumber" javaType="string" property="projectapplynumber"/>
+        <result column="projectcost" javaType="double" property="projectcost"/>
+        <result column="suppliername" javaType="string" property="suppliername"/>
+        <result column="suppliertell" javaType="string" property="suppliertell"/>
+        <result column="clearprojectcost" javaType="double" property="clearprojectcost"/>
+        <result column="finemoney" javaType="double" property="finemoney"/>
+        <result column="warrantymoney" javaType="double" property="warrantymoney"/>
+        <result column="paritydesc" javaType="string" property="paritydesc"/>
+        <result column="checkdesc" javaType="string" property="checkdesc"/>
+        <result column="budgetmoney" javaType="string" property="budgetmoney"/>
+        <result column="contractcost" javaType="double" property="contractcost"/>
+        <result column="actualstarttime" javaType="string" property="actualstarttime"/>
+        <result column="actualendtime" javaType="string" property="actualendtime"/>
+        <result column="checkapplytime" javaType="string" property="checkapplytime"/>
+        <result column="checkpasstime" javaType="string" property="checkpasstime"/>
+        <result column="clearamount" javaType="double" property="clearamount"/>
+        <result column="addfinemoney" javaType="double" property="addfinemoney"/>
+        <result column="checkclearamount" javaType="double" property="checkclearamount"/>
+        <result column="appno" javaType="string" property="appno"/>
+        <result column="xqbmastarttime" javaType="string" property="xqbmastarttime"/>
+        <result column="yyghzxendtime" javaType="string" property="yyghzxendtime"/>
+        <result column="cgswbstarttime" javaType="string" property="cgswbstarttime"/>
+        <result column="cgswbendtime" javaType="string" property="cgswbendtime"/>
+        <result column="xmzjqdstarttime" javaType="string" property="xmzjqdstarttime"/>
+        <result column="xmzjqdendtime" javaType="string" property="xmzjqdendtime"/>
+        <result column="gcxmglbstarttime" javaType="string" property="gcxmglbstarttime"/>
+        <result column="gcxmglbendtime" javaType="string" property="gcxmglbendtime"/>
+        <result column="cwglbstarttime" javaType="string" property="cwglbstarttime"/>
+        <result column="cwglbendtime" javaType="string" property="cwglbendtime"/>
+        <result column="days1" javaType="string" property="days1"/>
+        <result column="days2" javaType="string" property="days2"/>
+        <result column="days3" javaType="string" property="days3"/>
+        <result column="days4" javaType="string" property="days4"/>
+        <result column="days5" javaType="string" property="days5"/>
+        <result column="days" javaType="string" property="days"/>
+	</resultMap>
+	<select id="query_gcsqexcel_filter" parameterClass="java.util.Map" resultMap="query_gcsqexcel">
+	SELECT * FROM (
+	SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+       to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       H.APPCATE,
+       to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       to_char(AI.UPDATETIME,'yyyy-MM-dd hh24:mi:ss') as UPDATETIME,
+       NULL AS APPCATENAME,
+       NULL AS CONDITIONNAME,  
+       
+		y.handlerid,
+		y.handlername,
+		y.applyuserid,
+		y.applyusername,
+		y.applypost,
+		y.applypid,
+		y.applypname,
+		y.applyorgid,
+		y.applyorgname,
+		y.applydegree1,
+		y.applydegree1fzr,
+		y.applydegree2,
+		y.applydegree2fzr,
+		y.applydegree3,
+		y.applydegree3fzr,
+		y.feegenuscostcenterid,
+		y.feegenuscostcentername,
+		y.contactinformation,
+		y.bqq,
+		y.projectbudget,
+		y.starttype,
+		y.transformgenuscostcenterid,
+		y.transformgenuscostcentername,
+		y.projecttype,
+		y.expectstarttime,
+		y.expectdeliverytime,
+		y.lossmoney,
+		y.applyreason,
+		y.designrequirements,
+		y.projectapplynumber,
+		y.projectcost,
+		y.suppliername,
+		y.suppliertell,
+		y.clearprojectcost,
+		y.finemoney,
+		y.warrantymoney,
+		y.paritydesc,
+		y.checkdesc,
+		y.budgetmoney,
+		y.contractcost,
+		y.actualstarttime,
+		y.actualendtime,
+		y.checkapplytime,
+		y.checkpasstime,
+		y.clearamount,
+		y.addfinemoney,
+		y.checkclearamount,
+		y.appno,
+		y.xqbmastarttime,
+		y.yyghzxendtime,
+		y.cgswbstarttime,
+		y.cgswbendtime,
+		y.xmzjqdstarttime,
+		y.xmzjqdendtime,
+		y.gcxmglbstarttime,
+		y.gcxmglbendtime,
+		y.cwglbstarttime,
+		y.cwglbendtime,
+		y.days1,
+		y.days2,
+		y.days3,
+		y.days4,
+		y.days5,
+		y.days
+      
+  FROM OA_APPLYINFO AI,
+  (SELECT 
+  		GCSQ.*,
+		to_char(WI1.STARTTIME,'yyyy-MM-dd') AS XQBMASTARTTIME,
+		to_char(WI2.ENDTIME,'yyyy-MM-dd') AS YYGHZXENDTIME,
+		to_char(WI3.STARTTIME,'yyyy-MM-dd') AS CGSWBSTARTTIME,
+		to_char(WI3.ENDTIME,'yyyy-MM-dd') AS CGSWBENDTIME,
+		to_char(WI4.STARTTIME,'yyyy-MM-dd') AS XMZJQDSTARTTIME,
+		to_char(WI4.ENDTIME,'yyyy-MM-dd') AS XMZJQDENDTIME,
+		to_char(WI5.STARTTIME,'yyyy-MM-dd') AS GCXMGLBSTARTTIME,
+		to_char(WI5.ENDTIME,'yyyy-MM-dd') AS GCXMGLBENDTIME,
+		to_char(WI6.STARTTIME,'yyyy-MM-dd') AS CWGLBSTARTTIME,
+		to_char(WI6.ENDTIME,'yyyy-MM-dd') AS CWGLBENDTIME,
+		to_date(to_char(WI2.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI1.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') AS days1,
+		to_date(to_char(WI3.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI3.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') AS days2,
+		to_date(to_char(WI4.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI4.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') AS days3,
+		to_date(to_char(WI5.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI5.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') AS days4,
+		to_date(to_char(WI6.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI6.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') AS days5,
+		to_date(to_char(WI2.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI1.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') +
+		to_date(to_char(WI3.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI3.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') +
+		to_date(to_char(WI4.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI4.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') +
+		to_date(to_char(WI5.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI5.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') +
+		to_date(to_char(WI6.ENDTIME,'yyyy-mm-dd'),'yyyy-mm-dd') - to_date(to_char(WI6.STARTTIME,'yyyy-mm-dd'),'yyyy-mm-dd') AS days
+	FROM
+  YD_YW_GCSQ GCSQ
+  LEFT JOIN WFWORKITEM WI1
+	ON GCSQ.PROCESSINSTID = WI1.PROCESSINSTID
+	AND WI1.ACTIVITYDEFID = 'handler' 
+LEFT JOIN WFWORKITEM WI2
+  ON GCSQ.PROCESSINSTID = WI2.PROCESSINSTID
+	AND WI2.ASSISTANT IS NOT NULL
+	AND WI2.ACTIVITYDEFID = 'YD_ZB_YYGHBFZR' 
+LEFT JOIN WFWORKITEM WI3
+	ON GCSQ.PROCESSINSTID = WI3.PROCESSINSTID
+	AND WI3.ASSISTANT IS NOT NULL 
+	AND WI3.ACTIVITYDEFID = 'YD_ZB_CGZXSWZFZR' 
+LEFT JOIN WFWORKITEM WI4
+	ON GCSQ.PROCESSINSTID = WI4.PROCESSINSTID
+	AND WI4.ASSISTANT IS NOT NULL 
+	AND WI4.ACTIVITYDEFID = 'YD_ZZ_FZR4' 
+LEFT JOIN WFWORKITEM WI5
+	ON GCSQ.PROCESSINSTID = WI5.PROCESSINSTID
+	AND WI5.ASSISTANT IS NOT NULL 
+	AND WI5.ACTIVITYDEFID = 'YD_ZB_CGZXGCXMGLB'
+LEFT JOIN WFWORKITEM WI6
+	ON GCSQ.PROCESSINSTID = WI6.PROCESSINSTID
+	AND WI6.ASSISTANT IS NOT NULL 
+	AND WI6.ACTIVITYDEFID = 'YD_ZB_CWGLB_GCSHZ'
+  )Y,YD_BPS_HLEPTOPIC H,OM_ORGANIZATION O
+ WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.gongchengshenqing.gcsq'
+   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+   AND AI.APPLYNO=Y.APPNO
+   AND AI.IFDELETED = 0
+   AND AI.DEPARTMENTID = to_char(O.ORGID)
+   
+		 	  <isNotNull prepend="AND" property="filterid">
+		          <![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		       <isNotNull prepend="AND" property="startupdatetime">
+		          <![CDATA[AI.UPDATETIME >= to_date('$startupdatetime$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endupdatetime">
+		      	  <![CDATA[AI.UPDATETIME < to_date('$endupdatetime$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull> ) S
+		     order by S.CREATETIME desc
+     </select>
+</sqlMap>

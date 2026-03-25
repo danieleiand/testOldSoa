@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:cmx -->
+<sqlMap>
+ <delete id="deleteYdYwGpsToSoa">      
+          DELETE FROM YD_YW_GPS_TO_SOA
+  </delete>
+     
+     
+ 
+     
+</sqlMap>

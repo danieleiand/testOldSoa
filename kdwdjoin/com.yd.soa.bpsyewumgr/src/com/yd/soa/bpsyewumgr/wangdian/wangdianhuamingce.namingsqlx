@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:yang -->
+<sqlMap>  
+       <resultMap class="com.yd.soa.bpsyewumgr.wangdian.wangdian.QueryGongsiBiao" id="query_wangdianhuamingce">
+			<result column="WCODE" javaType="string" property="wcode"/>
+		    <result column="WNAME" javaType="string" property="wname"/>
+		    <result column="BADDRESS" javaType="string" property="baddress"/>
+		    <result column="WFZR" javaType="string" property="wfzr"/>
+		    <result column="WFZRMOBILE" javaType="string" property="wfzrmobile"/>
+		    <result column="ID_CARD_NO" javaType="string" property="id_card_no"/>
+		    <result column="WJYXKZH" javaType="string" property="wjyxkzh"/>
+		    <result column="WZXZZZNC" javaType="string" property="wzxzzznc"/>
+		    <result column="WSTATUS" javaType="string" property="wstatus"/>
+		    <result column="CREATETIME" javaType="string" property="createtime"/>
+		    <result column="REMARK" javaType="string" property="remark"/>
+       </resultMap>
+       <resultMap class="com.yd.soa.bpsyewumgr.wangdian.wangdian.YdYwWangdianHuamingce" id="query_huamingce">
+			<result column="DID" javaType="string" property="did"/>
+			<result column="APPNO" javaType="string" property="appno"/>
+			<result column="WCODE" javaType="string" property="wcode"/>
+		    <result column="WNAME" javaType="string" property="wname"/>
+		    <result column="BADDRESS" javaType="string" property="baddress"/>
+		    <result column="WFZR" javaType="string" property="wfzr"/>
+		    <result column="WFZRMOBILE" javaType="string" property="wfzrmobile"/>
+		    <result column="ID_CARD_NO" javaType="string" property="id_card_no"/>
+		    <result column="SEX" javaType="string" property="sex"/>
+		    <result column="NATION" javaType="string" property="nation"/>
+		    <result column="ID_CARD_NO_ADDRESS" javaType="string" property="id_card_no_address"/>
+		    <result column="WJYXKZH" javaType="string" property="wjyxkzh"/>
+		    <result column="WZXZZZNC" javaType="string" property="wzxzzznc"/>
+		    <result column="WSTATUS" javaType="string" property="wstatus"/>
+		    <result column="CREATETIME" javaType="string" property="createtime"/>
+		    <result column="JOIN_IN_YEAR" javaType="string" property="join_in_year"/>
+		    <result column="REMARK" javaType="string" property="remark"/>
+       </resultMap>
+         <!-- 查询网点详情 -->
+          <select id="queryhuamingce" parameterClass="java.util.Map" resultMap="query_wangdianhuamingce">
+			      SELECT     
+							OMA.WCODE,
+							OMA.WNAME,
+							OMA.BADDRESS,
+							OMA.WFZR,
+							OMA.WFZRMOBILE,
+							OMA.ID_CARD_NO,
+							OMA.WJYXKZH,
+							OMA.WZXZZZNC,
+							OMA.WSTATUS,
+							OMA.CREATETIME,
+  							OMA.REMARK
+                FROM
+							OM_ORGNIZATION_APPEND  OMA
+				where 1=1
+				AND 
+				<![CDATA[length(trim(OMA.WCODE)) < 7]]>
+				AND OMA.WXINGZHI=3
+         </select>
+         
+         <select id="query_wangdianHua" parameterClass="java.util.Map" resultMap="query_huamingce">
+			       SELECT   
+			                OMA.ID as DID,
+							OMA.APPNO,
+							OMA.WCODE,
+							OMA.WNAME,
+							OMA.BADDRESS,
+							OMA.WFZR,
+							OMA.WFZRMOBILE,
+							OMA.ID_CARD_NO,
+							OMA.SEX,
+							OMA.NATION,
+							OMA.ID_CARD_NO_ADDRESS,
+							OMA.WJYXKZH,
+							OMA.WZXZZZNC,
+							OMA.WSTATUS,
+							
+							to_char(OMA.CREATEDATE,'yyyy-mm-dd hh24:mi:ss') as CREATETIME,
+							TRUNC ( MONTHS_BETWEEN (SYSDATE, OMA.CREATEDATE) / 12, 0 ) AS JOIN_IN_YEAR,
+  							OMA.REMARK
+                FROM
+							YD_YW_WANGDIAN_HUAMINGCE  OMA
+				where 1=1	         
+				                      <isNotNull prepend="and" property="ID">
+						  		  	           OMA.ID = #ID#
+						  			 </isNotNull>
+									 <isNotNull prepend="and" property="WNAME">
+					  		  	           OMA.WNAME = #WNAME#
+					  				</isNotNull>
+									 <isNotNull prepend="and" property="WSTATUS">
+					  		  	          OMA.WSTATUS = #WSTATUS#
+					  				</isNotNull>
+									 <isNotNull prepend="and" property="WCODE">
+					  		  	           OMA.WCODE = #WCODE#
+					  				</isNotNull>
+									 <isNotNull prepend="and" property="BADDRESS">
+					  		  	           OMA.BADDRESS like  '%'||#BADDRESS#||'%'
+					  				</isNotNull>
+         </select>
+         <!-- 更改网点备注 -->
+     <update id="updateWdREMARK"  parameterClass="java.util.HashMap"   >
+           update OM_ORGNIZATION_APPEND OMA SET OMA.REMARK=#remark# WHERE  OMA.WNAME = #wname#
+      </update>
+      
+       <!-- 查询历史数据-->
+      <select id="queryHistory" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject"  remapResults="true">
+      		SELECT
+					        A . ID,
+							A .BIANMA,
+							A .GSNAME,
+							A .GSFZR,
+							A .GSPHONE,
+							A .ID_CARD_NO,
+							A .GENDER,
+							A .NATION,
+							A .ID_CARD_NODR,
+							A.WSTATUS,
+							A .GSZZNAME,
+							A .GSZZH,
+							to_char(A.ENDTIME,'yyyy-mm-dd hh24:mi:ss') as ENDTIME,
+							A. AT_YEAR,
+							A.REMARK
+		 FROM					
+					 YD_YW_WANGDIANHIS A
+					
+				 WHERE 1=1
+				 	<isNotNull prepend="and" property="BIANMA">
+	  		  	           A.BIANMA= #BIANMA#
+	  				</isNotNull>
+	  				order By A.UPDATETIME  desc
+      </select>
+         
+</sqlMap>
+

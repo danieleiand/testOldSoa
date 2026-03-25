@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:宋杰 -->
+<sqlMap>
+    <update id="cleanEmpCardno" parameterClass="java.util.HashMap">
+		UPDATE om_employee
+		SET CARDNO = '',
+		 LASTMODYTIME = SYSDATE
+		WHERE
+			orgid IN (
+				SELECT
+					orgid
+				FROM
+					OM_ORGNIZATION_APPEND
+				WHERE
+					wxingzhi IN ('1', '2', '3')
+				AND wstatus = 'stop'
+				AND TO_CHAR (LASTUPDATETIME,'yyyy-MM-dd') = TO_CHAR (SYSDATE, 'yyyy-MM-dd')
+			)
+		AND empid LIKE '%001'
+		AND cardno IS NOT NULL
+		AND cardno != '-'
+	</update>
+</sqlMap>

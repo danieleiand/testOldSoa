@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="eos-web/WEB-INF/lib/poi-3.5-beta6.jar"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jep-3.3.0-trial.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/rsslibj-1_0RC2.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/lucene-highlighter-3.0.3.jar"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/dom4j-1.5.2.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/proxool-0.9.1.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/saxpath.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/lucene-core-3.0.3.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/rsslib4j-0.2.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jacob.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/webeditor.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/josso-1.7.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/EXML.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/iWebOffice.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jaxen-full.jar"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/proxool-cglib.jar"/>
+	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-pool.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/gson-1.6.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/IKAnalyzer3.2.0Stable.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jspsmartupload.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/ooxml-schemas-1.0.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/openxml4j-bin-beta.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/poi-ooxml-3.5-beta6-20090622.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/poi-scratchpad-3.5-beta6-20090622.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/pinyin4j-2.5.0.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/casclient-2.1.1_new.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/sapjco3.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/rtxserver.jar"/>
+	<classpathentry kind="lib" path="nodeploy/xpp3_min-1.1.3.4.O.jar"/>
+	<classpathentry kind="lib" path="nodeploy/bps-server_20111223_1813.jar"/>
+	<classpathentry kind="lib" path="nodeploy/com.primeton.eos.portal.jar"/>
+	<classpathentry kind="lib" path="nodeploy/commons-httpclient-3.0.jar"/>
+	<classpathentry kind="lib" path="nodeploy/eos-access-http_new.jar"/>
+	<classpathentry kind="lib" path="nodeploy/eos-common.jar"/>
+	<classpathentry kind="lib" path="nodeploy/eos-das.jar"/>
+	<classpathentry kind="lib" path="nodeploy/eos-data.jar"/>
+	<classpathentry kind="lib" path="nodeploy/eos-infra.jar"/>
+	<classpathentry kind="lib" path="nodeploy/eos-runtime.jar"/>
+	<classpathentry kind="lib" path="nodeploy/jettison-1.0.jar"/>
+	<classpathentry kind="lib" path="nodeploy/ojdbc14-10.2.0.2.0.jar"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.egivesoft.parts/bin" path="com.egivesoft.parts/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.egivesoft.uploadext/bin" path="com.egivesoft.uploadext/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.sao.yibiaotong/bin" path="com.yd.sao.yibiaotong/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.addressBook/bin" path="com.yd.soa.addressBook/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.assets/bin" path="com.yd.soa.assets/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsattence/bin" path="com.yd.soa.bpsattence/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsbangong/bin" path="com.yd.soa.bpsbangong/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsclient/bin" path="com.yd.soa.bpsclient/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsdiaodu/bin" path="com.yd.soa.bpsdiaodu/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsfinance/bin" path="com.yd.soa.bpsfinance/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsgwzd/bin" path="com.yd.soa.bpsgwzd/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsit/bin" path="com.yd.soa.bpsit/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpspersonel/bin" path="com.yd.soa.bpspersonel/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsxingzheng/bin" path="com.yd.soa.bpsxingzheng/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.bpsyewumgr/bin" path="com.yd.soa.bpsyewumgr/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.budget/bin" path="com.yd.soa.budget/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.carline/bin" path="com.yd.soa.carline/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.comm/bin" path="com.yd.soa.comm/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.document/bin" path="com.yd.soa.document/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.hrbianzhi/bin" path="com.yd.soa.hrbianzhi/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.intf/bin" path="com.yd.soa.intf/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.logmgr/bin" path="com.yd.soa.logmgr/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.lottery/bin" path="com.yd.soa.lottery/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.meeting/bin" path="com.yd.soa.meeting/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.mycal/bin" path="com.yd.soa.mycal/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.mydocument/bin" path="com.yd.soa.mydocument/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.notes/bin" path="com.yd.soa.notes/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.pb/bin" path="com.yd.soa.pb/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.pw/bin" path="com.yd.soa.pw/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.report/bin" path="com.yd.soa.report/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.test/bin" path="com.yd.soa.test/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.vote/bin" path="com.yd.soa.vote/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.wd/bin" path="com.yd.soa.wd/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.wenjuan/bin" path="com.yd.soa.wenjuan/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.widget/bin" path="com.yd.soa.widget/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="org.gocom.abframe.auth/bin" path="org.gocom.abframe.auth/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="org.gocom.abframe.bps.om/bin" path="org.gocom.abframe.bps.om/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="org.gocom.abframe.org/bin" path="org.gocom.abframe.org/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="org.gocom.abframe.rights/bin" path="org.gocom.abframe.rights/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="org.gocom.abframe.tools/bin" path="org.gocom.abframe.tools/src"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/DataExchange-v1.2-20120718-jdk1.5.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/fastjson-1.1.23.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jackson-all-1.7.6.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jbarcode-0.2.8.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/xfire-all-1.2.6.jar"/>
+	<classpathentry kind="lib" path="/report/eos-web/WEB-INF/lib/iText-2.1.7.jar"/>
+	
+	
+	
+	
+	
+	
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-dbutils-1.5.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/itext-asian-5.2.0.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jedis-2.1.0.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/thumbnailator-0.4.7.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/javacsv.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jsoup-1.9.2.jar"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.application/bin" path="com.yd.soa.application/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.company/bin" path="com.yd.soa.company/src"/>
+	<classpathentry excluding="**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.yd.soa.maintain/bin" path="com.yd.soa.maintain/src"/>
+	
+	
+	
+	
+	
+	<classpathentry kind="output" path="eos-web/WEB-INF/classes"/>
+</classpath>

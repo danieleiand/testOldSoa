@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:刘宏江 -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+ 
+    
+    <update id="update_state"  parameterClass="com.yd.soa.bpsyewumgr.weixiaojihuaguanlifei.weixiaojihuaguanlifei.YdYwWxjhglfFb">
+	 
+	    UPDATE yd_yw_wxjhglf_fb  SET state= #state# , adjust_money=#adjustMoney#  ,updator=#updator#  ,updatetime =SYSDATE 
+			
+			
+			 <isNotNull   property="actualMoney">
+			         ,actual_money= #actualMoney#   
+			 </isNotNull>
+			 
+		WHERE ID= #id#
+		 
+      </update>
+      
+      
+     <!-- 导出详情报表（微笑计划管理费审批流程） -->
+ 
+    <select id="select_zccztk_toexcelx" parameterClass="java.util.Map" resultClass="com.yd.soa.bpsyewumgr.weixiaojihuaguanlifei.weixiaojihuaguanlifei.YdYwWxjhglfFb">
+    	 SELECT 
+				l.ZBID,
+    			l.NUM,
+    			l.BILL_MONEY BILLMONEY,
+    			l.ACTUAL_MONEY ACTUALMONEY,
+    			l.ADJUST_MONEY ADJUSTMONEY,
+    			l.REMARK,
+    			l.WDCODE,
+    			l.WDNAME,
+    			
+	    	CASE l.STATE 
+	            WHEN 0 THEN '废除' 
+	            WHEN 1 THEN '不废除' 
+	            END  STATE0
+	            
+	           
+	    			FROM YD_YW_WXJHGLF_FB l 
+	 					 WHERE    l.ZBID = #fid#
+		 				 
+		  
+    </select>   
+      
+       
+      	  
+     
+</sqlMap>
+

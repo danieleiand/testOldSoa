@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:卞富鑫 -->
+<sqlMap>
+    <!--定义查询条件Map子变量-->
+    <resultMap class="com.yd.soa.bpsyewumgr.jiamengshangcangchu.jmscangchu.YdYwJmscangchuwf_query" id="ydywjmscangchuwfresultMap">
+        <result column="APPLYNO" javaType="long" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="long" property="processinstid"/>
+        <result column="APPLERID" javaType="string" property="applerid"/>
+        <result column="APPLER" javaType="string" property="appler"/>
+        <result column="FILLMAN" javaType="string" property="fillman"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="APPLYUSERID" javaType="string" property="applyuserid"/>
+        <result column="APPLYUSERNAME" javaType="string" property="applyusername"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+        <result column="APPLYONAME" javaType="string" property="applyoname"/>
+        <result column="HANDLERNAME" javaType="string" property="handlername"/>
+        <result column="APPPOST" javaType="string" property="apppost"/>
+        <result column="APPCATE" javaType="int" property="appcate"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        
+        <result column="QWKTDATE"         javaType="string"     property="qwktdate"/>
+		<result column="KTTYPE"           javaType="int"     property="kttype"/>
+		<result column="WHTYPE"           javaType="int"     property="whtype"/>
+		<result column="JMTYPE"           javaType="int"     property="jmtype"/>
+		<result column="GHTYPE"           javaType="int"     property="ghtype"/>
+		<result column="CANGKUDINGYI"     javaType="int"     property="cangkudingyi"/>
+		<result column="HWSYTYPE"         javaType="int"     property="hwsytype"/>
+		<result column="SYXINGTONG"       javaType="int"     property="syxingtong"/>
+		<result column="WAREHOUSETYPE"    javaType="int"     property="warehousetype"/>
+		<result column="WAREHOUSEZL"      javaType="int"     property="warehousezl"/>
+		<result column="WAREHOUSEDM"      javaType="int"     property="warehousedm"/>
+		<result column="HUOJIATYPE"       javaType="int"     property="huojiatype"/>
+		<result column="JMXZQ_COUNTRY"    javaType="string"     property="jmxzqCountry"/>
+		<result column="JMXZQ_PROVINCE"   javaType="string"     property="jmxzqProvince"/>
+		<result column="JMXZQ_CITY"       javaType="string"     property="jmxzqCity"/>
+		<result column="JMXZQ_BOROUGH"    javaType="string"     property="jmxzqBorough"/>
+		<result column="JMXZQ_STREET"     javaType="string"     property="jmxzqStreet"/>
+		<result column="ZJNAME"           javaType="string"     property="zjname"/>
+		<result column="ZJYB"             javaType="string"     property="zjyb"/>
+		<result column="ZJCODE"           javaType="string"     property="zjcode"/>
+		<result column="ZJWORK_COUNTRY"   javaType="string"     property="zjworkCountry"/>
+		<result column="ZJWORK_PROVINCE"  javaType="string"     property="zjworkProvince"/>
+		<result column="ZJWORK_CITY"      javaType="string"     property="zjworkCity"/>
+		<result column="ZJWORK_BOROUGH"   javaType="string"     property="zjworkBorough"/>
+		<result column="ZJWORK_STREET"    javaType="string"     property="zjworkStreet"/>
+		<result column="ZJWORK_XIANGXI"   javaType="string"     property="zjworkXiangxi"/>
+		<result column="YTNAME"           javaType="string"     property="ytname"/>
+		<result column="YTYB"             javaType="string"     property="ytyb"/>
+		<result column="YTCODE"           javaType="string"     property="ytcode"/>
+		<result column="YTWORK_COUNTRY"   javaType="string"     property="ytworkCountry"/>
+		<result column="YTWORK_PROVINCE"  javaType="string"     property="ytworkProvince"/>
+		<result column="YTWORK_CITY"      javaType="string"     property="ytworkCity"/>
+		<result column="YTWORK_BOROUGH"   javaType="string"     property="ytworkBorough"/>
+		<result column="YTWORK_STREET"    javaType="string"     property="ytworkStreet"/>
+		<result column="YTWORK_XIANGXI"   javaType="string"     property="ytworkXiangxi"/>
+		<result column="GSFAREN"          javaType="string"     property="gsfaren"/>
+		<result column="GSFARENPHONE"     javaType="string"     property="gsfarenphone"/>
+		<result column="CKFZR"            javaType="string"     property="ckfzr"/>
+		<result column="CKFZRPHONE"       javaType="string"     property="ckfzrphone"/>
+		<result column="YXTZJE"           javaType="double"     property="yxtzje"/>
+		<result column="XYDN"             javaType="string"     property="xydn"/>
+		<result column="XYRFSB"           javaType="string"     property="xyrfsb"/>
+		<result column="XYRENSHU"         javaType="string"     property="xyrenshu"/>
+		<result column="XYDZC"            javaType="string"     property="xydzc"/>
+		<result column="LOUCHENG"         javaType="string"     property="loucheng"/>
+		<result column="CHENGGAO"         javaType="string"     property="chenggao"/>
+		<result column="CANGCHUMIANJI"    javaType="string"     property="cangchumianji"/>
+		<result column="KSYMIANJI"        javaType="string"     property="ksymianji"/>
+		<result column="DWGKMIANJI"       javaType="string"     property="dwgkmianji"/>
+		<result column="CHURUKOU"         javaType="string"     property="churukou"/>
+		<result column="YUETAI"           javaType="string"     property="yuetai"/>
+		<result column="XFPENLIN"         javaType="string"     property="xfpenlin"/>
+		<result column="JKSHEBEI"         javaType="string"     property="jkshebei"/>
+		<result column="HUOTI"            javaType="string"     property="huoti"/>
+		<result column="WDYAOQIU"         javaType="string"     property="wdyaoqiu"/>
+    </resultMap>
+    <select id="ydywjmscangchuwfquery"  parameterClass="java.util.HashMap"  resultMap="ydywjmscangchuwfresultMap">
+    
+   		 <!-- 查询流程实例表字段 -->
+		SELECT AI.APPLYNO,
+	           AI.PROCESSINSTID,
+	           AI.APPLER,
+	           AI.APPLERID,
+	            to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+	           AI.APPPOST,
+	           AI.DEPARTMENT,
+	           AI.DEPARTMENTID,
+	           AI.FILLMAN,
+	           AI.FILLMANID,
+	           AI.CONDITION,
+	           AI.PROCESSDEFNAME,
+	           AI.APPLYUNIT,
+	           H.TOPICPRODEFCHNAME,
+	           H.APPCATE,
+	           to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+	           NULL AS APPCATENAME,
+	           NULL AS CONDITIONNAME,
+	           
+	         <!-- 查询流程业务主表字段 -->
+	         	Y.HANDLERNAME,
+	          	Y.APPLYONAME,
+	            Y.APPLYUSERID,
+	            Y.APPLYUSERNAME,
+	         	to_char(Y.QWKTDATE,'yyyy-MM-dd hh24:mi:ss') as QWKTDATE,  
+				Y.KTTYPE,
+				Y.WHTYPE,
+				Y.JMTYPE,
+				Y.GHTYPE,
+				Y.CANGKUDINGYI,
+				Y.HWSYTYPE,
+				Y.SYXINGTONG,
+				Y.WAREHOUSETYPE,
+				Y.WAREHOUSEZL,
+				Y.WAREHOUSEDM,
+				Y.HUOJIATYPE,
+				Y.JMXZQ_COUNTRY,
+				Y.JMXZQ_PROVINCE,
+				Y.JMXZQ_CITY,
+				Y.JMXZQ_BOROUGH,
+				Y.JMXZQ_STREET,
+				Y.ZJNAME,
+				Y.ZJYB,
+				Y.ZJCODE,
+				Y.ZJWORK_COUNTRY,
+				Y.ZJWORK_PROVINCE,
+				Y.ZJWORK_CITY,
+				Y.ZJWORK_BOROUGH,
+				Y.ZJWORK_STREET,
+				Y.ZJWORK_XIANGXI,
+				Y.YTNAME,
+				Y.YTYB,
+				Y.YTCODE,
+				Y.YTWORK_COUNTRY,
+				Y.YTWORK_PROVINCE,
+				Y.YTWORK_CITY,
+				Y.YTWORK_BOROUGH,
+				Y.YTWORK_STREET,
+				Y.YTWORK_XIANGXI,
+				Y.GSFAREN,
+				Y.GSFARENPHONE,
+				Y.CKFZR,
+				Y.CKFZRPHONE,
+				Y.YXTZJE,
+				Y.XYDN,
+				Y.XYRFSB,
+				Y.XYRENSHU,
+				Y.XYDZC,
+				Y.LOUCHENG,
+				Y.CHENGGAO,
+				Y.CANGCHUMIANJI,
+				Y.KSYMIANJI,
+				Y.DWGKMIANJI,
+				Y.CHURUKOU,
+				Y.YUETAI,
+				Y.XFPENLIN,
+				Y.JKSHEBEI,
+				Y.HUOTI,
+				Y.WDYAOQIU
+	           
+	         <!-- 查询流程业务附表字段 -->
+	         
+	         <!--来自流程实例表，流程定义说明表，机构表，流程业务表-->
+	      FROM OA_APPLYINFO AI,YD_YW_JMSCANGCHUWF Y,YD_BPS_HLEPTOPIC H,OM_ORGANIZATION O
+	     WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.jiamengshangcangchu.ydywjmscangchuwf'
+	       AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+	       AND AI.APPLYNO=Y.APPNO
+	       AND AI.IFDELETED = 0
+	       AND TO_NUMBER(AI.DEPARTMENTID)=O.ORGID
+	       
+	       <!-- 页面传送过来的查询条件 --> 
+		   <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+			  <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="filterid">
+		      
+		      <!-- 登陆者数据权限过滤 --> 
+		          <![CDATA[EXISTS(SELECT 1
+			          FROM YD_CF_FILTER F
+			         WHERE F.FILTERTYPE = 1
+			           AND F.IFDELETED = 0
+			           AND F.OPID = #filterid#
+			           AND F.SCOPETYPE = 0
+			           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+			           AND F.SCOPETYPEID = AI.APPLERID
+			        UNION
+			        SELECT 1
+			          FROM YD_CF_FILTER F
+			         WHERE F.FILTERTYPE = 1
+			           AND F.IFDELETED = 0
+			           AND F.OPID = #filterid#
+			           AND F.SCOPETYPE = 3
+			           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+			           AND F.SCOPETYPEID=3
+			        UNION
+			        SELECT 1
+			          FROM YD_CF_FILTER F
+			         WHERE F.FILTERTYPE = 1
+			           AND F.IFDELETED = 0
+			           AND F.OPID = #filterid#
+			           AND F.SCOPETYPE = 2
+			           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+			           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+			       )]]>
+			   </isNotNull>
+			   
+			 <!-- 按流程创建时间降序 --> 
+	     ORDER BY AI.CREATETIME DESC
+	</select>
+</sqlMap>
+
+
+
+
+

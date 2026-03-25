@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:易鹤 -->
+<sqlMap>    
+     
+      <resultMap class="com.yd.soa.bpsyewumgr.fbzxwqcljb.cheliangjiaban.query" id="query_ydywzzzx_info">
+        <result column="APPLYNO" javaType="long" property="applyno"/>
+        <result column="PROCESSINSTID" javaType="long" property="processinstid"/>
+        <result column="APPLER" javaType="string" property="appler"/>
+        <result column="APPLERID" javaType="string" property="applerid"/>
+        <result column="APPDATE" javaType="string" property="appdate"/>
+        <result column="APPPOST" javaType="string" property="apppost"/>
+        <result column="DEPARTMENT" javaType="string" property="department"/>
+        <result column="DEPARTMENTID" javaType="string" property="departmentid"/>
+        <result column="FILLMAN" javaType="string" property="fillman"/>
+        <result column="FILLMANID" javaType="string" property="fillmanid"/>
+        <result column="CONDITION" javaType="string" property="condition"/>
+        <result column="PROCESSDEFNAME" javaType="string" property="processdefname"/>
+        <result column="APPLYUNIT" javaType="string" property="applyunit"/>
+        <result column="TOPICPRODEFCHNAME" javaType="string" property="topicprodefchname"/>
+        <result column="APPCATE" javaType="string" property="appcate"/>	
+        <result column="CREATETIME" javaType="string" property="createtime"/>
+               
+        <result column="tell" javaType="string" property="tell"/>        
+        <result column="szdq" javaType="string" property="szdq"/>
+        <result column="province" javaType="string" property="province"/>
+               
+        
+        
+        <result column="xuhao" javaType="string" property="xuhao"/>
+        <result column="dq" javaType="string" property="dq"/>
+        <result column="shengfen" javaType="string" property="shengfen"/>
+        <result column="wdname" javaType="string" property="wdname"/>
+        <result column="wdcode" javaType="string" property="wdcode"/>                
+        <result column="jjfbzx" javaType="string" property="jjfbzx"/>        
+        <result column="wdtype" javaType="string" property="wdtype"/>               
+        <result column="yczfs" javaType="string" property="yczfs"/>
+        <result column="xczfs" javaType="string" property="xczfs"/>
+        
+        <result column="yczsfbz" javaType="string" property="yczsfbz"/>
+        <result column="xczsfbz" javaType="string" property="xczsfbz"/>
+        
+        <result column="sqzxsj" javaType="string" property="sqzxsj"/>  
+        
+        <result column="remark" javaType="string" property="remark"/>     
+        
+    </resultMap>
+    <select id="query_ydywwdzzzxinfo" parameterClass="java.util.Map" resultMap="query_ydywzzzx_info">
+SELECT AI.APPLYNO,
+       AI.PROCESSINSTID,
+       AI.APPLER,
+       AI.APPLERID,
+        to_char(AI.APPDATE,'yyyy-MM-dd hh24:mi:ss') as APPDATE,
+       AI.APPPOST,
+       AI.DEPARTMENT,
+       AI.DEPARTMENTID,
+       AI.FILLMAN,
+       AI.FILLMANID,
+       AI.CONDITION,
+       AI.PROCESSDEFNAME,
+       AI.APPLYUNIT,
+       H.TOPICPRODEFCHNAME,
+       H.APPCATE,
+       to_char(AI.CREATETIME,'yyyy-MM-dd hh24:mi:ss') as CREATETIME,
+       to_char(AI.UPDATETIME,'yyyy-MM-dd hh24:mi:ss') as UPDATETIME,
+       
+       Z.tell,
+       Z.szdq,
+       Z.province,
+       
+       DETAIL.XUHAO,
+       DETAIL.dq,
+       DETAIL.shengfen,
+       DETAIL.WDCODE,
+       DETAIL.WDNAME,
+       DETAIL.jjfbzx,
+       DETAIL.wdtype,
+       DETAIL.yczfs,
+       DETAIL.xczfs,
+       DETAIL.yczsfbz,
+       DETAIL.xczsfbz,
+       DETAIL.sqzxsj,
+  
+       DETAIL.REMARK            
+             
+  FROM YdYwWangdianzzzx Z, YdYwWangdianzzzxbgsq DETAIL,
+  
+       OA_APPLYINFO AI,YD_BPS_HLEPTOPIC H,OM_ORGANIZATION O  
+ WHERE AI.PROCESSDEFNAME='com.yd.soa.bpsyewumgr.wangdianselfloadingchange.wdselfloadingchange'
+   AND AI.PROCESSDEFNAME = H.TOPICPRODEFNAME
+   AND AI.APPLYNO=Z.APPNO
+   AND DETAIL.FKID=Z.ID
+   
+   AND AI.IFDELETED = 0
+   AND TO_NUMBER(AI.DEPARTMENTID)=O.ORGID
+	 <isNotNull prepend="AND" property="filterid">
+		          <![CDATA[EXISTS(SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 0
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID = AI.APPLERID
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 3
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND F.SCOPETYPEID=3
+        UNION
+        SELECT 1
+          FROM YD_CF_FILTER F
+         WHERE F.FILTERTYPE = 1
+           AND F.IFDELETED = 0
+           AND F.OPID = #filterid#
+           AND F.SCOPETYPE = 2
+           AND F.FILTERTYPEID = AI.PROCESSDEFNAME
+           AND INSTR(O.ORGSEQ,'.'||F.SCOPETYPEID||'.')>0
+       )]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applyunit">
+		          <![CDATA[INSTR(AI.APPLYUNIT,#applyunit#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="department">
+		          <![CDATA[INSTR(AI.DEPARTMENT,#department#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="appler">
+		          <![CDATA[INSTR(AI.APPLER,#appler#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="fillman">
+		          <![CDATA[INSTR(AI.FILLMAN,#fillman#)>0]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="applerid">
+		          AI.APPLERID ='$applerid$'
+		      </isNotNull>
+		 	  <isNotNull prepend="AND" property="processinstid">
+		          AI.PROCESSINSTID = #processinstid#
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startappdate">
+		          <![CDATA[AI.APPDATE >= to_date('$startappdate$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endappdate">
+		      	  <![CDATA[AI.APPDATE < to_date('$endappdate$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="startupdatetime">
+		          <![CDATA[AI.UPDATETIME >= to_date('$startupdatetime$ 00:00:00', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      <isNotNull prepend="AND" property="endupdatetime">
+		      	  <![CDATA[AI.UPDATETIME < to_date('$endupdatetime$ 23:59:59', 'yyyy-MM-dd hh24:mi:ss')]]>
+		      </isNotNull>
+		      
+		      <isNotNull prepend="AND" property="condition">
+		          AI.CONDITION = #condition#
+		      </isNotNull>
+		     ORDER BY AI.CREATETIME DESC
+     </select>
+    
+    
+     <!--删除临时表-->
+    <delete id="deleteYD_WD_MGR_IMP"  parameterClass="java.lang.String">
+    	delete from YD_YW_WANGDIANZZZXBGSQ WHERE USERID = #user#
+    </delete>
+    
+    
+
+</sqlMap>

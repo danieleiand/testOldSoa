@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:cmx -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="contractGs" javaType="string" property="contractGs"/>
+    </resultMap>
+    <select id="queryContractGS" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+    	select distinct(CONTRACT_GS) as contractGs from YD_YW_CONTRACT 
+    </select>
+    
+    
+    <select id="queryPanticipant" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	  select 
+	  	PARTICIPANT, PARTINAME
+	  from WFWorkItem
+	  where 
+	  	1=1
+	  and BIZSTATE is not null
+	  and BIZSTATE != '0'
+	  <isNotNull prepend="AND" property="workItemID">
+      	workItemID = #workItemID#
+      </isNotNull>
+	  <isNotNull prepend="AND" property="ASSISTANT">
+      	ASSISTANT = #ASSISTANT#
+      </isNotNull>
+    </select>
+</sqlMap>
